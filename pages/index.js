@@ -7,9 +7,9 @@ export default function Home() {
   ]
 
   return (
-    <div className="bg-gray-900">
+    <div className="tw-bg-gray-900">
       <header>
-        <nav className="items-center pt-5 px-4 mx-auto max-w-screen-xl sm:px-8 sm:flex sm:space-x-6">
+        <nav className="tw-items-center tw-pt-5 tw-px-4 tw-mx-auto tw-max-w-screen-xl sm:tw-px-8 sm:tw-flex sm:tw-space-x-6">
           <a href="javascript:void(0)">
             <img
               src="https://www.floatui.com/images/logo.svg"
@@ -18,18 +18,18 @@ export default function Home() {
               alt="Float UI logo"
             />
           </a>
-          <ul className="py-4 flex-1 items-center flex space-x-3 sm:space-x-6 sm:justify-end">
+          <ul className="tw-py-4 tw-flex-1 tw-items-center tw-flex tw-space-x-3 sm:tw-space-x-6 sm:tw-justify-end">
             {
               navigation.map((item, idx) => (
-                <li className="text-gray-200" key={idx}>
+                <li className="tw-text-gray-200" key={idx}>
                   <a href={item.path}>{item.title}</a>
                 </li>
               ))
             }
             <li>
-              <a href="javascript:void(0)" className="flex items-center text-gray-200">
+              <a href="/login" className="tw-flex tw-items-center tw-text-gray-200">
                 Log In
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+                <svg xmlns="http://www.w3.org/2000/svg" className="tw-h-5 tw-w-5 tw-ml-2" viewBox="0 0 20 20" fill="currentColor">
                   <path fillRule="evenodd" d="M3 3a1 1 0 011 1v12a1 1 0 11-2 0V4a1 1 0 011-1zm7.707 3.293a1 1 0 010 1.414L9.414 9H17a1 1 0 110 2H9.414l1.293 1.293a1 1 0 01-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0z" clipRule="evenodd" />
                 </svg>
               </a>
@@ -37,26 +37,26 @@ export default function Home() {
           </ul>
         </nav>
       </header>
-      <section className="mt-24 mx-auto max-w-screen-xl pb-12 px-4 items-center lg:flex md:px-8">
-        <div className="space-y-4 flex-1 sm:text-center lg:text-left">
-          <h1 className="text-white font-bold text-4xl xl:text-5xl">
+      <section className="tw-mt-24 tw-mx-auto tw-max-w-screen-xl tw-pb-12 tw-px-4 tw-items-center lg:tw-flex md:tw-px-8">
+        <div className="tw-space-y-4 tw-flex-1 sm:tw-text-center lg:tw-text-left">
+          <h1 className="tw-text-white tw-font-bold tw-text-4xl xl:tw-text-5xl">
             One page Template for
-            <span className="text-indigo-400"> Digital agency</span>
+            <span className="tw-text-indigo-400"> Digital agency</span>
           </h1>
-          <p className="text-gray-300 max-w-xl leading-relaxed sm:mx-auto lg:ml-0">
+          <p className="tw-text-gray-300 tw-max-w-xl tw-leading-relaxed sm:tw-mx-auto lg:tw-ml-0">
             It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum
           </p>
-          <div className="pt-10 items-center justify-center space-y-3 sm:space-x-6 sm:space-y-0 sm:flex lg:justify-start">
-            <a href="javascript:void(0)" className="px-7 py-3 w-full bg-white text-gray-800 text-center rounded-md shadow-md block sm:w-auto">
+          <div className="tw-pt-10 tw-items-center tw-justify-center tw-space-y-3 sm:tw-space-x-6 sm:tw-space-y-0 sm:tw-flex lg:tw-justify-start">
+            <a href="javascript:void(0)" className="tw-px-7 tw-py-3 tw-w-full tw-bg-white tw-text-gray-800 tw-text-center tw-rounded-md tw-shadow-md tw-block sm:tw-w-auto">
               Get started
             </a>
-            <a href="javascript:void(0)" className="px-7 py-3 w-full bg-gray-700 text-gray-200 text-center rounded-md block sm:w-auto">
+            <a href="javascript:void(0)" className="tw-px-7 tw-py-3 tw-w-full tw-bg-gray-700 tw-text-gray-200 tw-text-center tw-rounded-md tw-block sm:tw-w-auto">
               Try it out
             </a>
           </div>
         </div>
-        <div className="flex-1 text-center mt-7 lg:mt-0 lg:ml-3">
-          <img src="https://i.postimg.cc/HxHyt53c/undraw-heatmap-uyye.png" className="w-full mx-auto sm:w-10/12  lg:w-full" />
+        <div className="tw-flex-1 tw-text-center tw-mt-7 lg:tw-mt-0 lg:tw-ml-3">
+          <img src="https://i.postimg.cc/HxHyt53c/undraw-heatmap-uyye.png" className="tw-w-full tw-mx-auto sm:tw-w-10/12  lg:tw-w-full" />
         </div>
       </section>
     </div>
