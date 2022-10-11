@@ -22,7 +22,7 @@ const LoginForm = () => {
                     <div className="tw-mr-1">
                         <a className="tw-text-sm tw-underline hover:tw-no-underline" href="reset-password.html">Forgot Password?</a>
                     </div>
-                    <a className="tw-px-5 tw-py-2.5 tw-text-sm tw-font-medium tw-tracking-wide tw-text-white tw-capitalize tw-transition-colors tw-duration-300 tw-transform tw-bg-indigo-600 tw-rounded-md hover:tw-bg-indigo-500 focus:tw-outline-none focus:tw-bg-indigo-500" href="index.html">Sign In</a>
+                    <a className="tw-px-5 tw-py-2.5 tw-text-sm tw-font-medium tw-tracking-wide tw-text-white tw-capitalize tw-transition-colors tw-duration-300 tw-transform tw-bg-indigo-600 tw-rounded-md hover:tw-bg-indigo-500 focus:tw-outline-none focus:tw-bg-indigo-500">Sign In</a>
                 </div>
                 <div className='tw-text-center tw-font-medium tw-my-3 tw-text-xs tw-text-gray-500 tw-uppercase'>Or Sign-In with</div>
                 <SocialLoginButton provider={Providers.google} />
