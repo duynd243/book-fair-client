@@ -9,7 +9,11 @@ module.exports = {
     extend: {},
   },
   plugins: [
+    require("daisyui"),
     require('@tailwindcss/line-clamp'),
     require('@tailwindcss/forms'),
   ],
+  daisyui: {
+    themes: false
+  }
 }

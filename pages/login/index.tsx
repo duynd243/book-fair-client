@@ -1,8 +1,8 @@
-import React from 'react';
-import {Layout} from '../../components/LoginSignUp/Layout';
+import Layout from 'components/LoginSignUp/Layout';
+import { NextPage } from 'next';
 import LoginForm from '../../components/LoginSignUp/LoginForm';
 
-function LoginPage() {
+const LoginPage : NextPage = () => {
     return (
         <Layout>
             <LoginForm />

@@ -1,5 +1,6 @@
+import { NextPage } from "next"
 
-export default function Home() {
+const IndexPage : NextPage = () => {
 
   const navigation = [
     { title: "Customers", path: "javascript:void(0)" },
@@ -62,3 +63,5 @@ export default function Home() {
     </div>
   )
 }
+
+export default IndexPage;
