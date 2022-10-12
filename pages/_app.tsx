@@ -14,7 +14,7 @@ const queryClient: QueryClient = new QueryClient();
 function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();
   const isProtectedPage = PROTECTED_ROUTES.some(
-    (route) => route.path === router.pathname
+    (route) => router.pathname.includes(route.path)
   );
   return (
     <QueryClientProvider client={queryClient}>
