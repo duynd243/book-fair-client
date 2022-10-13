@@ -20,7 +20,11 @@ function BookFairApp({ Component, pageProps }: AppProps) {
     );
     return (
         <QueryClientProvider client={queryClient}>
-            <ToastContainer />
+            <ToastContainer
+                className={'tw-opacity-90'}
+                position={'bottom-right'}
+                theme={'dark'}
+            />
             <AuthContextProvider>
                 {isProtectedPage ? (
                     <ProtectedRoute>

@@ -1,13 +1,13 @@
 import {
+    createUserWithEmailAndPassword,
     getAuth,
     GoogleAuthProvider,
     onAuthStateChanged,
-    updateProfile,
-    createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
     signInWithPopup,
     signOut,
     Unsubscribe,
+    updateProfile,
 } from 'firebase/auth';
 import React, {
     createContext,
@@ -18,9 +18,8 @@ import React, {
 } from 'react';
 import Swal from 'sweetalert2';
 import LoadingProgress from '../components/Commons/LoadingProgress';
-import { router } from 'next/client';
 import { useRouter } from 'next/router';
-import { queryClient } from '../pages/_app';
+import { toast } from 'react-toastify';
 
 const AuthContext = createContext({});
 export const useAuth: any = () => useContext(AuthContext);
@@ -42,12 +41,7 @@ export const AuthContextProvider: React.FC<Props> = ({ children }) => {
         signInWithPopup(auth, googleProvider)
             .then(async (result) => {
                 console.log('Google Sign In: ', result);
-                await Swal.fire({
-                    icon: 'success',
-                    title: `Welcome ${result?.user?.displayName}`,
-                    showConfirmButton: false,
-                    timer: 1500,
-                });
+                toast.success('Đăng nhập thành công');
             })
             .catch((err) => {
                 console.log(err);
@@ -89,12 +83,7 @@ export const AuthContextProvider: React.FC<Props> = ({ children }) => {
         signInWithEmailAndPassword(auth, email, password)
             .then(async (result) => {
                 console.log('Email Password Sign In: ', result);
-                await Swal.fire({
-                    icon: 'success',
-                    title: `Welcome ${result?.user?.displayName}`,
-                    showConfirmButton: false,
-                    timer: 1500,
-                });
+                toast.success('Đăng nhập thành công');
             })
             .catch(async (err) => {
                 console.log(Object.keys(err).map((key) => err[key]));
@@ -115,12 +104,7 @@ export const AuthContextProvider: React.FC<Props> = ({ children }) => {
         }).then(async (result) => {
             if (result.isConfirmed) {
                 await signOut(auth);
-                await Swal.fire({
-                    icon: 'success',
-                    title: 'Logged Out',
-                    showConfirmButton: false,
-                    timer: 1500,
-                });
+                toast.success('Đăng xuất thành công');
                 await router.push('/');
             }
         });

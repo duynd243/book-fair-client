@@ -1,6 +1,7 @@
 import React from 'react';
 import { FcGoogle } from 'react-icons/fc';
 import { BsFacebook } from 'react-icons/bs';
+
 type AuthProvider = {
     displayName: string;
     icon: JSX.Element;

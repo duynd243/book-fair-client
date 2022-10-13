@@ -2,6 +2,25 @@
 @tailwind components;
 @tailwind utilities;
 
+::-webkit-scrollbar {
+    width: 0.4em;
+    height: 0.4em;
+}
+
+::-webkit-scrollbar-track {
+    background: hsl(0, 0%, 91%);
+    border-radius: 100vw;
+    margin-block: 0.2em;
+}
+
+::-webkit-scrollbar-thumb {
+    background: hsl(0, 0%, 71%);
+    border-radius: 100vw;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: hsl(0, 0%, 60%);
+}
 .swal2-popup {
     @apply !tw-rounded-xl
     !tw-pt-6

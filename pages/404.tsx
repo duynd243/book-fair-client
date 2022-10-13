@@ -52,7 +52,7 @@ const NotFoundPage: NextPage = () => {
                                 cy="816.89"
                                 rx="202.22"
                                 ry="30.98"
-                                tw-transform="translate(-233.49 303.67) rotate(-19.91)"
+                                transform="translate(-233.49 303.67) rotate(-19.91)"
                             />
                             <path
                                 className="cls-3"
@@ -244,4 +244,4 @@ const NotFoundPage: NextPage = () => {
     );
 };
 
-export default NotFoundPage
+export default NotFoundPage;
