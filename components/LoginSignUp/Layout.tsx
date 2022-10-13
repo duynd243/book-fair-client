@@ -14,6 +14,7 @@ type Props = {
 
 const Layout: React.FC<Props> = ({ children }) => {
     console.log(ROLES.ADMIN.displayName);
+    console.log(process.env.NEXT_PUBLIC_API_URL);
 
     return (
         <main className="tw-bg-white">
