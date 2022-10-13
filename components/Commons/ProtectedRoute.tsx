@@ -13,9 +13,9 @@ const ProtectedRoute: React.FC<Props> = ({ children }) => {
     useEffect(() => {
         (async () => {
             if (!user) {
-                await router.push('/login');
+                await router.push('/');
             }
-        })().then((r) => r);
+        })().catch((err) => console.log(err));
     }, [user, router]);
     return <>{user && children}</>;
 };

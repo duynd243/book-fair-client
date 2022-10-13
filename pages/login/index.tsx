@@ -13,7 +13,7 @@ const LoginPage: NextPage = () => {
             if (user) {
                 await router.push('/');
             }
-        })();
+        })().catch((err) => console.log(err));
     }, [user, router]);
     return (
         <Layout>
