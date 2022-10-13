@@ -3,51 +3,55 @@
 @tailwind utilities;
 
 .swal2-popup {
-  @apply !tw-rounded-xl
+    @apply !tw-rounded-xl
     !tw-pt-6
     !tw-px-6
     !tw-pb-8
     !tw-shadow-sm;
 }
+
 .swal2-close {
-  @apply !tw-h-[1.1rem]
-      !tw-w-[1.1rem]
-      focus:!tw-shadow-none;
+    @apply !tw-h-[1.1rem]
+    !tw-w-[1.1rem]
+    focus:!tw-shadow-none;
 }
 
 .swal2-icon {
-  @apply !tw-scale-[0.92];
+    @apply !tw-scale-[0.92];
 }
+
 .swal2-actions {
-  @apply !tw-block
-      sm:!tw-flex
-      !tw-mt-10
-      !tw-w-full
-      sm:!tw-gap-1;
+    @apply !tw-block
+    sm:!tw-flex
+    !tw-mt-10
+    !tw-w-full
+    sm:!tw-gap-1;
 }
+
 .swal2-actions button {
-  @apply focus:!tw-shadow-sm
-      !tw-font-medium
-      !tw-text-base 
-      !tw-rounded-lg
-      !tw-py-2.5
-      !tw-w-full
-      sm:!tw-flex-1
-      !tw-outline-none 
-     !tw-border-2 
-     !tw-ring-offset-2
-      !tw-ring-blue-500;
+    @apply focus:!tw-shadow-sm
+    !tw-font-medium
+    !tw-text-base
+    !tw-rounded-lg
+    !tw-py-2.5
+    !tw-w-full
+    sm:!tw-flex-1
+    !tw-outline-none
+    !tw-border-2
+    !tw-ring-offset-2
+    !tw-ring-blue-500;
 }
+
 .swal2-styled.swal2-confirm {
-  @apply !tw-text-white 
-      !tw-bg-blue-500
-      !tw-border-blue-500
-      hover:!tw-bg-blue-600;
+    @apply !tw-text-white
+    !tw-bg-blue-500
+    !tw-border-blue-500
+    hover:!tw-bg-blue-600;
 }
 
 .swal2-styled.swal2-cancel {
-  @apply !tw-text-[#6D6D6D] 
-      !tw-bg-white
-      !tw-border-solid
-      !tw-border-[#EDEDED];
+    @apply !tw-text-[#6D6D6D]
+    !tw-bg-white
+    !tw-border-solid
+    !tw-border-[#EDEDED];
 }
