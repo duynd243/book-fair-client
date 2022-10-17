@@ -34,6 +34,7 @@ jobs:
       - run: yarn run build
       - run: sudo rm -rf .git .github
       - run: sudo tar -zcvf final.tar `ls -A -1`
+      - run: ls
       - name: Test thoi
         uses: appleboy/ssh-action@master
         with:
