@@ -41,7 +41,7 @@ jobs:
           REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
           REMOTE_PORT: ${{ secrets.REMOTE_PORT }}
           REMOTE_USER: ${{ secrets.REMOTE_USER }}
-          TARGET: "/var/www/next-app"
+          TARGET: "/var/www/book-fair-client"
           
       - name: Start the app
         uses: appleboy/ssh-action@master
@@ -50,4 +50,4 @@ jobs:
           port: ${{ secrets.REMOTE_PORT }}
           username: ${{ secrets.REMOTE_USER }}
           key: ${{ secrets.REMOTE_SSH_KEY }}
-          script: cd /var/www/next-app ; sudo tar -xvf final.tar ; sudo systemctl restart next-app
+          script: cd /var/www/book-fair-client ; sudo tar -xvf final.tar ; sudo systemctl restart book-fair-client
