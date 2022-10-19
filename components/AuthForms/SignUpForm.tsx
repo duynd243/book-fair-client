@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import RequiredAsterisk from '../Commons/RequiredAsterisk';
-import { inputClass } from './Layout';
+import { inputClass } from '../Layouts/LoginSignUpLayout';
 import SocialLoginButton, {
     ActionTypes,
     AuthProviders,

@@ -1,5 +1,5 @@
 import React from 'react';
-import { inputClass } from './Layout';
+import { inputClass } from '../Layouts/LoginSignUpLayout';
 import { useAuth } from '../../context/AuthContext';
 import SocialLoginButton, {
     ActionTypes,

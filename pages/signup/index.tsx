@@ -1,12 +1,12 @@
 import { NextPage } from 'next';
-import Layout from '../../components/LoginSignUp/Layout';
-import SignUpForm from '../../components/LoginSignUp/SignUpForm';
+import LoginSignUpLayout from '../../components/Layouts/LoginSignUpLayout';
+import SignUpForm from '../../components/AuthForms/SignUpForm';
 
 const SignUpPage: NextPage = () => {
     return (
-        <Layout>
+        <LoginSignUpLayout>
             <SignUpForm />
-        </Layout>
+        </LoginSignUpLayout>
     );
 };
 

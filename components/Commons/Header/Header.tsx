@@ -8,83 +8,131 @@ import DefaultAvatar from '../../../assets/images/default_avatar.png';
 import { BiLogIn, BiLogOut, BiSearch, BiUserPlus } from 'react-icons/bi';
 import { FcAddressBook } from 'react-icons/fc';
 import DropdownItem from './DropdownItem';
+import DropdownMenu, { MenuItem } from './DropdownMenu';
 
 const Header = () => {
     const { user, authLoading, logOut } = useAuth();
 
+    const menuItemsMobile = {
+        guest: [
+            <Link href={'/login'}>
+                <DropdownItem icon={<BiLogIn />} text={'Đăng nhập'} />
+            </Link>,
+            <Link href={'/signup'}>
+                <DropdownItem icon={<BiUserPlus />} text={'Đăng ký'} />
+            </Link>,
+        ],
+        user: [
+            // eslint-disable-next-line react/jsx-key
+            <React.Fragment>
+                <DropdownItem
+                    icon={<BiLogOut />}
+                    text={'Đăng xuất'}
+                    onClick={logOut}
+                />
+            </React.Fragment>,
+        ],
+    };
+
+    const MenuItemsDesktop = {
+        user: [],
+        guest: [],
+    };
+
     return (
         <header className="tw-shadow-sm">
             <div className="tw-relative tw-mx-auto tw-flex tw-h-16 tw-max-w-screen-xl tw-items-center tw-justify-between tw-px-4">
-                <Menu>
-                    <div className="tw-flex tw-items-center tw-w-0 tw-flex-1 lg:tw-hidden">
-                        <Menu.Button
+                <Menu
+                    as={'div'}
+                    className={
+                        'tw-flex tw-items-center tw-w-0 tw-flex-1 lg:tw-hidden'
+                    }
+                >
+                    <Menu.Button
+                        className={'tw-flex tw-items-center tw-justify-center'}
+                    >
+                        <Image
+                            alt={user?.displayName}
+                            src={user?.photoURL || DefaultAvatar.src}
+                            width={35}
+                            height={35}
+                            className="tw-cursor-pointer tw-rounded-full"
+                        />
+                    </Menu.Button>
+                    <Transition
+                        as={Fragment}
+                        enter="tw-transition tw-ease-out tw-duration-100"
+                        enterFrom="tw-transform tw-opacity-0 tw-scale-95"
+                        enterTo="tw-transform tw-opacity-100 tw-scale-100"
+                        leave="tw-transition tw-ease-in tw-duration-75"
+                        leaveFrom="tw-transform tw-opacity-100 tw-scale-100"
+                        leaveTo="tw-transform tw-opacity-0 tw-scale-95"
+                    >
+                        <Menu.Items
                             className={
-                                'tw-flex tw-items-center tw-justify-center'
+                                'tw-absolute tw-p-1.5 tw-top-full tw-w-52 -tw-mt-2 tw-max-w-full tw-left-2 tw-rounded-lg tw-border tw-border-gray-100 tw-bg-white tw-drop-shadow tw-shadow-lg'
                             }
                         >
-                            <Image
-                                alt={user?.displayName}
-                                src={user?.photoURL || DefaultAvatar.src}
-                                width={35}
-                                height={35}
-                                className="tw-cursor-pointer tw-rounded-full"
-                            />
-                        </Menu.Button>
-                        <Transition
-                            as={Fragment}
-                            enter="tw-transition tw-ease-out tw-duration-100"
-                            enterFrom="tw-transform tw-opacity-0 tw-scale-95"
-                            enterTo="tw-transform tw-opacity-100 tw-scale-100"
-                            leave="tw-transition tw-ease-in tw-duration-75"
-                            leaveFrom="tw-transform tw-opacity-100 tw-scale-100"
-                            leaveTo="tw-transform tw-opacity-0 tw-scale-95"
-                        >
-                            <Menu.Items
-                                className={
-                                    'tw-absolute tw-p-1.5 tw-top-full tw-w-52 -tw-mt-2 tw-max-w-full tw-left-2 tw-rounded-lg tw-border tw-border-gray-100 tw-bg-white tw-drop-shadow tw-shadow-lg'
-                                }
-                            >
-                                {!authLoading && !user && (
-                                    <>
-                                        <Menu.Item>
-                                            <Link href={'/login'}>
-                                                <DropdownItem
-                                                    icon={<BiLogIn />}
-                                                    text={'Đăng nhập'}
-                                                />
-                                            </Link>
-                                        </Menu.Item>
-                                        <Menu.Item>
-                                            <Link href={'/signup'}>
-                                                <DropdownItem
-                                                    icon={<BiUserPlus />}
-                                                    text={'Đăng ký'}
-                                                />
-                                            </Link>
-                                        </Menu.Item>
-                                    </>
-                                )}
-                                {!authLoading && user && (
-                                    <>
-                                        <Menu.Item>
+                            {!authLoading && !user && (
+                                <>
+                                    <Menu.Item>
+                                        <Link href={'/login'}>
                                             <DropdownItem
-                                                text={user?.displayName}
+                                                icon={<BiLogIn />}
+                                                text={'Đăng nhập'}
                                             />
-                                        </Menu.Item>
-                                        <Menu.Item>
+                                        </Link>
+                                    </Menu.Item>
+                                    <Menu.Item>
+                                        <Link href={'/signup'}>
                                             <DropdownItem
-                                                isWarning={true}
-                                                icon={<BiLogOut />}
-                                                text={'Đăng xuất'}
-                                                onClick={logOut}
+                                                icon={<BiUserPlus />}
+                                                text={'Đăng ký'}
                                             />
-                                        </Menu.Item>
-                                    </>
-                                )}
-                            </Menu.Items>
-                        </Transition>
-                    </div>
+                                        </Link>
+                                    </Menu.Item>
+                                </>
+                            )}
+                            {!authLoading && user && (
+                                <>
+                                    <Menu.Item>
+                                        <DropdownItem
+                                            text={user?.displayName}
+                                        />
+                                    </Menu.Item>
+                                    <Menu.Item>
+                                        <DropdownItem
+                                            isWarning={true}
+                                            icon={<BiLogOut />}
+                                            text={'Đăng xuất'}
+                                            onClick={logOut}
+                                        />
+                                    </Menu.Item>
+                                </>
+                            )}
+                        </Menu.Items>
+                    </Transition>
                 </Menu>
+
+                <DropdownMenu
+                    menuButtonClasses={
+                        'tw-flex tw-items-center tw-justify-center'
+                    }
+                    menuButtonChildren={
+                        <Image
+                            alt={user?.displayName}
+                            src={user?.photoURL || DefaultAvatar.src}
+                            width={35}
+                            height={35}
+                            className="tw-cursor-pointer tw-rounded-full"
+                        />
+                    }
+                    menuClasses={
+                        'tw-flex tw-items-center tw-w-0 tw-flex-1 lg:tw-hidden'
+                    }
+                    menuItemsObject={menuItemsMobile}
+                />
+                {/*Logo*/}
                 <div className="tw-flex tw-items-center tw-gap-4">
                     <FcAddressBook className={'tw-scale-[2.2]'} />
                     <form className="tw-mb-0 tw-hidden lg:tw-flex">

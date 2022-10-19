@@ -1,6 +1,7 @@
 import {
     createUserWithEmailAndPassword,
     getAuth,
+    getIdToken,
     GoogleAuthProvider,
     onAuthStateChanged,
     signInWithEmailAndPassword,
@@ -143,7 +144,7 @@ export const AuthContextProvider: React.FC<Props> = ({ children }) => {
             async (firebaseUser: any) => {
                 if (firebaseUser) {
                     setUser(firebaseUser);
-                    console.log('Firebase User: ', firebaseUser);
+                    console.table(firebaseUser);
                     console.log('Server User: ', serverUser);
 
                     if (serverUser?.email !== firebaseUser?.email) {

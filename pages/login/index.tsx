@@ -1,24 +1,12 @@
-import Layout from 'components/LoginSignUp/Layout';
+import LoginSignUpLayout from 'components/Layouts/LoginSignUpLayout';
 import { NextPage } from 'next';
-import LoginForm from '../../components/LoginSignUp/LoginForm';
-import { useEffect } from 'react';
-import { useAuth } from '../../context/AuthContext';
-import { useRouter } from 'next/router';
+import LoginForm from '../../components/AuthForms/LoginForm';
 
 const LoginPage: NextPage = () => {
-    const { user } = useAuth();
-    const router = useRouter();
-    useEffect(() => {
-        (async () => {
-            if (user) {
-                await router.push('/');
-            }
-        })().catch((err) => console.log(err));
-    }, [user, router]);
     return (
-        <Layout>
+        <LoginSignUpLayout>
             <LoginForm />
-        </Layout>
+        </LoginSignUpLayout>
     );
 };
 

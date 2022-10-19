@@ -1,6 +1,6 @@
-import { IRole, ROLES } from './Roles';
-
-interface IProtectedRoute {
+import { Roles } from './Roles';
+import { IRole } from 'types/user/IRole';
+export interface IProtectedRoute {
     path: string;
     allowedRoles: IRole[];
 }
@@ -8,10 +8,10 @@ interface IProtectedRoute {
 export const PROTECTED_ROUTES: IProtectedRoute[] = [
     {
         path: '/admin',
-        allowedRoles: [ROLES.ADMIN],
+        allowedRoles: [Roles.ADMIN],
     },
     {
         path: '/protected',
-        allowedRoles: [ROLES.ADMIN, ROLES.CUSTOMER],
+        allowedRoles: [Roles.ADMIN, Roles.CUSTOMER],
     },
 ];

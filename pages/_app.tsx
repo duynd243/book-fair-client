@@ -1,23 +1,37 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import '../styles/globals.css';
-import { initFirebaseApp } from '../firebase/initFirebase';
-import { AuthContextProvider } from '../context/AuthContext';
-import { useRouter } from 'next/router';
-import { PROTECTED_ROUTES } from '../constants/ProtectedRoutes';
-import ProtectedRoute from '../components/Commons/ProtectedRoute';
 import { AppProps } from 'next/app';
-import { ToastContainer } from 'react-toastify';
+import { useRouter } from 'next/router';
+import { useEffect } from 'react';
+import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import ProtectedRoute from '../components/Commons/ProtectedRoute';
+import { PROTECTED_ROUTES } from '../constants/ProtectedRoutes';
+import { AuthContextProvider } from '../context/AuthContext';
+import { initFirebaseApp } from '../firebase/initFirebase';
+import '../styles/globals.css';
 
 initFirebaseApp();
-export const queryClient: QueryClient = new QueryClient();
+const queryClient: QueryClient = new QueryClient();
 
 function BookFairApp({ Component, pageProps }: AppProps) {
     const router = useRouter();
-    const isProtectedPage = PROTECTED_ROUTES.some((route) =>
+    const isProtectedRoute = PROTECTED_ROUTES.find((route) =>
         router.pathname.includes(route.path)
     );
+
+    console.log('isProtectedRoute: ', isProtectedRoute);
+    console.log('router_pathname: ', router.pathname);
+
+    useEffect(() => {
+        if (router.query.unauthorized) {
+            toast.error(
+                'Tài khoản của bạn không có quyền truy cập vào trang này'
+            );
+            router.replace('/');
+        }
+    }, [router]);
+
     return (
         <QueryClientProvider client={queryClient}>
             <ToastContainer
@@ -26,8 +40,10 @@ function BookFairApp({ Component, pageProps }: AppProps) {
                 theme={'dark'}
             />
             <AuthContextProvider>
-                {isProtectedPage ? (
-                    <ProtectedRoute>
+                {isProtectedRoute ? (
+                    <ProtectedRoute
+                        allowedRoles={isProtectedRoute.allowedRoles}
+                    >
                         <Component {...pageProps} />
                     </ProtectedRoute>
                 ) : (

@@ -1,9 +1,11 @@
-import { ROLES } from 'constants/Roles';
+import LoadingProgress from 'components/Commons/LoadingProgress';
+import { useAuth } from 'context/AuthContext';
 import Image from 'next/image';
-import React from 'react';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import React, { useEffect, useState } from 'react';
 import AuthDecoration from './../../assets/images/LoginSignUp/auth-decoration.png';
 import CoverImage from './../../assets/images/LoginSignUp/login-cover.jpeg';
-import Link from 'next/link';
 
 export const inputClass: string =
     'tw-border-gray-200 tw-drop-shadow-sm tw-appearance-none tw-border tw-rounded tw-w-full tw-py-2 tw-px-3 text-grey-darker';
@@ -12,9 +14,21 @@ type Props = {
     children: JSX.Element;
 };
 
-const Layout: React.FC<Props> = ({ children }) => {
-    console.log(ROLES.ADMIN.displayName);
-    console.log(process.env.NEXT_PUBLIC_API_URL);
+const LoginSignUpLayout: React.FC<Props> = ({ children }) => {
+    const [loading, setLoading] = useState<boolean>(true);
+    const { user } = useAuth();
+    const router = useRouter();
+    useEffect(() => {
+        (async () => {
+            if (user) {
+                await router.push('/');
+            } else setLoading(false);
+        })().catch((err) => console.log(err));
+    }, [user, router]);
+
+    if (loading) {
+        return <LoadingProgress />;
+    }
 
     return (
         <main className="tw-bg-white">
@@ -124,4 +138,4 @@ const Layout: React.FC<Props> = ({ children }) => {
     );
 };
 
-export default Layout;
+export default LoginSignUpLayout;

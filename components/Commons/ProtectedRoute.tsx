@@ -1,22 +1,31 @@
-import { useAuth } from '../../context/AuthContext';
+import { IRole } from 'constants/Roles';
 import { useRouter } from 'next/router';
 import React, { ReactNode, useEffect } from 'react';
+import { useAuth } from '../../context/AuthContext';
 
 type Props = {
     children: ReactNode;
+    allowedRoles: IRole[];
 };
 
-const ProtectedRoute: React.FC<Props> = ({ children }) => {
+const ProtectedRoute: React.FC<Props> = ({ children, allowedRoles }) => {
     const { user } = useAuth();
     const router = useRouter();
+
+    console.log('router.pathname: ', router.pathname);
 
     useEffect(() => {
         (async () => {
             if (!user) {
-                await router.push('/');
+                await router.push('/?unauthorized=true');
             }
+
+            // when backend is ready, uncomment this
+            // if (!user || !allowedRoles.includes(user.role)) {
+            //     await router.push('/?unauthorized=true');
+            // }
         })().catch((err) => console.log(err));
-    }, [user, router]);
+    }, [user, router, allowedRoles]);
     return <>{user && children}</>;
 };
 
