@@ -34,10 +34,16 @@ jobs:
             - run: npm i -g yarn
             - run: yarn install --frozen-lockfile
             - run: yarn run build
-            # - run: sudo rm -rf .git .github
-            # - run: sudo tar -zcvf final.tar `ls -A -1`
+            - run: sudo rm -rf .git .github .idea
 
-            #Copy workspace into server
+    deploy:
+        runs-on: ubuntu-latest
+
+        steps:
+            # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+            - name: Checking out latest code
+              uses: actions/checkout@v3
+            # Copy workspace into server
             - name: Deploy to Staging server
               uses: appleboy/scp-action@master
               with:
@@ -47,7 +53,7 @@ jobs:
                   source: '*'
                   target: '/var/www/book-fair-client'
 
-            - name: Start the app
+            - name: Restart the app
               uses: appleboy/ssh-action@master
               with:
                   host: ${{ secrets.REMOTE_HOST }}
