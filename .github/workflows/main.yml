@@ -34,7 +34,7 @@ jobs:
             - run: npm i -g yarn
             - run: yarn install --frozen-lockfile
             - run: yarn run build
-            - run: sudo rm -rf .git .github .idea
+            - run: sudo rm -rf .git
 
     deploy:
         runs-on: ubuntu-latest
