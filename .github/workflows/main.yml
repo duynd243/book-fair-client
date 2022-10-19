@@ -12,7 +12,6 @@ on:
 
     # Allows you to run this workflow manually from the Actions tab
     workflow_dispatch:
-env: TARGET_PATH = '/var/www/book-fair-client'
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
     # This workflow contains a single job called "build"
@@ -49,7 +48,7 @@ jobs:
                   username: ${{ secrets.REMOTE_USER }}
                   key: ${{ secrets.REMOTE_SSH_KEY }}
                   source: '*'
-                  target: ${TARGET_PATH}
+                  target: '/var/www/book-fair-client'
 
             - name: Restart the app
               uses: appleboy/ssh-action@master
@@ -58,4 +57,4 @@ jobs:
                   port: ${{ secrets.REMOTE_PORT }}
                   username: ${{ secrets.REMOTE_USER }}
                   key: ${{ secrets.REMOTE_SSH_KEY }}
-                  script: cd ${TARGET_PATH} && sudo rm -rf .git .github .idea && sudo systemctl restart book-fair-client
+                  script: cd /var/www/book-fair-client && sudo rm -rf .git .github .idea && sudo systemctl restart book-fair-client
