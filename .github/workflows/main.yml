@@ -50,7 +50,6 @@ jobs:
                   key: ${{ secrets.REMOTE_SSH_KEY }}
                   source: '*'
                   target: '/var/www/book-fair-client'
-                  overwrite: true
 
             - name: Restart the app
               uses: appleboy/ssh-action@master
