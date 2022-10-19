@@ -25,8 +25,8 @@ jobs:
             # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
             - name: Checking out latest code
               uses: actions/checkout@v3
-            - name: "Set flag from Commit"
-            env:
+            - name: Set ENV
+                env:
                     TARGET_PATH = /var/www/book-fair-client
             # NodeJS Setup
             - name: Setup Node.js environment
