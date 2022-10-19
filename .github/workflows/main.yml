@@ -44,7 +44,6 @@ jobs:
                   host: ${{ secrets.REMOTE_HOST }}
                   username: ${{ secrets.REMOTE_USER }}
                   key: ${{ secrets.REMOTE_SSH_KEY }}
-                  port: ${{ secrets.REMOTE_SSH_PORT }}
                   source: '*'
                   target: '/var/www/book-fair-client'
 
