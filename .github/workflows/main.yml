@@ -25,7 +25,7 @@ jobs:
             # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
             - name: Checking out latest code
               uses: actions/checkout@v3
-
+              env: TARGET_PATH = '/var/www/book-fair-client'
             # NodeJS Setup
             - name: Setup Node.js environment
               uses: actions/setup-node@v3.4.1
@@ -34,7 +34,6 @@ jobs:
             - run: npm i -g yarn
             - run: yarn install --frozen-lockfile
             - run: yarn run build
-            - run: sudo rm -rf .git
 
     deploy:
         runs-on: ubuntu-latest
@@ -51,7 +50,7 @@ jobs:
                   username: ${{ secrets.REMOTE_USER }}
                   key: ${{ secrets.REMOTE_SSH_KEY }}
                   source: '*'
-                  target: '/var/www/book-fair-client'
+                  target: ${TARGET_PATH}
 
             - name: Restart the app
               uses: appleboy/ssh-action@master
@@ -60,4 +59,4 @@ jobs:
                   port: ${{ secrets.REMOTE_PORT }}
                   username: ${{ secrets.REMOTE_USER }}
                   key: ${{ secrets.REMOTE_SSH_KEY }}
-                  script: sudo systemctl restart book-fair-client
+                  script: cd ${TARGET_PATH} && sudo rm -rf .git .github .idea && sudo systemctl restart book-fair-client
