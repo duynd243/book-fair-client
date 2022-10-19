@@ -12,6 +12,7 @@ const IndexPage: NextPage = () => {
             >
                 <div>banner</div>
                 <div>campaigns</div>
+                <div>test deploy changes</div>
             </div>
         </>
     );
