@@ -32,7 +32,6 @@ jobs:
             - run: npm i -g yarn
             - run: yarn install --frozen-lockfile
             - run: yarn run build
-            - run: ll
 
     deploy:
         needs: build
