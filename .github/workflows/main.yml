@@ -4,60 +4,55 @@ name: Deploy NextJS to Ubuntu Server
 
 # Controls when the workflow will run
 on:
-  # Triggers the workflow on push or pull request events but only for the "main" branch
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+    # Triggers the workflow on push or pull request events but only for the "main" branch
+    push:
+        branches: ['main']
+    pull_request:
+        branches: ['main']
 
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
+    # Allows you to run this workflow manually from the Actions tab
+    workflow_dispatch:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
-  build:
-    # The type of runner that the job will run on
-    runs-on: ubuntu-latest
+    # This workflow contains a single job called "build"
+    build:
+        # The type of runner that the job will run on
+        runs-on: ubuntu-latest
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
-    steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - name: Checking out latest code
-        uses: actions/checkout@v3
-      - name: Setup Node.js environment
-        uses: actions/setup-node@v3.4.1
-        with:
-          node-version: 16
-      - run: npm i -g yarn
-      - run: yarn install --frozen-lockfile
-      - run: yarn run build
-      - run: sudo rm -rf .git .github
-      - run: sudo tar -zcvf final.tar `ls -A -1`
-      - run: ls
-      - name: Test thoi
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.REMOTE_HOST }}
-          port: ${{ secrets.REMOTE_PORT }}
-          username: ${{ secrets.REMOTE_USER }}
-          key: ${{ secrets.REMOTE_SSH_KEY }}
-          script: pwd
-      - name: Deploy to Staging server
-        uses: easingthemes/ssh-deploy@main
-        env:
-          SSH_PRIVATE_KEY: ${{ secrets.REMOTE_SSH_KEY }}
-          SOURCE: "final.tar"
-          REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
-          REMOTE_PORT: ${{ secrets.REMOTE_PORT }}
-          REMOTE_USER: ${{ secrets.REMOTE_USER }}
-          TARGET: "/var/www/book-fair-client"
-          
-      - name: Start the app
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.REMOTE_HOST }}
-          port: ${{ secrets.REMOTE_PORT }}
-          username: ${{ secrets.REMOTE_USER }}
-          key: ${{ secrets.REMOTE_SSH_KEY }}
-          script: cd /var/www/book-fair-client ; sudo tar -xvf final.tar ; sudo systemctl restart book-fair-client
+        # Steps represent a sequence of tasks that will be executed as part of the job
+        steps:
+            # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+            - name: Checking out latest code
+              uses: actions/checkout@v3
+
+            # NodeJS Setup
+            - name: Setup Node.js environment
+              uses: actions/setup-node@v3.4.1
+              with:
+                  node-version: 16
+            - run: npm i -g yarn
+            - run: yarn install --frozen-lockfile
+            - run: yarn run build
+            # - run: sudo rm -rf .git .github
+            # - run: sudo tar -zcvf final.tar `ls -A -1`
+
+            #Copy workspace into server
+            - name: Deploy to Staging server
+              uses: appleboy/scp-action@master
+              with:
+                  host: ${{ secrets.REMOTE_HOST }}
+                  username: ${{ secrets.REMOTE_USER }}
+                  key: ${{ secrets.REMOTE_SSH_KEY }}
+                  port: ${{ secrets.REMOTE_SSH_PORT }}
+                  source: '*'
+                  target: '/var/www/book-fair-client'
+
+            - name: Start the app
+              uses: appleboy/ssh-action@master
+              with:
+                  host: ${{ secrets.REMOTE_HOST }}
+                  port: ${{ secrets.REMOTE_PORT }}
+                  username: ${{ secrets.REMOTE_USER }}
+                  key: ${{ secrets.REMOTE_SSH_KEY }}
+                  script: sudo systemctl restart book-fair-client
