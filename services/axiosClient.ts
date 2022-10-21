@@ -1,21 +1,22 @@
-import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
+import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
 
-export const axiosClient = axios.create({
-    baseURL: process.env.NEXT_PUBLIC_API_URL,
-});
-axiosClient.interceptors.request.use((config: AxiosRequestConfig) => {
-    if (config.headers) {
-        const token = localStorage.getItem('token');
-        config.headers['Authorization'] = token ? `Bearer ${token}` : '';
-    }
-    return config;
-});
+const getAxiosClient = (accessToken?: string): AxiosInstance => {
+    const axiosClient = axios.create({
+        baseURL: process.env.NEXT_PUBLIC_API_URL,
+    });
+    axiosClient.interceptors.request.use((config: AxiosRequestConfig) => {
+        if (config.headers && accessToken) {
+            config.headers.Authorization = `Bearer ${accessToken}`;
+        }
+        return config;
+    });
 
-axiosClient.interceptors.response.use(
-    (response: AxiosResponse) => response,
-    (error) => Promise.reject(error.response && error.response.data)
-);
+    axiosClient.interceptors.response.use(
+        (response: AxiosResponse) => response,
+        (error) => Promise.reject(error.response && error.response.data)
+    );
 
-export const mockAxiosClient = axios.create({
-    baseURL: process.env.NEXT_PUBLIC_API_URL,
-});
+    return axiosClient;
+};
+
+export default getAxiosClient;

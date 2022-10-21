@@ -1,22 +1,12 @@
-import { IRole } from './IRole';
 export interface IServerUser {
+    userId: string;
     accessToken: string;
-    fullName: string;
-    dob: Date;
-    gender: string;
-    role: IRole;
+    isFirstLogin: boolean;
+    email: string;
+    name: string;
+    address: string;
+    phoneNumber: string;
+    dob?: Date;
+    role: string;
     imageUrl: string;
 }
-
-const user: IServerUser = {
-    accessToken: '',
-    fullName: '',
-    dob: new Date(2022),
-    gender: 'Male',
-    role: {
-        id: 1,
-        name: 'admin',
-        displayName: 'Admin',
-    },
-    imageUrl: '',
-};

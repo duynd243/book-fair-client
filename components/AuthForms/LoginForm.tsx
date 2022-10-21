@@ -1,14 +1,14 @@
+import { useFormik } from 'formik';
+import Link from 'next/link';
 import React from 'react';
-import { inputClass } from '../Layouts/LoginSignUpLayout';
+import { toast } from 'react-toastify';
+import * as Yup from 'yup';
 import { useAuth } from '../../context/AuthContext';
+import { inputClass } from '../Layouts/LoginSignUpLayout';
 import SocialLoginButton, {
     ActionTypes,
     AuthProviders,
 } from './SocialLoginButton';
-import { useFormik } from 'formik';
-import * as Yup from 'yup';
-import { toast } from 'react-toastify';
-import Link from 'next/link';
 
 const LoginForm: React.FC = () => {
     const { handleGoogleSignIn, handleEmailPasswordSignIn, authLoading } =

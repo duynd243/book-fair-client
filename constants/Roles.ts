@@ -1,27 +1,33 @@
 import { IRole } from './../types/user/IRole';
 export class Roles {
-    static readonly ADMIN: IRole = {
-        id: 1,
-        name: 'admin',
-        displayName: 'Admin',
+    static readonly SYSTEM: IRole = {
+        id: 0,
+        name: 'system',
+        displayName: 'System',
     };
-    static readonly CUSTOMER: IRole = {
+    static readonly MANAGER: IRole = {
+        id: 1,
+        name: 'manager',
+        displayName: 'Manager',
+    };
+    static readonly ISSUER: IRole = {
         id: 2,
-        name: 'customer',
-        displayName: 'Customer',
+        name: 'issuer',
+        displayName: 'Issuer',
+    };
+    static readonly USER: IRole = {
+        id: 3,
+        name: 'user',
+        displayName: 'User',
     };
 }
 
-export function getRoleById(id: number) {
+export function getRoleById(id: number): IRole {
     return Object.values(Roles).find((role) => role.id === id);
 }
 
-console.log(
-    Object.values(Roles)
-        .map((r) => JSON.stringify(r))
-        .includes(
-            JSON.stringify({ id: 2, name: 'customer', displayName: 'Customer' })
-        )
-);
-
-console.log(getRoleById(2));
+export function getRoleByName(name: string): IRole {
+    return Object.values(Roles).find(
+        (role) => role.name.toLowerCase() === name.toLowerCase()
+    );
+}

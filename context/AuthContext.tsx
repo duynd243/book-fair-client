@@ -1,7 +1,6 @@
 import {
     createUserWithEmailAndPassword,
     getAuth,
-    getIdToken,
     GoogleAuthProvider,
     onAuthStateChanged,
     signInWithEmailAndPassword,
@@ -10,6 +9,7 @@ import {
     Unsubscribe,
     updateProfile,
 } from 'firebase/auth';
+import { useRouter } from 'next/router';
 import React, {
     createContext,
     ReactNode,
@@ -17,13 +17,28 @@ import React, {
     useEffect,
     useState,
 } from 'react';
-import Swal from 'sweetalert2';
-import LoadingProgress from '../components/Commons/LoadingProgress';
-import { useRouter } from 'next/router';
 import { toast } from 'react-toastify';
+import { UserService } from 'services/UserService';
+import Swal from 'sweetalert2';
+import { IServerUser } from 'types/user/IServerUser';
+import LoadingProgress from '../components/Commons/LoadingProgress';
 
-const AuthContext = createContext({});
-export const useAuth: any = () => useContext(AuthContext);
+export interface IAuthContext {
+    user: any;
+    serverUser: IServerUser;
+    authLoading: boolean;
+    handleGoogleSignIn: () => void;
+    logOut: () => void;
+    handleEmailPasswordSignIn: (email: string, password: string) => void;
+    handleEmailPasswordSignUp: (
+        email: string,
+        password: string,
+        fullName: string
+    ) => void;
+}
+
+const AuthContext = createContext({} as IAuthContext);
+export const useAuth: () => IAuthContext = () => useContext(AuthContext);
 
 type Props = {
     children: ReactNode;
@@ -31,7 +46,7 @@ type Props = {
 
 export const AuthContextProvider: React.FC<Props> = ({ children }) => {
     const [user, setUser] = useState(null);
-    const [serverUser, setServerUser] = useState<any>(null);
+    const [serverUser, setServerUser] = useState<IServerUser>(null!);
     const [authLoading, setAuthLoading] = useState<boolean>(true);
 
     const googleProvider = new GoogleAuthProvider();
@@ -111,31 +126,17 @@ export const AuthContextProvider: React.FC<Props> = ({ children }) => {
         });
     };
 
-    const handleServerAuthentication = (firebaseUser: any) => {
-        return new Promise((resolve, reject) => {
-            // fetch(`${process.env.baseUrl}/api/auth`, {
-            //     method: 'POST',
-            //     headers: {
-            //         'Content-Type': 'application/json'
-            //     },
-            //     body: JSON.stringify({
-            //         email: user.email,
-            //         name: user.displayName,
-            //         photo: user.photoURL
-            //     })
-            // })
-            //     .then(res => res.json())
-            //     .then(data => {
-            //         setServerUser(data);
-            //         resolve(data);
-            //     })
-            //     .catch(err => {
-            //         console.log(err);
-            //         reject(err);
-            //     })
-
-            resolve({ email: firebaseUser?.email });
-        });
+    const handleServerAuthentication = async (firebaseUser: any) => {
+        try {
+            const { data } = await new UserService().loginWithFirebaseIdToken(
+                firebaseUser?.accessToken
+            );
+            if (data) {
+                setServerUser(data);
+            }
+        } catch (err) {
+            console.log(err);
+        }
     };
 
     useEffect(() => {
@@ -144,28 +145,12 @@ export const AuthContextProvider: React.FC<Props> = ({ children }) => {
             async (firebaseUser: any) => {
                 if (firebaseUser) {
                     setUser(firebaseUser);
-                    console.table(firebaseUser);
-                    console.log('Server User: ', serverUser);
-
                     if (serverUser?.email !== firebaseUser?.email) {
-                        console.log('Call backend for getting user data...');
-                        try {
-                            const serverUser = await handleServerAuthentication(
-                                firebaseUser
-                            );
-                            if (serverUser)
-                                setServerUser({
-                                    ...serverUser,
-                                    accessToken: 'test',
-                                });
-                            console.log('Server user: ', serverUser);
-                        } catch (err) {
-                            console.log(err);
-                        }
+                        await handleServerAuthentication(firebaseUser);
                     }
                 } else {
                     setUser(null);
-                    setServerUser(null);
+                    setServerUser(null!);
                 }
                 const timer = setTimeout(() => {
                     setAuthLoading(false);
@@ -181,6 +166,7 @@ export const AuthContextProvider: React.FC<Props> = ({ children }) => {
             value={{
                 user,
                 serverUser,
+                authLoading,
                 handleGoogleSignIn,
                 logOut,
                 handleEmailPasswordSignIn,

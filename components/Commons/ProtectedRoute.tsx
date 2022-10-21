@@ -1,6 +1,7 @@
-import { IRole } from 'constants/Roles';
+import { getRoleByName } from 'constants/Roles';
 import { useRouter } from 'next/router';
 import React, { ReactNode, useEffect } from 'react';
+import { IRole } from 'types/user/IRole';
 import { useAuth } from '../../context/AuthContext';
 
 type Props = {
@@ -9,7 +10,7 @@ type Props = {
 };
 
 const ProtectedRoute: React.FC<Props> = ({ children, allowedRoles }) => {
-    const { user } = useAuth();
+    const { user, serverUser } = useAuth();
     const router = useRouter();
 
     console.log('router.pathname: ', router.pathname);
@@ -21,7 +22,10 @@ const ProtectedRoute: React.FC<Props> = ({ children, allowedRoles }) => {
             }
 
             // when backend is ready, uncomment this
-            // if (!user || !allowedRoles.includes(user.role)) {
+            // if (
+            //     !serverUser ||
+            //     !allowedRoles.includes(getRoleByName(serverUser?.role))
+            // ) {
             //     await router.push('/?unauthorized=true');
             // }
         })().catch((err) => console.log(err));

@@ -8,10 +8,10 @@ export interface IProtectedRoute {
 export const PROTECTED_ROUTES: IProtectedRoute[] = [
     {
         path: '/admin',
-        allowedRoles: [Roles.ADMIN],
+        allowedRoles: [Roles.SYSTEM],
     },
     {
         path: '/protected',
-        allowedRoles: [Roles.ADMIN, Roles.CUSTOMER],
+        allowedRoles: [Roles.SYSTEM],
     },
 ];
