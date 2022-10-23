@@ -1,4 +1,4 @@
-export interface IServerUser {
+export interface ILoginUser {
     userId: string;
     accessToken: string;
     isFirstLogin: boolean;

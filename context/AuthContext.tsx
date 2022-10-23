@@ -20,12 +20,12 @@ import React, {
 import { toast } from 'react-toastify';
 import { UserService } from 'services/UserService';
 import Swal from 'sweetalert2';
-import { IServerUser } from 'types/user/IServerUser';
+import { ILoginUser } from 'types/user/ILoginUser';
 import LoadingProgress from '../components/Commons/LoadingProgress';
 
 export interface IAuthContext {
     user: any;
-    serverUser: IServerUser;
+    loginUser: ILoginUser;
     authLoading: boolean;
     handleGoogleSignIn: () => void;
     logOut: () => void;
@@ -46,7 +46,7 @@ type Props = {
 
 export const AuthContextProvider: React.FC<Props> = ({ children }) => {
     const [user, setUser] = useState(null);
-    const [serverUser, setServerUser] = useState<IServerUser>(null!);
+    const [loginUser, setLoginUser] = useState<ILoginUser>(null!);
     const [authLoading, setAuthLoading] = useState<boolean>(true);
 
     const googleProvider = new GoogleAuthProvider();
@@ -113,10 +113,12 @@ export const AuthContextProvider: React.FC<Props> = ({ children }) => {
 
     const logOut = () => {
         Swal.fire({
-            title: 'Are you sure?',
-            text: 'You will be logged out!',
+            title: 'Bạn có chắc chắn?',
+            text: 'Tài khoản của bạn sẽ bị đăng xuất!',
             icon: 'warning',
+            confirmButtonText: 'Đăng xuất',
             showCancelButton: true,
+            cancelButtonText: 'Hủy',
         }).then(async (result) => {
             if (result.isConfirmed) {
                 await signOut(auth);
@@ -132,7 +134,7 @@ export const AuthContextProvider: React.FC<Props> = ({ children }) => {
                 firebaseUser?.accessToken
             );
             if (data) {
-                setServerUser(data);
+                setLoginUser(data);
             }
         } catch (err) {
             console.log(err);
@@ -145,27 +147,28 @@ export const AuthContextProvider: React.FC<Props> = ({ children }) => {
             async (firebaseUser: any) => {
                 if (firebaseUser) {
                     setUser(firebaseUser);
-                    if (serverUser?.email !== firebaseUser?.email) {
+                    if (loginUser?.email !== firebaseUser?.email) {
                         await handleServerAuthentication(firebaseUser);
                     }
                 } else {
                     setUser(null);
-                    setServerUser(null!);
+                    setLoginUser(null!);
                 }
-                const timer = setTimeout(() => {
-                    setAuthLoading(false);
-                }, 500);
-                return () => clearTimeout(timer);
+                setAuthLoading(false);
+                // const timer = setTimeout(() => {
+                //     setAuthLoading(false);
+                // }, 500);
+                // return () => clearTimeout(timer);
             }
         );
         return () => unsubscribe();
-    }, [auth, serverUser]);
+    }, [auth, loginUser]);
 
     return (
         <AuthContext.Provider
             value={{
                 user,
-                serverUser,
+                loginUser,
                 authLoading,
                 handleGoogleSignIn,
                 logOut,

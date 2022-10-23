@@ -1,36 +1,34 @@
+import { IProtectedRoute } from 'constants/ProtectedRoutes';
 import { getRoleByName } from 'constants/Roles';
 import { useRouter } from 'next/router';
-import React, { ReactNode, useEffect } from 'react';
-import { IRole } from 'types/user/IRole';
+import React, { ReactNode, useEffect, useState } from 'react';
 import { useAuth } from '../../context/AuthContext';
 
 type Props = {
     children: ReactNode;
-    allowedRoles: IRole[];
+    routeData: IProtectedRoute;
 };
 
-const ProtectedRoute: React.FC<Props> = ({ children, allowedRoles }) => {
-    const { user, serverUser } = useAuth();
+const ProtectedRoute: React.FC<Props> = ({ children, routeData }) => {
+    const { user, loginUser } = useAuth();
     const router = useRouter();
-
-    console.log('router.pathname: ', router.pathname);
+    const [isChecking, setIsChecking] = useState<boolean>(true);
 
     useEffect(() => {
         (async () => {
-            if (!user) {
+            if (
+                !user ||
+                !loginUser ||
+                (routeData.allowedRoles !== 'all' &&
+                    !routeData.allowedRoles.includes(
+                        getRoleByName(loginUser?.role)
+                    ))
+            ) {
                 await router.push('/?unauthorized=true');
-            }
-
-            // when backend is ready, uncomment this
-            // if (
-            //     !serverUser ||
-            //     !allowedRoles.includes(getRoleByName(serverUser?.role))
-            // ) {
-            //     await router.push('/?unauthorized=true');
-            // }
+            } else setIsChecking(false);
         })().catch((err) => console.log(err));
-    }, [user, router, allowedRoles]);
-    return <>{user && children}</>;
+    }, [user, router, routeData.allowedRoles, loginUser]);
+    return <>{!isChecking && children}</>;
 };
 
 export default ProtectedRoute;

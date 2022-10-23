@@ -1,6 +1,7 @@
-import { IServerUser } from './../types/user/IServerUser';
-import axios, { AxiosInstance } from 'axios';
-import { LoginResponse } from './../types/response/LoginResponse';
+import { IBaseListResponse } from './../types/response/IBaseListResponse';
+import { ILoginUser } from './../types/user/ILoginUser';
+import { ILoginResponse } from './../types/response/ILoginResponse';
+import { AxiosInstance } from 'axios';
 import getAxiosClient from './axiosClient';
 
 export class UserService {
@@ -11,18 +12,19 @@ export class UserService {
     }
 
     async loginWithFirebaseIdToken(idToken: string) {
-        const { data } = await this.axiosClient.post<LoginResponse>(
+        const { data } = await this.axiosClient.post<ILoginResponse>(
             '/authenticate/login',
             {
                 idToken,
-                fcmToken: '',
             }
         );
         return data;
     }
 
     async getAllUsers() {
-        const { data } = await this.axiosClient.get<IServerUser[]>('/users');
+        const { data } = await this.axiosClient.get<
+            IBaseListResponse<ILoginUser>
+        >('/users');
         return data;
     }
 }

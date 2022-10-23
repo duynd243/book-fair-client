@@ -8,7 +8,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import ProtectedRoute from '../components/Commons/ProtectedRoute';
 import { PROTECTED_ROUTES } from '../constants/ProtectedRoutes';
 import { AuthContextProvider } from '../context/AuthContext';
-import { initFirebaseApp } from '../firebase/initFirebase';
+import { initFirebaseApp } from '../utils/firebase/initFirebase';
 import '../styles/globals.css';
 
 initFirebaseApp();
@@ -41,9 +41,7 @@ function BookFairApp({ Component, pageProps }: AppProps) {
             />
             <AuthContextProvider>
                 {isProtectedRoute ? (
-                    <ProtectedRoute
-                        allowedRoles={isProtectedRoute.allowedRoles}
-                    >
+                    <ProtectedRoute routeData={isProtectedRoute}>
                         <Component {...pageProps} />
                     </ProtectedRoute>
                 ) : (

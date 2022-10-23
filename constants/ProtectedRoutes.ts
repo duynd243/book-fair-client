@@ -2,7 +2,7 @@ import { Roles } from './Roles';
 import { IRole } from 'types/user/IRole';
 export interface IProtectedRoute {
     path: string;
-    allowedRoles: IRole[];
+    allowedRoles: IRole[] | 'all';
 }
 
 export const PROTECTED_ROUTES: IProtectedRoute[] = [
@@ -12,6 +12,6 @@ export const PROTECTED_ROUTES: IProtectedRoute[] = [
     },
     {
         path: '/protected',
-        allowedRoles: [Roles.SYSTEM],
+        allowedRoles: 'all',
     },
 ];

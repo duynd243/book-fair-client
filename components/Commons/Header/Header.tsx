@@ -8,7 +8,7 @@ import DefaultAvatar from '../../../assets/images/default_avatar.png';
 import { BiLogIn, BiLogOut, BiSearch, BiUserPlus } from 'react-icons/bi';
 import { FcAddressBook } from 'react-icons/fc';
 import DropdownItem from './DropdownItem';
-import DropdownMenu, { MenuItem } from './DropdownMenu';
+import DropdownMenu from './DropdownMenu';
 
 const Header = () => {
     const { user, authLoading, logOut } = useAuth();

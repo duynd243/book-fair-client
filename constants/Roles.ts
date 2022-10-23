@@ -1,4 +1,5 @@
 import { IRole } from './../types/user/IRole';
+
 export class Roles {
     static readonly SYSTEM: IRole = {
         id: 0,

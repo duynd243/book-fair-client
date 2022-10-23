@@ -1,7 +1,6 @@
 import React from 'react';
 import { Menu, Transition } from '@headlessui/react';
 import { useAuth } from '../../../context/AuthContext';
-import { ReactTag } from '@headlessui/react/dist/types';
 
 type Props = {
     menuClasses: string;
