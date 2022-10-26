@@ -26,7 +26,7 @@ function BookFairApp({ Component, pageProps }: AppProps) {
     useEffect(() => {
         if (router.query.unauthorized) {
             toast.error(
-                'Tài khoản của bạn không có quyền truy cập vào trang này'
+                'Tài khoản của bạn không được cấp quyền truy cập vào trang này'
             );
             router.replace('/');
         }

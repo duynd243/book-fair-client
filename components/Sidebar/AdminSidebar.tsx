@@ -99,17 +99,17 @@ const AdminSidebar: React.FC<Props> = () => {
     );
 
     return (
-        <div className="tw-w-3/12 tw-h-screen tw-overflow-y-auto tw-bg-gray-50">
-            {sidebarItems.map((item, index) => (
-                <Link key={item.path} href={item?.path || ''}>
-                    <a
-                        className={`tw-block tw-p-4 tw-cursor-pointer ${
-                            item.path == activeMenu?.path &&
-                            'tw-bg-blue-600 tw-text-white'
-                        }`}
-                    >
-                        {item.name}
-                    </a>
+        <div className="tw-h-screen tw-w-3/12 tw-overflow-y-auto tw-bg-gray-50">
+            {sidebarItems.map((item) => (
+                <Link
+                    className={`tw-block tw-cursor-pointer tw-p-4 ${
+                        item.path == activeMenu?.path &&
+                        'tw-bg-blue-600 tw-text-white'
+                    }`}
+                    key={item.path}
+                    href={item?.path || ''}
+                >
+                    {item.name}
                 </Link>
             ))}
         </div>

@@ -23,7 +23,7 @@ const SignUpForm: React.FC = () => {
 
     return (
         <>
-            <h1 className="tw-text-3xl tw-text-slate-800 tw-font-bold tw-mb-6">
+            <h1 className="tw-mb-6 tw-text-3xl tw-font-bold tw-text-slate-800">
                 Đăng ký Tài khoản ✨
             </h1>
             {/* Form */}
@@ -31,7 +31,7 @@ const SignUpForm: React.FC = () => {
                 <div>
                     <div>
                         <label
-                            className="tw-block tw-text-sm tw-font-medium tw-mb-1"
+                            className="tw-mb-1 tw-block tw-text-sm tw-font-medium"
                             htmlFor="email"
                         >
                             Email
@@ -47,7 +47,7 @@ const SignUpForm: React.FC = () => {
                     </div>
                     <div className="tw-mt-4">
                         <label
-                            className="tw-block tw-text-sm tw-font-medium tw-mb-1"
+                            className="tw-mb-1 tw-block tw-text-sm tw-font-medium"
                             htmlFor="fullName"
                         >
                             Họ và Tên
@@ -64,7 +64,7 @@ const SignUpForm: React.FC = () => {
                     </div>
                     <div className="tw-mt-4">
                         <label
-                            className="tw-block tw-text-sm tw-font-medium tw-mb-1"
+                            className="tw-mb-1 tw-block tw-text-sm tw-font-medium"
                             htmlFor="password"
                         >
                             Mật khẩu
@@ -81,7 +81,7 @@ const SignUpForm: React.FC = () => {
                     </div>
                     <div className="tw-mt-4">
                         <label
-                            className="tw-block tw-text-sm tw-font-medium tw-mb-1"
+                            className="tw-mb-1 tw-block tw-text-sm tw-font-medium"
                             htmlFor="confirmPassword"
                         >
                             Xác nhận mật khẩu
@@ -95,16 +95,16 @@ const SignUpForm: React.FC = () => {
                         />
                     </div>
                 </div>
-                <div className="tw-flex tw-flex-wrap tw-items-center tw-justify-between tw-mt-6">
+                <div className="tw-mt-6 tw-flex tw-flex-wrap tw-items-center tw-justify-between">
                     <button
                         disabled={authLoading}
                         type={'submit'}
-                        className="tw-cursor-pointer tw-w-full tw-text-center tw-px-5 tw-py-2.5 tw-text-sm tw-font-medium tw-tracking-wide tw-text-white tw-capitalize tw-transition-colors tw-duration-300 tw-transform tw-bg-indigo-600 tw-rounded-md hover:tw-bg-indigo-500 focus:tw-outline-none focus:tw-bg-indigo-500"
+                        className="tw-w-full tw-transform tw-cursor-pointer tw-rounded-md tw-bg-indigo-600 tw-px-5 tw-py-2.5 tw-text-center tw-text-sm tw-font-medium tw-capitalize tw-tracking-wide tw-text-white tw-transition-colors tw-duration-300 hover:tw-bg-indigo-500 focus:tw-bg-indigo-500 focus:tw-outline-none"
                     >
                         Đăng ký
                     </button>
                 </div>
-                <div className="tw-text-center tw-font-medium tw-my-5 tw-text-xs tw-text-gray-500 tw-uppercase">
+                <div className="tw-my-5 tw-text-center tw-text-xs tw-font-medium tw-uppercase tw-text-gray-500">
                     Hoặc đăng ký với
                 </div>
                 <SocialLoginButton
@@ -118,13 +118,14 @@ const SignUpForm: React.FC = () => {
                 />
             </form>
             {/* Footer */}
-            <div className="tw-pt-5 tw-mt-6 tw-border-t-[1px] tw-border-slate-200">
+            <div className="tw-mt-6 tw-border-t-[1px] tw-border-slate-200 tw-pt-5">
                 <div className="tw-text-sm">
                     Bạn đã có tài khoản?{' '}
-                    <Link href="/login">
-                        <a className="tw-font-medium tw-text-indigo-500 hover:tw-text-indigo-600">
-                            Đăng nhập
-                        </a>
+                    <Link
+                        href="/login"
+                        className="tw-font-medium tw-text-indigo-500 hover:tw-text-indigo-600"
+                    >
+                        Đăng nhập
                     </Link>
                 </div>
             </div>

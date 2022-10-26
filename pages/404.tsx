@@ -8,23 +8,26 @@ const NotFoundPage: NextPage = () => {
             <Head>
                 <title>404 - Page Not Found</title>
             </Head>
-            <div className="tw-h-screen tw-w-screen tw-bg-gray-100 tw-flex tw-items-center tw-justify-center">
-                <div className="container tw-flex tw-flex-col md:tw-flex-row tw-items-center tw-justify-center tw-px-5 tw-text-gray-700">
+            <div className="tw-flex tw-h-screen tw-w-screen tw-items-center tw-justify-center tw-bg-gray-100">
+                <div className="container tw-flex tw-flex-col tw-items-center tw-justify-center tw-px-5 tw-text-gray-700 md:tw-flex-row">
                     <div className="tw-max-w-md">
-                        <div className="tw-text-5xl font-dark tw-font-bold">
+                        <div className="font-dark tw-text-5xl tw-font-bold">
                             404
                         </div>
-                        <p className="tw-text-2xl md:tw-text-3xl tw-mt-4 tw-mb-2 tw-font-light tw-leading-normal">
+                        <p className="tw-mt-4 tw-mb-2 tw-text-2xl tw-font-light tw-leading-normal md:tw-text-3xl">
                             Rất tiếc, trang bạn yêu cầu không tồn tại.
                         </p>
                         <p className="tw-mb-8">
                             Nhưng đừng lo, bạn sẽ tìm thấy hàng vạn thứ tuyệt
                             vời khác ở trang chủ của chúng mình ^.^
                         </p>
-                        <Link href="/">
-                            <a className="tw-px-4 tw-inline tw-py-2 tw-text-sm tw-font-medium tw-leading-5 tw-shadow tw-text-white tw-transition-colors tw-duration-150 tw-border tw-border-transparent tw-rounded-lg focus:tw-outline-none focus:tw-shadow-outline-blue tw-bg-blue-600 active:tw-bg-blue-600 hover:tw-bg-blue-700">
-                                Đến Trang chủ
-                            </a>
+                        <Link
+                            href="/"
+                            className={
+                                'focus:tw-shadow-outline-blue tw-inline tw-rounded-lg tw-border tw-border-transparent tw-bg-blue-600 tw-px-4 tw-py-2 tw-text-sm tw-font-medium tw-leading-5 tw-text-white tw-shadow tw-transition-colors tw-duration-150 hover:tw-bg-blue-700 focus:tw-outline-none active:tw-bg-blue-600'
+                            }
+                        >
+                            Đến Trang chủ
                         </Link>
                     </div>
                     <div className="tw-max-w-lg">

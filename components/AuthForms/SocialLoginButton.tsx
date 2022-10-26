@@ -38,12 +38,12 @@ const SocialLoginButton: React.FC<Props> = ({
 }) => {
     return (
         <button
-            className={`${wrapperClasses} tw-group tw-border-gray-300 tw-flex tw-w-full tw-py-2 tw-rounded-full tw-border-2 tw-items-center tw-justify-center tw-transition tw-duration-300 hover:tw-border-blue-400 focus:tw-bg-blue-50 active:tw-bg-blue-100`}
+            className={`${wrapperClasses} tw-group tw-flex tw-w-full tw-items-center tw-justify-center tw-rounded-full tw-border-2 tw-border-gray-300 tw-py-2 tw-transition tw-duration-300 hover:tw-border-blue-400 focus:tw-bg-blue-50 active:tw-bg-blue-100`}
             type="button"
             onClick={onClick}
         >
-            <div className="!tw-scale-[1.2] !tw-mr-3">{provider.icon}</div>
-            <span className="group-hover:tw-text-blue-500 tw-transition tw-text-[0.9rem] tw-duration-300 tw-font-medium tw-text-gray-500">{`${actionType} với ${provider.displayName}`}</span>
+            <div className="!tw-mr-3 !tw-scale-[1.2]">{provider.icon}</div>
+            <span className="tw-text-[0.9rem] tw-font-medium tw-text-gray-500 tw-transition tw-duration-300 group-hover:tw-text-blue-500">{`${actionType} với ${provider.displayName}`}</span>
         </button>
     );
 };

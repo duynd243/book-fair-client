@@ -9,7 +9,7 @@ const AdminLayout: React.FC<Props> = ({ children }) => {
     return (
         <div className="tw-flex">
             <AdminSidebar />
-            <div className="tw-h-screen tw-overflow-y-auto tw-flex-1">
+            <div className="tw-h-screen tw-flex-1 tw-overflow-y-auto">
                 {children}
             </div>
         </div>

@@ -6,7 +6,24 @@ module.exports = {
         './components/**/*.{js,ts,jsx,tsx}',
     ],
     theme: {
-        extend: {},
+        extend: {
+            keyframes: {
+                fadeInDown: {
+                    '0%': {
+                        opacity: '0',
+                        transform: 'translate3d(0, -100px, 0)',
+                    },
+                    '100%': {
+                        opacity: '1',
+                        transform: 'none',
+                    },
+                },
+            },
+            animation: {
+                fadeInDown:
+                    'fadeInDown .7s ease-in-out 0s 1 normal none running',
+            },
+        },
     },
     plugins: [
         require('daisyui'),

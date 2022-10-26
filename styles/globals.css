@@ -21,10 +21,11 @@
 ::-webkit-scrollbar-thumb:hover {
     background: hsl(0, 0%, 60%);
 }
+
 .swal2-popup {
     @apply !tw-rounded-xl
-    !tw-pt-6
     !tw-px-6
+    !tw-pt-6
     !tw-pb-8
     !tw-shadow-sm;
 }
@@ -40,37 +41,37 @@
 }
 
 .swal2-actions {
-    @apply !tw-block
-    sm:!tw-flex
-    !tw-mt-10
+    @apply !tw-mt-10
+    !tw-block
     !tw-w-full
+    sm:!tw-flex
     sm:!tw-gap-1;
 }
 
 .swal2-actions button {
-    @apply focus:!tw-shadow-sm
-    !tw-font-medium
-    !tw-text-base
+    @apply !tw-w-full
     !tw-rounded-lg
-    !tw-py-2.5
-    !tw-w-full
-    sm:!tw-flex-1
-    !tw-outline-none
     !tw-border-2
+    !tw-py-2.5
+    !tw-text-base
+    !tw-font-medium
+    !tw-outline-none
+    !tw-ring-blue-500
     !tw-ring-offset-2
-    !tw-ring-blue-500;
+    focus:!tw-shadow-sm
+    sm:!tw-flex-1;
 }
 
 .swal2-styled.swal2-confirm {
-    @apply !tw-text-white
+    @apply !tw-border-blue-500
     !tw-bg-blue-500
-    !tw-border-blue-500
+    !tw-text-white
     hover:!tw-bg-blue-600;
 }
 
 .swal2-styled.swal2-cancel {
-    @apply !tw-text-[#6D6D6D]
+    @apply !tw-border-solid
+    !tw-border-[#EDEDED]
     !tw-bg-white
-    !tw-border-solid
-    !tw-border-[#EDEDED];
+    !tw-text-[#6D6D6D];
 }

@@ -1,6 +1,7 @@
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
 import React from 'react';
 import { storage } from './initFirebase';
+
 const useFirebaseUpload = (file: File) => {
     const [progress, setProgress] = React.useState<number>(0);
     const [error, setError] = React.useState<any>();

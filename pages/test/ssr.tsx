@@ -9,10 +9,10 @@ const SSRPage: NextPage<SSRProps> = ({ posts }) => {
     return (
         <>
             <Link href={'https://tinhte.vn'}>
-                <a>Tinhte.vn</a>
+                <div>Tinhte.vn</div>
             </Link>
             <Link href={'/'}>
-                <a>Index</a>
+                <div>Index</div>
             </Link>
 
             <ol>

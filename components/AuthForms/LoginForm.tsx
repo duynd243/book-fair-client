@@ -42,7 +42,7 @@ const LoginForm: React.FC = () => {
                         theme: 'dark',
                     })
                 }
-                className="tw-text-3xl tw-text-slate-800 tw-font-bold tw-mb-6"
+                className="tw-mb-6 tw-text-3xl tw-font-bold tw-text-slate-800"
             >
                 Chào bạn trở lại! ✨
             </h1>
@@ -51,7 +51,7 @@ const LoginForm: React.FC = () => {
                 <div>
                     <div>
                         <label
-                            className="tw-block tw-text-sm tw-font-medium tw-mb-1"
+                            className="tw-mb-1 tw-block tw-text-sm tw-font-medium"
                             htmlFor="email"
                         >
                             Email
@@ -66,7 +66,7 @@ const LoginForm: React.FC = () => {
                     </div>
                     <div className="tw-mt-4">
                         <label
-                            className="tw-block tw-text-sm tw-font-medium tw-mb-1"
+                            className="tw-mb-1 tw-block tw-text-sm tw-font-medium"
                             htmlFor="password"
                         >
                             Mật khẩu
@@ -83,7 +83,7 @@ const LoginForm: React.FC = () => {
                         {form.errors && <p>{JSON.stringify(form.errors)}</p>}
                     </div>
                 </div>
-                <div className="tw-flex tw-flex-wrap tw-gap-2 tw-items-center tw-justify-between tw-mt-6">
+                <div className="tw-mt-6 tw-flex tw-flex-wrap tw-items-center tw-justify-between tw-gap-2">
                     <div className="tw-mr-1">
                         <a className="tw-text-sm tw-underline hover:tw-no-underline">
                             Quên mật khẩu?
@@ -92,12 +92,12 @@ const LoginForm: React.FC = () => {
                     <button
                         type="submit"
                         disabled={authLoading}
-                        className="tw-cursor-pointer tw-px-5 tw-py-2.5 tw-text-sm tw-font-medium tw-tracking-wide tw-text-white tw-transition-colors tw-duration-300 tw-transform tw-bg-indigo-600 tw-rounded-md hover:tw-bg-indigo-500 focus:tw-outline-none focus:tw-bg-indigo-500"
+                        className="tw-transform tw-cursor-pointer tw-rounded-md tw-bg-indigo-600 tw-px-5 tw-py-2.5 tw-text-sm tw-font-medium tw-tracking-wide tw-text-white tw-transition-colors tw-duration-300 hover:tw-bg-indigo-500 focus:tw-bg-indigo-500 focus:tw-outline-none"
                     >
                         Đăng nhập
                     </button>
                 </div>
-                <div className="tw-text-center tw-font-medium tw-my-5 tw-text-xs tw-text-gray-500 tw-uppercase">
+                <div className="tw-my-5 tw-text-center tw-text-xs tw-font-medium tw-uppercase tw-text-gray-500">
                     Hoặc đăng nhập với
                 </div>
                 <SocialLoginButton
@@ -112,13 +112,16 @@ const LoginForm: React.FC = () => {
                 />
             </form>
             {/* Footer */}
-            <div className="tw-pt-5 tw-mt-6 tw-border-t-[1px] tw-border-slate-200">
+            <div className="tw-mt-6 tw-border-t-[1px] tw-border-slate-200 tw-pt-5">
                 <div className="tw-text-sm">
                     Bạn chưa có tài khoản?{' '}
-                    <Link href="/signup">
-                        <a className="tw-font-medium tw-text-indigo-500 hover:tw-text-indigo-600">
-                            Đăng ký ngay
-                        </a>
+                    <Link
+                        className={
+                            'tw-font-medium tw-text-indigo-500 hover:tw-text-indigo-600'
+                        }
+                        href="/signup"
+                    >
+                        Đăng ký ngay
                     </Link>
                 </div>
             </div>

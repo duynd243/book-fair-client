@@ -1,5 +1,5 @@
+import Header from 'components/Commons/Header/Header';
 import { NextPage } from 'next';
-import Header from '../components/Commons/Header/Header';
 
 const IndexPage: NextPage = () => {
     return (
@@ -7,7 +7,7 @@ const IndexPage: NextPage = () => {
             <Header />
             <div
                 className={
-                    'tw-h-[2000px] tw-mx-auto tw-max-w-screen-xl tw-px-5'
+                    'tw-mx-auto tw-h-[2000px] tw-max-w-screen-xl tw-px-4 tw-pt-32 lg:tw-pt-24'
                 }
             >
                 <div>banner</div>

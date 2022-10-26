@@ -1,14 +1,15 @@
 // just for testing
 
 import { useAuth } from 'context/AuthContext';
+import Link from 'next/link';
 
 const ProtectedPage = () => {
     const { loginUser } = useAuth();
 
     return (
-        <div className="tw-h-screen tw-w-screen tw-flex tw-items-center tw-justify-center">
+        <div className="tw-flex tw-h-screen tw-w-screen tw-flex-col tw-items-center tw-justify-center">
             <button
-                className="tw-btn"
+                className="tw-btn-primary tw-btn tw-mb-4"
                 onClick={async () => {
                     if (loginUser && loginUser.accessToken) {
                         try {
@@ -26,6 +27,9 @@ const ProtectedPage = () => {
             >
                 Copy Token
             </button>
+            <Link href={'/'} className="tw-btn">
+                Go Home
+            </Link>
         </div>
     );
 };
