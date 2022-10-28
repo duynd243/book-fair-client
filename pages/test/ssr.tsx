@@ -1,40 +1,25 @@
-import Link from 'next/link';
-import { NextPage } from 'next';
+async function getServer() {
+    const res = await fetch('https://jsonplaceholder.typicode.com/posts');
+    return res.json();
+}
 
-export type SSRProps = {
-    posts: Array<any>;
-};
+export default async function SSRPage() {
+    const posts = await getServer();
 
-const SSRPage: NextPage<SSRProps> = ({ posts }) => {
+    console.log(Array.isArray(posts), posts);
+
     return (
-        <>
-            <Link href={'https://tinhte.vn'}>
-                <div>Tinhte.vn</div>
-            </Link>
-            <Link href={'/'}>
-                <div>Index</div>
-            </Link>
-
+        <div>
             <ol>
-                {posts?.map((post) => {
+                <li>abc</li>
+                {/* {posts?.map((post: any) => {
                     return (
-                        <li className={'tw-mb-4'} key={post.id}>
+                        <li className={'tw-mb-4'} key={post?.id}>
                             Title: {post?.title}
                         </li>
                     );
-                })}
+                })} */}
             </ol>
-        </>
+        </div>
     );
-};
-
-export const getServerSideProps = async () => {
-    const res = await fetch('https://jsonplaceholder.typicode.com/posts');
-    const posts = await res.json();
-    return {
-        props: {
-            posts,
-        },
-    };
-};
-export default SSRPage;
+}

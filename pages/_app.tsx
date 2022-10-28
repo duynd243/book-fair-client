@@ -9,6 +9,10 @@ import ProtectedRoute from '../components/Commons/ProtectedRoute';
 import { PROTECTED_ROUTES } from '../constants/ProtectedRoutes';
 import { AuthContextProvider } from '../context/AuthContext';
 import { initFirebaseApp } from '../utils/firebase/initFirebase';
+import '@tremor/react/dist/esm/tremor.css';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
 import '../styles/globals.css';
 
 initFirebaseApp();

@@ -8,7 +8,7 @@ export interface IProtectedRoute {
 
 export const PROTECTED_ROUTES: IProtectedRoute[] = [
     {
-        path: '/admin',
+        path: '/admin2',
         allowedRoles: [Roles.SYSTEM],
     },
     {

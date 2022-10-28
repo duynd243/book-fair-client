@@ -37,7 +37,7 @@ const Header = () => {
     ];
 
     return (
-        <header className="tw-fixed tw-top-0  tw-left-0 tw-right-0 tw-animate-fadeInDown tw-bg-white tw-shadow-sm tw-transition-transform">
+        <header className="tw-sticky tw-top-0 tw-top-0 tw-left-0 tw-right-0 tw-z-30 tw-animate-fadeInDown tw-bg-white/70 tw-shadow-sm tw-backdrop-blur-lg tw-transition-transform">
             <div className="tw-relative tw-mx-auto tw-flex tw-h-16 tw-max-w-screen-xl tw-items-center tw-justify-between tw-px-4">
                 {/*Profile dropdown*/}
                 <DropdownMenu

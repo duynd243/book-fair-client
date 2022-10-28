@@ -1,4 +1,4 @@
-import { IRole } from './../types/user/IRole';
+import { IRole } from '../types/user/IRole';
 
 export class Roles {
     static readonly SYSTEM: IRole = {
@@ -29,6 +29,6 @@ export function getRoleById(id: number): IRole {
 
 export function getRoleByName(name: string): IRole {
     return Object.values(Roles).find(
-        (role) => role.name.toLowerCase() === name.toLowerCase()
+        (role) => role.name.toLowerCase() === name?.toLowerCase()
     );
 }

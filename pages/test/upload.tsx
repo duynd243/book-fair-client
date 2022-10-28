@@ -9,7 +9,16 @@ const UploadPage: NextPage = () => {
 
     const mutation = useMutation(['upload'], async () => {
         if (file && file.type.startsWith('image/')) {
-            const storageRef = ref(storage, `images/${file.name}`);
+            // random string for file name
+            const fileName =
+                Math.random().toString(36).substring(2, 15) +
+                Math.random().toString(36).substring(2, 15);
+            // get file extension
+            const fileExtension = file.name.split('.').pop();
+            const storageRef = ref(
+                storage,
+                `images/${fileName}.${fileExtension}`
+            );
             const task = uploadBytesResumable(storageRef, file);
             task.on(
                 'state_changed',
@@ -38,6 +47,8 @@ const UploadPage: NextPage = () => {
     const handleFileChange = (e: FormEvent<HTMLInputElement>) => {
         const files = e.currentTarget.files;
         if (files && files.length > 0) {
+            console.log(files[0].type);
+
             setFile(files[0]);
         }
     };

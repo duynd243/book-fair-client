@@ -1,17 +1,11 @@
-export type SidebarItem = {
+import { ReactNode } from 'react';
+
+export const ADMIN_BASE_PATH = '/admin';
+
+export type ISidebarItem = {
     label: string;
     path?: string;
+    icon?: ReactNode;
     onClick?: () => void;
-    subItems?: SidebarItem[];
+    subItems?: ISidebarItem[];
 };
-
-export const ADMIN_SIDEBAR_ITEMS: SidebarItem[] = [
-    {
-        label: 'Dashboard',
-        path: '/admin',
-    },
-    {
-        label: 'Users',
-        path: '/admin/users',
-    },
-];
