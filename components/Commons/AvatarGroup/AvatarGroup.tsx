@@ -10,9 +10,11 @@ type Props = {
 };
 
 const AvatarGroup: React.FC<Props> = ({ avatars, max = 3 }) => {
-    const [showAll, setShowAll] = React.useState(() => {
-        return avatars.length <= max || avatars.length - 1 === max;
-    });
+    const [showAll, setShowAll] = React.useState(false);
+
+    React.useEffect(() => {
+        setShowAll(avatars.length <= max || avatars.length - 1 === max);
+    }, [avatars, max]);
 
     return (
         <div className="tw-flex tw-items-center -tw-space-x-2">
@@ -24,13 +26,13 @@ const AvatarGroup: React.FC<Props> = ({ avatars, max = 3 }) => {
                         key={index}
                         width={40}
                         height={40}
-                        className="tw-h-7 tw-w-7 tw-rounded-full tw-object-cover tw-shadow-sm tw-drop-shadow-sm"
+                        className="tw-h-7 tw-w-7 tw-rounded-full tw-border tw-border-slate-50 tw-object-cover tw-shadow-sm tw-drop-shadow-sm"
                         src={avatar.src}
                         alt={avatar.title || ''}
                     />
                 ))}
             {!showAll && (
-                <div className="tw-flex tw-h-7 tw-w-7 tw-items-center tw-justify-center tw-rounded-full tw-border-white tw-bg-gray-200 tw-text-gray-500">
+                <div className="tw-flex tw-h-7 tw-w-7 tw-items-center tw-justify-center tw-rounded-full tw-border tw-border-slate-50 tw-bg-slate-200 tw-text-xs tw-font-medium tw-text-gray-500">
                     +{avatars.length - max}
                 </div>
             )}

@@ -69,17 +69,6 @@ const CampaignCard: React.FC<Props> = ({
         return result;
     };
 
-    const getIssuersLabel = (issuers: IUser[]): string => {
-        if (!issuers || issuers.length === 0) {
-            return 'Chưa có người tham gia';
-        }
-        const all = issuers.map((i) => i.name).join(', ');
-        if (issuers.length <= 2) {
-            return all;
-        }
-        return `${issuers[0].name} và ${issuers.length - 1} nhà phát hành khác`;
-    };
-
     const IssuersLabel = ({ issuers }: { issuers: IUser[] }) => {
         let children;
         if (!issuers || issuers.length === 0) {
@@ -94,7 +83,7 @@ const CampaignCard: React.FC<Props> = ({
                     <span className="tw-font-semibold">
                         {issuers.length - 1}
                     </span>{' '}
-                    nhà phát hành khác
+                    NPH khác
                 </>
             );
         }
