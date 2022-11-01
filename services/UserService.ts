@@ -11,20 +11,20 @@ export class UserService {
         this.axiosClient = getAxiosClient(accessToken);
     }
 
-    async loginWithFirebaseIdToken(idToken: string) {
-        const { data } = await this.axiosClient.post<ILoginResponse>(
+    loginWithFirebaseIdToken = async (idToken: string) => {
+        const response = await this.axiosClient.post<ILoginResponse>(
             '/authenticate/login',
             {
                 idToken,
             }
         );
-        return data;
-    }
+        return response.data;
+    };
 
-    async getAllUsers() {
-        const { data } = await this.axiosClient.get<
+    getAllUsers = async () => {
+        const response = await this.axiosClient.get<
             IBaseListResponse<ILoginUser>
         >('/users');
-        return data;
-    }
+        return response.data;
+    };
 }

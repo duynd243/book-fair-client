@@ -16,10 +16,10 @@ export class Roles {
         name: 'issuer',
         displayName: 'Issuer',
     };
-    static readonly USER: IRole = {
+    static readonly CUSTOMER: IRole = {
         id: 3,
-        name: 'user',
-        displayName: 'User',
+        name: 'customer',
+        displayName: 'Khách hàng',
     };
 }
 

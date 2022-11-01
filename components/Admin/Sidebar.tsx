@@ -1,18 +1,38 @@
 import { useRouter } from 'next/router';
-import React, { useEffect, useRef } from 'react';
+import React, { ReactNode, useEffect, useRef } from 'react';
 import { isInViewPort } from 'utils/helper';
 import SidebarMenu from './SidebarMenu';
 import { BsFillBarChartFill, BsFillPeopleFill } from 'react-icons/bs';
-import { ADMIN_BASE_PATH, ISidebarItem } from '../../constants/SidebarItems';
 import Link from 'next/link';
+
+const ADMIN_BASE_PATH = '/admin';
+
+export type ISidebarItem = {
+    label: string;
+    path?: string;
+    icon?: ReactNode;
+    onClick?: () => void;
+    subItems?: ISidebarItem[];
+};
+
+type ISidebarGroup = {
+    groupLabel: string;
+};
 
 type Props = {
     sidebarOpen: boolean;
     setSidebarOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
+const isSidebarGroup = (obj: ISidebarItem | ISidebarGroup) => {
+    return (obj as ISidebarGroup).groupLabel !== undefined;
+};
+
 const Sidebar: React.FC<Props> = ({ sidebarOpen, setSidebarOpen }) => {
-    const ADMIN_SIDEBAR_ITEMS: ISidebarItem[] = [
+    const ADMIN_SIDEBAR_ITEMS: (ISidebarItem | ISidebarGroup)[] = [
+        {
+            groupLabel: 'General',
+        },
         {
             label: 'Dashboard',
             path: ADMIN_BASE_PATH,
@@ -35,6 +55,9 @@ const Sidebar: React.FC<Props> = ({ sidebarOpen, setSidebarOpen }) => {
                     path: `${ADMIN_BASE_PATH}/nested/nested2`,
                 },
             ],
+        },
+        {
+            groupLabel: 'Another Group',
         },
         {
             label: 'Another Nested',
@@ -93,10 +116,6 @@ const Sidebar: React.FC<Props> = ({ sidebarOpen, setSidebarOpen }) => {
         document.addEventListener('keydown', keyHandler);
         return () => document.removeEventListener('keydown', keyHandler);
     });
-
-    const activeMenu = ADMIN_SIDEBAR_ITEMS.find(
-        (item) => item?.path && router.pathname === item.path
-    );
 
     console.log(router.pathname);
 
@@ -194,14 +213,25 @@ const Sidebar: React.FC<Props> = ({ sidebarOpen, setSidebarOpen }) => {
                         </svg>
                     </Link>
                 </div>
+                {/*Sidebar content*/}
                 <ul>
-                    {ADMIN_SIDEBAR_ITEMS.map((item) => (
-                        <SidebarMenu
-                            key={item.label}
-                            sidebarItem={item}
-                            currentPathName={router.pathname}
-                        />
-                    ))}
+                    {ADMIN_SIDEBAR_ITEMS.map((item) => {
+                        return !isSidebarGroup(item) ? (
+                            <SidebarMenu
+                                key={(item as ISidebarItem).label}
+                                sidebarItem={item as ISidebarItem}
+                                currentPathName={router.pathname}
+                            />
+                        ) : (
+                            <h3
+                                className={
+                                    'tw-mt-4 tw-mb-3 tw-pl-3 tw-text-xs tw-font-bold tw-uppercase tw-text-slate-500 first:tw-mt-0'
+                                }
+                            >
+                                {(item as ISidebarGroup).groupLabel}
+                            </h3>
+                        );
+                    })}
                 </ul>
             </div>
         </div>

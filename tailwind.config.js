@@ -1,5 +1,4 @@
 /** @type {import('tailwindcss').Config} */
-const plugin = require('tailwindcss/plugin');
 module.exports = {
     prefix: 'tw-',
     content: [
@@ -69,9 +68,9 @@ module.exports = {
         },
     },
     plugins: [
-        require('daisyui'),
         require('@tailwindcss/line-clamp'),
         require('@tailwindcss/forms'),
+        require('daisyui'),
     ],
     daisyui: {
         themes: false,

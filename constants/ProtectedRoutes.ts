@@ -3,7 +3,7 @@ import { IRole } from 'types/user/IRole';
 
 export interface IProtectedRoute {
     path: string;
-    allowedRoles: IRole[] | 'all';
+    allowedRoles: IRole[] | 'all'; // 'all' means all roles are allowed (unauthenticated users are not allowed)
 }
 
 export const PROTECTED_ROUTES: IProtectedRoute[] = [

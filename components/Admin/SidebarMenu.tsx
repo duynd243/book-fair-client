@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { ISidebarItem } from '../../constants/SidebarItems';
 import Link from 'next/link';
+import { ISidebarItem } from './Sidebar';
 
 type Props = {
     sidebarItem: ISidebarItem;

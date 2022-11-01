@@ -3,7 +3,7 @@ import { useAuth } from '../../context/AuthContext';
 import DefaultAvatar from '../../assets/images/default_avatar.png';
 import { Transition } from '@headlessui/react';
 import Link from 'next/link';
-import { getRoleByName } from '../../constants/Roles';
+import { getRoleById } from '../../constants/Roles';
 import Image from 'next/image';
 
 const DropdownProfile: React.FC<{ align: string }> = ({ align }) => {
@@ -84,7 +84,7 @@ const DropdownProfile: React.FC<{ align: string }> = ({ align }) => {
                             {loginUser?.name || user?.displayName}
                         </div>
                         <div className="tw-text-xs tw-italic tw-text-slate-500">
-                            {getRoleByName(loginUser?.role)?.displayName}
+                            {getRoleById(loginUser?.role)?.displayName}
                         </div>
                     </div>
                     <ul>

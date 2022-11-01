@@ -2,18 +2,7 @@ import React, { useRef } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, { Autoplay, Keyboard, Navigation, Pagination } from 'swiper';
 import { MdOutlineNavigateBefore, MdOutlineNavigateNext } from 'react-icons/md';
-
-const Slider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-    return (
-        <div
-            className={
-                'tw-min-h-[300px] tw-rounded-xl tw-bg-slate-500 tw-text-white'
-            }
-        >
-            {children}
-        </div>
-    );
-};
+import Image from 'next/image';
 
 enum NavigationDirection {
     NEXT = 'next',
@@ -44,7 +33,7 @@ const NavigationButton: React.FC<{
 
 const Banner: React.FC = () => {
     const swiperRef = useRef<SwiperCore>();
-    const slides = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
+    const slides = ['1', '2', '3', '4'];
     return (
         <>
             <Swiper
@@ -58,18 +47,29 @@ const Banner: React.FC = () => {
                     enabled: true,
                 }}
                 autoplay={{
-                    delay: 2500,
+                    delay: 3000,
                     disableOnInteraction: false,
                 }}
                 pagination={{
                     clickable: true,
                 }}
                 modules={[Autoplay, Keyboard, Pagination, Navigation]}
-                className="tw-group"
+                className="tw-group !tw-h-[300px]"
+                style={{
+                    height: '300px',
+                }}
             >
                 {slides.map((slide) => (
                     <SwiperSlide key={slide}>
-                        <Slider>{slide}</Slider>
+                        <Slider>
+                            <Image
+                                src={`https://picsum.photos/1280/720?random={${Math.random()}}`}
+                                alt="Picture of the author"
+                                width={1000}
+                                height={1000}
+                                className="!tw-h-[300px] tw-w-full tw-object-cover tw-object-center"
+                            />
+                        </Slider>
                     </SwiperSlide>
                 ))}
                 <NavigationButton
@@ -84,5 +84,15 @@ const Banner: React.FC = () => {
         </>
     );
 };
-
+const Slider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+    return (
+        <div
+            className={
+                '!tw-h-full tw-rounded-lg tw-overflow-hidden tw-bg-slate-500'
+            }
+        >
+            {children}
+        </div>
+    );
+};
 export default Banner;

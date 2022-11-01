@@ -1,5 +1,5 @@
 import { IProtectedRoute } from 'constants/ProtectedRoutes';
-import { getRoleByName } from 'constants/Roles';
+import { getRoleById } from 'constants/Roles';
 import { useRouter } from 'next/router';
 import React, { ReactNode, useEffect, useState } from 'react';
 import { useAuth } from '../../context/AuthContext';
@@ -21,7 +21,7 @@ const ProtectedRoute: React.FC<Props> = ({ children, routeData }) => {
                 !loginUser ||
                 (routeData.allowedRoles !== 'all' &&
                     !routeData.allowedRoles.includes(
-                        getRoleByName(loginUser?.role)
+                        getRoleById(loginUser?.role)
                     ))
             ) {
                 await router.push('/?unauthorized=true');

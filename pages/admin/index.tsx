@@ -3,7 +3,6 @@ import AdminLayout from '../../components/Layouts/AdminLayout';
 import { Badge, Datepicker } from '@tremor/react';
 import React from 'react';
 import WelcomeBanner from '../../components/Admin/Dashboard/WelcomeBanner';
-
 const DashboardPage: NextPage = () => {
     return (
         <AdminLayout>

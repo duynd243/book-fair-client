@@ -7,6 +7,6 @@ export interface ILoginUser {
     address: string;
     phoneNumber: string;
     dob?: Date;
-    role: string;
+    role: number;
     imageUrl: string;
 }
