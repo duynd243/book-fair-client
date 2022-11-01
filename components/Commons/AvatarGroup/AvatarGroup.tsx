@@ -24,13 +24,13 @@ const AvatarGroup: React.FC<Props> = ({ avatars, max = 3 }) => {
                         key={index}
                         width={40}
                         height={40}
-                        className="tw-w-7 tw-h-7 tw-shadow-sm tw-drop-shadow-sm tw-rounded-full tw-object-cover"
+                        className="tw-h-7 tw-w-7 tw-rounded-full tw-object-cover tw-shadow-sm tw-drop-shadow-sm"
                         src={avatar.src}
                         alt={avatar.title || ''}
                     />
                 ))}
             {!showAll && (
-                <div className="tw-flex tw-items-center tw-justify-center tw-w-7 tw-h-7 tw-rounded-full tw-bg-gray-200 tw-border-white tw-text-gray-500">
+                <div className="tw-flex tw-h-7 tw-w-7 tw-items-center tw-justify-center tw-rounded-full tw-border-white tw-bg-gray-200 tw-text-gray-500">
                     +{avatars.length - max}
                 </div>
             )}

@@ -99,7 +99,7 @@ const CampaignCard: React.FC<Props> = ({
             );
         }
         return (
-            <div className="tw-text-sm tw-text-right tw-text-slate-600">
+            <div className="tw-text-right tw-text-sm tw-text-slate-600">
                 {children}
             </div>
         );
@@ -107,7 +107,7 @@ const CampaignCard: React.FC<Props> = ({
 
     return (
         <article
-            className={`${wrapperClassName} tw-flex tw-flex-col tw-h-full tw-overflow-hidden tw-rounded-lg tw-border tw-bg-white tw-transition-all hover:tw-shadow-md`}
+            className={`${wrapperClassName} tw-flex tw-h-full tw-flex-col tw-overflow-hidden tw-rounded-lg tw-border tw-bg-white tw-transition-all hover:tw-shadow-md`}
         >
             {/* Cover Image */}
             <Link
@@ -122,9 +122,9 @@ const CampaignCard: React.FC<Props> = ({
                     src={`https://picsum.photos/1920/1080?random={${Math.random()}}`}
                 />
             </Link>
-            <div className="tw-flex tw-flex-col tw-flex-1">
+            <div className="tw-flex tw-flex-1 tw-flex-col">
                 {/* Content */}
-                <div className="tw-flex-1 tw-space-x-4 tw-flex tw-px-4 md:tw-px-5 tw-py-4 tw-rounded-lg">
+                <div className="tw-flex tw-flex-1 tw-space-x-4 tw-rounded-lg tw-px-4 tw-py-4 md:tw-px-5">
                     {/* Left - Date */}
                     <div
                         title={
@@ -135,7 +135,7 @@ const CampaignCard: React.FC<Props> = ({
                                   }`
                                 : ''
                         }
-                        className="tw-flex tw-select-none tw-h-fit tw-min-w-[65px] tw-flex-col tw-items-center  tw-justify-center tw-overflow-hidden tw-rounded tw-bg-slate-50 tw-text-center  tw-text-sm tw-text-slate-600"
+                        className="tw-flex tw-h-fit tw-min-w-[65px] tw-select-none tw-flex-col tw-items-center  tw-justify-center tw-overflow-hidden tw-rounded tw-bg-slate-50 tw-text-center  tw-text-sm tw-text-slate-600"
                     >
                         {/* Thứ */}
                         <div className="tw-w-full tw-bg-indigo-600 tw-py-1 tw-text-xs tw-font-medium tw-text-white">
@@ -154,13 +154,13 @@ const CampaignCard: React.FC<Props> = ({
                         </div>
                     </div>
                     {/* Right - Information */}
-                    <div className="tw-flex-1 tw-min-w-0">
+                    <div className="tw-min-w-0 tw-flex-1">
                         {/* Title */}
                         <div>
                             <Link
                                 title={campaign?.name}
                                 href={`/campaign/${campaign?.id}`}
-                                className="tw-line-clamp-2 tw-text-lg tw-font-medium tw-leading-6 tw-text-slate-800 hover:tw-text-indigo-600"
+                                className="tw-text-lg tw-font-medium tw-leading-6 tw-text-slate-800 tw-line-clamp-2 hover:tw-text-indigo-600"
                             >
                                 {campaign?.name}
                             </Link>
@@ -171,7 +171,7 @@ const CampaignCard: React.FC<Props> = ({
                             <Link
                                 title={'Click để xem chi tiết'}
                                 href={`/campaign/${campaign?.id}`}
-                                className="tw-mt-2.5 tw-line-clamp-3 tw-text-sm tw-text-slate-600"
+                                className="tw-mt-2.5 tw-text-sm tw-text-slate-600 tw-line-clamp-3"
                             >
                                 {campaign?.description}
                             </Link>
@@ -179,7 +179,7 @@ const CampaignCard: React.FC<Props> = ({
                         {/* Metadata */}
                         <div className="tw-mt-4 tw-space-y-3">
                             {/* Location */}
-                            <div className="tw-flex tw-gap-1 tw-items-center tw-text-sm tw-text-slate-600">
+                            <div className="tw-flex tw-items-center tw-gap-1 tw-text-sm tw-text-slate-600">
                                 <IoLocation />
                                 <span>{campaign?.address}</span>
                             </div>
@@ -190,7 +190,7 @@ const CampaignCard: React.FC<Props> = ({
                                         campaign?.organizationCampaigns
                                     ).title
                                 }
-                                className="tw-flex tw-gap-1 tw-items-center tw-text-sm tw-text-slate-600"
+                                className="tw-flex tw-items-center tw-gap-1 tw-text-sm tw-text-slate-600"
                             >
                                 <IoBusiness />
                                 <span>
@@ -207,7 +207,7 @@ const CampaignCard: React.FC<Props> = ({
                                     new Date(campaign?.endDate || ''),
                                     new Date(campaign?.startDate || '')
                                 )} ngày`}
-                                className="tw-flex tw-gap-1 tw-items-center tw-text-sm tw-text-slate-600"
+                                className="tw-flex tw-items-center tw-gap-1 tw-text-sm tw-text-slate-600"
                             >
                                 <IoCalendar />
                                 <span>
@@ -223,14 +223,14 @@ const CampaignCard: React.FC<Props> = ({
                 </div>
 
                 {/* Card Footer */}
-                <div className="tw-flex tw-items-start tw-justify-between tw-px-3.5 tw-py-3 tw-bg-zinc-50 tw-border-t tw-border-slate-100">
+                <div className="tw-flex tw-items-start tw-justify-between tw-border-t tw-border-slate-100 tw-bg-zinc-50 tw-px-3.5 tw-py-3">
                     {/* Status */}
-                    <div className="tw-flex tw-gap-2 tw-items-center">
+                    <div className="tw-flex tw-items-center tw-gap-2">
                         <div className="tw-flex tw-items-center tw-text-sm tw-text-slate-600">
                             {/* Icon */}
-                            <span className="tw-flex tw-relative tw-items-center tw-justify-center tw-h-3 tw-w-3 tw-mr-2">
-                                <span className="tw-animate-ping tw-absolute tw-inline-flex tw-h-full tw-w-full tw-rounded-full tw-bg-green-400 tw-opacity-75"></span>
-                                <span className="tw-relative tw-inline-flex tw-rounded-full tw-h-3 tw-w-3 tw-bg-green-500"></span>
+                            <span className="tw-relative tw-mr-2 tw-flex tw-h-3 tw-w-3 tw-items-center tw-justify-center">
+                                <span className="tw-absolute tw-inline-flex tw-h-full tw-w-full tw-animate-ping tw-rounded-full tw-bg-green-400 tw-opacity-75"></span>
+                                <span className="tw-relative tw-inline-flex tw-h-3 tw-w-3 tw-rounded-full tw-bg-green-500"></span>
                             </span>
 
                             {/* Text */}
@@ -239,7 +239,7 @@ const CampaignCard: React.FC<Props> = ({
                     </div>
 
                     {/* Issuers */}
-                    <div className="tw-flex tw-gap-2.5 tw-flex-col tw-items-end">
+                    <div className="tw-flex tw-flex-col tw-items-end tw-gap-2.5">
                         {issuers && issuers.length > 0 && (
                             <AvatarGroup
                                 max={3}

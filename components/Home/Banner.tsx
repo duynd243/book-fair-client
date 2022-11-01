@@ -88,7 +88,7 @@ const Slider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     return (
         <div
             className={
-                '!tw-h-full tw-rounded-lg tw-overflow-hidden tw-bg-slate-500'
+                '!tw-h-full tw-overflow-hidden tw-rounded-lg tw-bg-slate-500'
             }
         >
             {children}
