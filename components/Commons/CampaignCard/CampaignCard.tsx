@@ -11,16 +11,10 @@ import AvatarGroup from '../AvatarGroup/AvatarGroup';
 import { IUser } from 'types/user/IUser';
 type Props = {
     wrapperClassName?: string;
-    isSlider?: boolean;
     campaign: ICampaign;
-    // Slider will have fixed width
 };
 
-const CampaignCard: React.FC<Props> = ({
-    isSlider,
-    wrapperClassName,
-    campaign,
-}) => {
+const CampaignCard: React.FC<Props> = ({ wrapperClassName, campaign }) => {
     const localeFormat = { locale: vi };
     const issuers = campaign.participations
         ?.filter((p) => p.issuer)
@@ -96,15 +90,16 @@ const CampaignCard: React.FC<Props> = ({
 
     return (
         <article
-            className={`${wrapperClassName} tw-flex tw-h-full tw-flex-col tw-overflow-hidden tw-rounded-lg tw-border tw-bg-white tw-transition-all hover:tw-shadow-md`}
+            className={`${wrapperClassName} tw-duration-400 tw-group tw-flex tw-h-full tw-flex-col tw-overflow-hidden tw-rounded-lg tw-border tw-bg-white tw-transition-transform hover:tw-shadow-md`}
         >
             {/* Cover Image */}
             <Link
+                className="tw-overflow-hidden"
                 title="Click để xem chi tiết"
                 href={`/campaigns/${campaign?.id}`}
             >
                 <Image
-                    className="tw-h-[220px] tw-w-full tw-object-cover tw-object-center"
+                    className="tw-h-[220px] tw-w-full tw-object-cover tw-object-center tw-transition-transform tw-duration-300 group-hover:tw-scale-105"
                     width={1000}
                     height={1000}
                     alt=""

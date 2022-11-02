@@ -6,6 +6,7 @@ import { useAuth } from 'context/AuthContext';
 import { GetServerSideProps, NextPage } from 'next';
 import { CampaignService } from 'services/CampaignService';
 import Banner from '../components/Home/Banner';
+import MainLayout from '../components/Layouts/MainLayout';
 
 const IndexPage: NextPage = () => {
     const { loginUser } = useAuth();
@@ -15,38 +16,23 @@ const IndexPage: NextPage = () => {
     const { data: campaigns } = useQuery(['campaigns'], () =>
         campaignService.getCampaigns()
     );
-    const qc = useQueryClient();
     console.log(campaigns);
     return (
-        <>
-            <Header />
-            <div
-                className={
-                    'tw-mx-auto tw-h-[2000px] tw-max-w-screen-xl tw-px-4 tw-py-4'
-                }
-            >
-                <Banner />
+        <MainLayout>
+            {campaigns && campaigns?.data?.length > 0 && (
+                <CampaignSlides
+                    label="Sự kiện đang diễn ra"
+                    campaigns={campaigns?.data}
+                />
+            )}
 
-                {/* <div className="tw-my-6 tw-grid tw-gap-4 sm:tw-grid-cols-2 lg:tw-grid-cols-3">
-                    <CampaignCard />
-                    <CampaignCard />
-                    <CampaignCard />
-                </div> */}
-                {campaigns && campaigns?.data?.length > 0 && (
-                    <CampaignSlides
-                        label="Sự kiện đang diễn ra"
-                        campaigns={campaigns?.data}
-                    />
-                )}
-
-                {campaigns && campaigns?.data?.length > 0 && (
-                    <CampaignSlides
-                        label="Sự kiện sắp diễn ra"
-                        campaigns={campaigns?.data}
-                    />
-                )}
-            </div>
-        </>
+            {campaigns && campaigns?.data?.length > 0 && (
+                <CampaignSlides
+                    label="Sự kiện sắp diễn ra"
+                    campaigns={campaigns?.data}
+                />
+            )}
+        </MainLayout>
     );
 };
 
