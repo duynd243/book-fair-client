@@ -18,4 +18,10 @@ export class CampaignService {
         });
         return response.data;
     };
+    getCampaignById = async (id: any) => {
+        const response = await this.axiosClient.get<ICampaign>(
+            `/campaigns/${id}`
+        );
+        return response.data;
+    };
 }
