@@ -14,24 +14,22 @@ type Props = {
     campaign: ICampaign;
 };
 
+const localeFormat = { locale: vi };
+export const getFormattedDate = (dateStr: string | undefined) => {
+    const date = dateStr ? new Date(dateStr) : undefined;
+    return {
+        dayOfWeek: date ? format(date, 'eeee', localeFormat) : 'N/A',
+        day: date ? format(date, 'dd', localeFormat) : 'N/A',
+        month: date ? format(date, 'MM', localeFormat) : 'N/A',
+        year: date ? format(date, 'yyyy', localeFormat) : 'N/A',
+        fullDate: date ? format(date, 'eeee, dd/MM/yyyy', localeFormat) : 'N/A',
+    };
+};
 const CampaignCard: React.FC<Props> = ({ wrapperClassName, campaign }) => {
     const localeFormat = { locale: vi };
     const issuers = campaign.participations
         ?.filter((p) => p.issuer)
         .map((p) => p.issuer) as IUser[];
-
-    const getFormattedDate = (dateStr: string | undefined) => {
-        const date = dateStr ? new Date(dateStr) : undefined;
-        return {
-            dayOfWeek: date ? format(date, 'eeee', localeFormat) : 'N/A',
-            day: date ? format(date, 'dd', localeFormat) : 'N/A',
-            month: date ? format(date, 'MM', localeFormat) : 'N/A',
-            year: date ? format(date, 'yyyy', localeFormat) : 'N/A',
-            fullDate: date
-                ? format(date, 'eeee, dd/MM/yyyy', localeFormat)
-                : 'N/A',
-        };
-    };
 
     const getOrganizationsLabel = (
         organizationCampaigns: IOrganizationCampaign[] | undefined
@@ -96,7 +94,7 @@ const CampaignCard: React.FC<Props> = ({ wrapperClassName, campaign }) => {
             <Link
                 className="tw-overflow-hidden"
                 title="Click để xem chi tiết"
-                href={`/campaigns/${campaign?.id}`}
+                href={`/campaign/${campaign?.id}`}
             >
                 <Image
                     className="tw-h-[220px] tw-w-full tw-object-cover tw-object-center tw-transition-transform tw-duration-300 group-hover:tw-scale-105"
