@@ -20,6 +20,13 @@ const CampaignPage: NextPage = (props: Props) => {
     const { data: campaign } = useQuery(['campaign-detail'], () =>
         campaignService.getCampaignById(router.query.id)
     );
+    const { data: campaignpost } = useQuery(['campaign-post'], () =>
+        campaignService.getCampaignPostById(router.query.id)
+        , {
+            onSuccess: (data) => data.posts
+                ?.filter((p) => p)
+                .map((p) => p)
+        });
 
     const issuers = campaign?.participations
         ?.filter((p) => p.issuer)
@@ -27,9 +34,20 @@ const CampaignPage: NextPage = (props: Props) => {
 
     console.log('issuers: ', issuers);
 
+    const organizations = campaign?.organizationCampaigns
+        ?.filter((p) => p.organization)
+        .map((p) => p.organization) as IUser[];
+
+
+
+
+
+
+
     return (
         <MainLayout>
             <div className="tw-w-full tw-px-4 tw-py-8 sm:tw-px-6 lg:tw-px-8">
+
                 {/* Page content */}
                 <div className="tw-mx-auto tw-flex tw-max-w-5xl tw-flex-col lg:tw-flex-row lg:tw-space-x-8 xl:tw-space-x-16">
                     {/* Content */}
@@ -56,10 +74,9 @@ const CampaignPage: NextPage = (props: Props) => {
                         <div
                             title={
                                 campaign?.startDate
-                                    ? `Bắt đầu từ ${
-                                          getFormattedDate(campaign?.startDate)
-                                              .fullDate
-                                      }`
+                                    ? `Bắt đầu từ ${getFormattedDate(campaign?.startDate)
+                                        .fullDate
+                                    }`
                                     : ''
                             }
                             className="tw-mb-2 tw-max-w-[65px] tw-text-sm tw-font-semibold tw-uppercase tw-text-indigo-500"
@@ -90,6 +107,7 @@ const CampaignPage: NextPage = (props: Props) => {
                             {/* Title */}
                             <h1 className="text-slate-800 tw-mb-2 tw-text-2xl tw-font-bold md:tw-text-3xl">
                                 {campaign?.name}
+
                             </h1>
                             <p>{campaign?.address}</p>
                         </header>
@@ -102,6 +120,7 @@ const CampaignPage: NextPage = (props: Props) => {
                                     className="shrink-0 tw-mr-2 tw-block"
                                     href="#0"
                                 >
+
                                     <img
                                         className="tw-rounded-full"
                                         src={''}
@@ -130,10 +149,10 @@ const CampaignPage: NextPage = (props: Props) => {
                                     >
                                         <path d="m16 2-4 2.4V2a2 2 0 0 0-2-2H2a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V7.6l4 2.4V2ZM2 10V2h8v8H2Z" />
                                     </svg>
-                                    <span>Online Event</span>
+                                    <span>{campaign?.statusName}</span>
                                 </div>
                                 <div className="bg-emerald-100 text-emerald-600 tw-inline-flex tw-rounded-full tw-px-2.5 tw-py-1 tw-text-center tw-text-xs tw-font-medium tw-uppercase">
-                                    Free
+                                    FREE
                                 </div>
                             </div>
                         </div>
@@ -152,31 +171,18 @@ const CampaignPage: NextPage = (props: Props) => {
                         {/* Post content */}
                         <div>
                             <h2 className="text-slate-800 tw-mb-2 tw-text-xl tw-font-bold tw-leading-snug">
-                                Meetup Details
+                                {campaign?.name}Details
                             </h2>
                             <p className="tw-mb-6">
-                                In the world of AI, behavioural predictions are
-                                leading the charge to better machine learning.
+                                {campaign?.description}
                             </p>
                             <p className="tw-mb-6">
-                                There is so much happening in the AI space.
-                                Advances in the economic sectors have seen
-                                automated business practices rapidly increasing
-                                economic value. While the realm of the human
-                                sciences has used the power afforded by
-                                computational capabilities to solve many human
-                                based dilemmas. Even the art scene has adopted
-                                carefully selected ML applications to usher in
-                                the technological movement.
+                                {campaign?.description}
                             </p>
+
                             <p className="tw-mb-6">
-                                Join us every second Wednesday as we host an
-                                open discussion about the amazing things
-                                happening in the world of AI and machine
-                                learning. Feel free to share your experiences,
-                                ask questions, ponder the possibilities, or just
-                                listen as we explore new topics and revisit old
-                                ones.
+
+
                             </p>
                         </div>
                         <hr className="border-slate-200 tw-my-6 tw-border-t" />
@@ -184,35 +190,39 @@ const CampaignPage: NextPage = (props: Props) => {
                         {/* Photos */}
                         <div>
                             <h2 className="text-slate-800 tw-mb-2 tw-text-xl tw-font-bold tw-leading-snug">
-                                Photos (3)
+                                Posts (3)
                             </h2>
                             <div className="tw-my-6 tw-grid tw-grid-cols-3 tw-gap-4">
                                 <a className="tw-block" href="#0">
                                     <img
                                         className="tw-w-full tw-rounded-sm"
-                                        src={''}
-                                        width="203"
-                                        height="152"
-                                        alt="Meetup photo 01"
+                                        src={`https://picsum.photos/1920/1080?random={${Math.random()}}`}
+                                        width="640"
+                                        height="360"
+                                        alt="Meetup"
                                     />
+                                    {campaignpost?.posts?.slice(0, 1).map(item => <div key={item.id}>{item.name}</div>)}
+                                </a>
+
+                                <a className="tw-block" href="#0">
+                                    <img
+                                        className="tw-w-full tw-rounded-sm"
+                                        src={`https://picsum.photos/1920/1080?random={${Math.random()}}`}
+                                        width="640"
+                                        height="360"
+                                        alt="Meetup"
+                                    />
+                                    {campaignpost?.posts?.slice(1, 2).map(item => <div key={item.id}>{item.name}</div>)}
                                 </a>
                                 <a className="tw-block" href="#0">
                                     <img
                                         className="tw-w-full tw-rounded-sm"
-                                        src={''}
-                                        width="203"
-                                        height="152"
-                                        alt="Meetup photo 02"
+                                        src={`https://picsum.photos/1920/1080?random={${Math.random()}}`}
+                                        width="640"
+                                        height="360"
+                                        alt="Meetup"
                                     />
-                                </a>
-                                <a className="tw-block" href="#0">
-                                    <img
-                                        className="tw-w-full tw-rounded-sm"
-                                        src={''}
-                                        width="203"
-                                        height="152"
-                                        alt="Meetup photo 03"
-                                    />
+                                    {campaignpost?.posts?.slice(2, 3).map(item => <div key={item.id}>{item.name}</div>)}
                                 </a>
                             </div>
                         </div>
@@ -446,7 +456,7 @@ const CampaignPage: NextPage = (props: Props) => {
                         <div className="border-slate-200 tw-rounded-sm tw-border tw-bg-white tw-p-5 tw-shadow-lg lg:tw-w-72 xl:tw-w-80">
                             <div className="tw-mb-5 tw-flex tw-justify-between tw-space-x-1">
                                 <div className="text-slate-800 tw-text-sm tw-font-semibold">
-                                    Attendees (127)
+                                    Participations (127)
                                 </div>
                                 <a
                                     className="tw-text-sm tw-font-medium tw-text-indigo-500 hover:tw-text-indigo-600"
@@ -461,19 +471,13 @@ const CampaignPage: NextPage = (props: Props) => {
                                         <div className="tw-flex tw-justify-between">
                                             <div className="grow tw-flex tw-items-center">
                                                 <div className="tw-relative tw-mr-3">
-                                                    <img
-                                                        className="tw-h-8 tw-w-8 tw-rounded-full"
-                                                        src={''}
-                                                        width="32"
-                                                        height="32"
-                                                        alt="User 08"
-                                                    />
+                                                    {issuer?.name}
                                                 </div>
                                                 <div className="tw-truncate">
                                                     <span className="text-slate-800 tw-text-sm tw-font-medium">
                                                         {issuers &&
                                                             issuers.length >
-                                                                0 && (
+                                                            0 && (
                                                                 <AvatarGroup
                                                                     max={3}
                                                                     avatars={issuers.map(
@@ -526,7 +530,7 @@ const CampaignPage: NextPage = (props: Props) => {
                         <div className="border-slate-200 tw-rounded-sm tw-border tw-bg-white tw-p-5 tw-shadow-lg lg:tw-w-72 xl:tw-w-80">
                             <div className="tw-mb-5 tw-flex tw-justify-between tw-space-x-1">
                                 <div className="text-slate-800 tw-text-sm tw-font-semibold">
-                                    Invite Friends
+                                    Organization Campaigns
                                 </div>
                                 <a
                                     className="tw-text-sm tw-font-medium tw-text-indigo-500 hover:tw-text-indigo-600"
@@ -536,98 +540,63 @@ const CampaignPage: NextPage = (props: Props) => {
                                 </a>
                             </div>
                             <ul className="tw-space-y-3">
-                                <li>
-                                    <div className="tw-flex tw-items-center tw-justify-between">
-                                        <div className="grow tw-flex tw-items-center">
-                                            <div className="tw-relative tw-mr-3">
-                                                <img
-                                                    className="tw-h-8 tw-w-8 tw-rounded-full"
-                                                    src={''}
-                                                    width="32"
-                                                    height="32"
-                                                    alt="User 02"
-                                                />
+                                {organizations?.map((orga, index) => (
+                                    <li key={index}>
+                                        <div className="tw-flex tw-justify-between">
+                                            <div className="grow tw-flex tw-items-center">
+                                                <div className="tw-relative tw-mr-3">
+                                                    {orga?.name}
+                                                </div>
+                                                <div className="tw-truncate">
+                                                    <span className="text-slate-800 tw-text-sm tw-font-medium">
+                                                        {organizations &&
+                                                            organizations.length >
+                                                            0 && (
+                                                                <AvatarGroup
+                                                                    max={3}
+                                                                    avatars={organizations.map(
+                                                                        (i) => {
+                                                                            return {
+                                                                                src:
+                                                                                    i.imageUrl ||
+                                                                                    DefaultAvatar.src,
+                                                                                title: i?.name,
+                                                                            };
+                                                                        }
+                                                                    )}
+                                                                />
+                                                            )}
+                                                    </span>
+                                                </div>
                                             </div>
-                                            <div className="tw-truncate">
-                                                <span className="text-slate-800 tw-text-sm tw-font-medium">
-                                                    Haruki Masuno
+                                            <button className="text-slate-400 hover:text-slate-500 tw-rounded-full">
+                                                <span className="tw-sr-only">
+                                                    Menu
                                                 </span>
-                                            </div>
+                                                <svg
+                                                    className="tw-h-8 tw-w-8 tw-fill-current"
+                                                    viewBox="0 0 32 32"
+                                                >
+                                                    <circle
+                                                        cx="16"
+                                                        cy="16"
+                                                        r="2"
+                                                    />
+                                                    <circle
+                                                        cx="10"
+                                                        cy="16"
+                                                        r="2"
+                                                    />
+                                                    <circle
+                                                        cx="22"
+                                                        cy="16"
+                                                        r="2"
+                                                    />
+                                                </svg>
+                                            </button>
                                         </div>
-                                        <button className="tw-inline-flex tw-rounded-full tw-bg-indigo-100 tw-px-2.5 tw-py-1 tw-text-center tw-text-xs tw-font-medium tw-text-indigo-600">
-                                            Invite
-                                        </button>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div className="tw-flex tw-items-center tw-justify-between">
-                                        <div className="grow tw-flex tw-items-center">
-                                            <div className="tw-relative tw-mr-3">
-                                                <img
-                                                    className="tw-h-8 tw-w-8 tw-rounded-full"
-                                                    src={''}
-                                                    width="32"
-                                                    height="32"
-                                                    alt="User 04"
-                                                />
-                                            </div>
-                                            <div className="tw-truncate">
-                                                <span className="text-slate-800 tw-text-sm tw-font-medium">
-                                                    Joe Huang
-                                                </span>
-                                            </div>
-                                        </div>
-                                        <button className="tw-inline-flex tw-rounded-full tw-bg-indigo-100 tw-px-2.5 tw-py-1 tw-text-center tw-text-xs tw-font-medium tw-text-indigo-600">
-                                            Invite
-                                        </button>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div className="tw-flex tw-items-center tw-justify-between">
-                                        <div className="grow tw-flex tw-items-center">
-                                            <div className="tw-relative tw-mr-3">
-                                                <img
-                                                    className="tw-h-8 tw-w-8 tw-rounded-full"
-                                                    src={''}
-                                                    width="32"
-                                                    height="32"
-                                                    alt="User 06"
-                                                />
-                                            </div>
-                                            <div className="tw-truncate">
-                                                <span className="text-slate-800 tw-text-sm tw-font-medium">
-                                                    Carolyn McNeail
-                                                </span>
-                                            </div>
-                                        </div>
-                                        <button className="tw-inline-flex tw-rounded-full tw-bg-indigo-100 tw-px-2.5 tw-py-1 tw-text-center tw-text-xs tw-font-medium tw-text-indigo-600">
-                                            Invite
-                                        </button>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div className="tw-flex tw-items-center tw-justify-between">
-                                        <div className="grow tw-flex tw-items-center">
-                                            <div className="tw-relative tw-mr-3">
-                                                <img
-                                                    className="tw-h-8 tw-w-8 tw-rounded-full"
-                                                    src={''}
-                                                    width="32"
-                                                    height="32"
-                                                    alt="User 08"
-                                                />
-                                            </div>
-                                            <div className="tw-truncate">
-                                                <span className="text-slate-800 tw-text-sm tw-font-medium">
-                                                    Lisa Sitwala
-                                                </span>
-                                            </div>
-                                        </div>
-                                        <button className="tw-inline-flex tw-rounded-full tw-bg-indigo-100 tw-px-2.5 tw-py-1 tw-text-center tw-text-xs tw-font-medium tw-text-indigo-600">
-                                            Invite
-                                        </button>
-                                    </div>
-                                </li>
+                                    </li>
+                                ))}
                             </ul>
                         </div>
                     </div>
