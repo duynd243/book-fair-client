@@ -1,17 +1,20 @@
 import Header from '../Commons/Header/Header';
 
 type Props = {
+    maxWidth?: string;
     children: React.ReactNode;
 };
-const MainLayout: React.FC<Props> = ({ children }) => {
+
+const defaultMaxWidth = 'tw-max-w-screen-xl';
+
+const MainLayout: React.FC<Props> = ({
+    children,
+    maxWidth = defaultMaxWidth,
+}) => {
     return (
         <>
-            <Header />
-            <div
-                className={
-                    'tw-mx-auto tw-h-[2000px] tw-max-w-screen-xl tw-px-4 tw-py-4'
-                }
-            >
+            <Header maxWidth={maxWidth} />
+            <div className={`${maxWidth} tw-mx-auto tw-px-4 tw-py-4`}>
                 {children}
             </div>
         </>

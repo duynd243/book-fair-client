@@ -7,7 +7,11 @@ import { FcAddressBook } from 'react-icons/fc';
 import { DropdownItemProps } from './DropdownItem';
 import DropdownMenu from './DropdownMenu';
 
-const Header = () => {
+type Props = {
+    maxWidth: string;
+};
+
+const Header: React.FC<Props> = ({ maxWidth }) => {
     const { user, loginUser, authLoading, logOut } = useAuth();
 
     const guestMenuItems: DropdownItemProps[] = [
@@ -38,7 +42,9 @@ const Header = () => {
 
     return (
         <header className="tw-sticky tw-top-0 tw-top-0 tw-left-0 tw-right-0 tw-z-30 tw-animate-fadeInDown tw-bg-white/70 tw-shadow-sm tw-backdrop-blur-lg tw-transition-transform">
-            <div className="tw-relative tw-mx-auto tw-flex tw-h-16 tw-max-w-screen-xl tw-items-center tw-justify-between tw-px-4">
+            <div
+                className={`${maxWidth} tw-relative tw-mx-auto tw-flex tw-h-16 tw-items-center tw-justify-between tw-px-4`}
+            >
                 {/*Profile dropdown*/}
                 <DropdownMenu
                     wrapperClassName={'lg:tw-order-3'}
@@ -46,7 +52,9 @@ const Header = () => {
                 />
                 {/*Logo*/}
                 <div className="tw-flex tw-items-center tw-gap-4">
-                    <FcAddressBook className={'tw-scale-[2.2]'} />
+                    <Link href={'/'}>
+                        <FcAddressBook className={'tw-scale-[2.2]'} />
+                    </Link>
                     <form className="tw-mb-0 tw-hidden lg:tw-flex">
                         <div className="tw-relative">
                             <input

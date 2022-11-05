@@ -6,6 +6,7 @@ import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import AuthDecoration from './../../assets/images/LoginSignUp/auth-decoration.png';
 import CoverImage from './../../assets/images/LoginSignUp/login-cover.jpeg';
+import { getRoleById } from '../../constants/Roles';
 
 export const inputClass: string =
     'tw-border-gray-200 tw-drop-shadow-sm tw-appearance-none tw-border tw-rounded tw-w-full tw-py-2 tw-px-3 text-grey-darker';
@@ -16,15 +17,15 @@ type Props = {
 
 const LoginSignUpLayout: React.FC<Props> = ({ children }) => {
     const [loading, setLoading] = useState<boolean>(true);
-    const { user } = useAuth();
+    const { loginUser } = useAuth();
     const router = useRouter();
     useEffect(() => {
         (async () => {
-            if (user) {
-                await router.push('/');
+            if (loginUser) {
+                await router.push(getRoleById(loginUser.role).defaultRoute);
             } else setLoading(false);
         })().catch((err) => console.log(err));
-    }, [user, router]);
+    }, [loginUser, router]);
 
     if (loading) {
         return <LoadingProgress />;
