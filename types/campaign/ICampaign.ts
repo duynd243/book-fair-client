@@ -1,6 +1,8 @@
 import { IParticipation } from '../participation/IParticipation';
 import { IOrganizationCampaign } from '../joins/IOrganizationCampaign';
 
+import { IPost } from './../post/IPost';
+
 export interface ICampaign {
     id?: number;
     code?: string;
@@ -15,4 +17,5 @@ export interface ICampaign {
     statusName?: string;
     participations?: IParticipation[];
     organizationCampaigns?: IOrganizationCampaign[];
+    posts?: IPost[];
 }

@@ -24,4 +24,11 @@ export class CampaignService {
         );
         return response.data;
     };
+
+    getCampaignPostById = async (id: any) => {
+        const response = await this.axiosClient.get<ICampaign>(
+            `/campaigns/posts/${id}`
+        );
+        return response.data;
+    };
 }
