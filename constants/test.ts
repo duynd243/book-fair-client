@@ -13,3 +13,7 @@ const x = {
 const y: Type1 = x;
 
 console.log(Object.keys(y));
+
+function getCampaignStatusById(id: string) {
+    console.log(id[0]);
+}

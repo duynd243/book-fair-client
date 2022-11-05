@@ -1,5 +1,3 @@
-// just for testing
-
 import { useAuth } from 'context/AuthContext';
 import Link from 'next/link';
 

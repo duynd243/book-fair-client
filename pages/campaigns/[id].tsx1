@@ -6,10 +6,10 @@ import Link from 'next/link';
 import { useAuth } from 'context/AuthContext';
 import { CampaignService } from 'services/CampaignService';
 import { useQuery } from '@tanstack/react-query';
-import { getFormattedDate } from './../../components/Commons/CampaignCard/CampaignCard';
 import AvatarGroup from './../../components/Commons/AvatarGroup/AvatarGroup';
 import DefaultAvatar from '../../assets/images/default_avatar.png';
 import { IUser } from 'types/user/IUser';
+import { getFormattedDate } from 'utils/helper';
 
 type Props = {};
 
@@ -17,7 +17,7 @@ const CampaignPage: NextPage = (props: Props) => {
     const router = useRouter();
     const { loginUser } = useAuth();
     const campaignService = new CampaignService(loginUser?.accessToken);
-    const { data: campaign } = useQuery(['campaign-detail'], () =>
+    const { data: campaign } = useQuery(['campaigns-detail'], () =>
         campaignService.getCampaignById(router.query.id)
     );
 
