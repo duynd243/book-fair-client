@@ -2,6 +2,8 @@ import { AxiosInstance } from 'axios';
 import getAxiosClient from './axiosClient';
 import { IBaseListResponse } from '../types/response/IBaseListResponse';
 import { ICampaign } from '../types/campaign/ICampaign';
+import { ICampaignPost } from '../types/joins/ICampaignPost';
+import { IOrganizationResponse } from '../types/response/IOrganizationResponse';
 
 export class CampaignService {
     private readonly axiosClient: AxiosInstance;
@@ -25,8 +27,15 @@ export class CampaignService {
         return response.data;
     };
 
+    getCampaignsByOrganizationId = async (id: any) => {
+        const response = await this.axiosClient.get<IOrganizationResponse>(
+            `/organizations/${id}/campaigns`
+        );
+        return response.data;
+    };
+
     getCampaignPostById = async (id: any) => {
-        const response = await this.axiosClient.get<ICampaign>(
+        const response = await this.axiosClient.get<ICampaignPost>(
             `/campaigns/posts/${id}`
         );
         return response.data;

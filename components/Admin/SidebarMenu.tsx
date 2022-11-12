@@ -39,8 +39,6 @@ const SidebarMenuIcon: React.FC<{
 
 const SidebarMenu: React.FC<Props> = ({ sidebarItem, currentPathName }) => {
     const isPathActive = currentPathName === sidebarItem?.path;
-
-    console.log('isPathActive', isPathActive);
     const activeSubItem = sidebarItem.subItems?.find(
         (subItem) => subItem.path === currentPathName
     );
@@ -52,7 +50,7 @@ const SidebarMenu: React.FC<Props> = ({ sidebarItem, currentPathName }) => {
     if (sidebarItem.subItems && sidebarItem.subItems.length > 0) {
         return (
             <SidebarMenuWrapper isActive={activeSubItem !== undefined}>
-                {/*Parent*/}
+                {/*Parent*/}s
                 <a
                     className={`tw-block tw-cursor-pointer tw-truncate tw-text-slate-200 tw-transition tw-duration-150 hover:tw-text-white ${
                         activeSubItem && 'hover:tw-text-slate-200'

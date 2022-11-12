@@ -1,3 +1,5 @@
+import { IOrganization } from '../organization/IOrganization';
+
 export interface IUser {
     id?: string;
     code?: string;
@@ -6,7 +8,8 @@ export interface IUser {
     address?: string;
     phoneNumber?: string;
     role?: number;
-    dob?: Date;
+    dob?: string;
     status?: boolean;
     imageUrl?: string;
+    organizations?: IOrganization[];
 }

@@ -22,6 +22,7 @@ import { UserService } from 'services/UserService';
 import Swal from 'sweetalert2';
 import { ILoginUser } from 'types/user/ILoginUser';
 import LoadingProgress from '../components/Commons/LoadingProgress';
+import { getRoleById } from '../constants/Roles';
 
 export interface IAuthContext {
     user: any;

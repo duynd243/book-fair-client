@@ -20,11 +20,4 @@ export class UserService {
         );
         return response.data;
     };
-
-    getAllUsers = async () => {
-        const response = await this.axiosClient.get<
-            IBaseListResponse<ILoginUser>
-        >('/users');
-        return response.data;
-    };
 }

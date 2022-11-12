@@ -4,7 +4,7 @@ export class Roles {
     static readonly SYSTEM: IRole = {
         id: 0,
         name: 'system',
-        displayName: 'System',
+        displayName: 'Hệ thống',
         defaultRoute: '/admin',
     };
     static readonly MANAGER: IRole = {
@@ -16,7 +16,7 @@ export class Roles {
     static readonly ISSUER: IRole = {
         id: 2,
         name: 'issuer',
-        displayName: 'Issuer',
+        displayName: 'Nhà phát hành',
         defaultRoute: '/issuer',
     };
     static readonly CUSTOMER: IRole = {

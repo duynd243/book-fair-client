@@ -2,10 +2,13 @@ import { useRouter } from 'next/router';
 import React, { ReactNode, useEffect, useRef } from 'react';
 import { isInViewPort } from 'utils/helper';
 import SidebarMenu from './SidebarMenu';
-import { BsFillBarChartFill, BsFillPeopleFill } from 'react-icons/bs';
 import Link from 'next/link';
-
-const ADMIN_BASE_PATH = '/admin';
+import { useAuth } from '../../context/AuthContext';
+import { Roles } from '../../constants/Roles';
+import {
+    ISSUER_SIDEBAR_ITEMS,
+    SYSTEM_SIDEBAR_ITEMS,
+} from '../../constants/SidebarItems';
 
 export type ISidebarItem = {
     label: string;
@@ -15,7 +18,7 @@ export type ISidebarItem = {
     subItems?: ISidebarItem[];
 };
 
-type ISidebarGroup = {
+export type ISidebarGroup = {
     groupLabel: string;
 };
 
@@ -29,50 +32,23 @@ const isSidebarGroup = (obj: ISidebarItem | ISidebarGroup) => {
 };
 
 const Sidebar: React.FC<Props> = ({ sidebarOpen, setSidebarOpen }) => {
-    const ADMIN_SIDEBAR_ITEMS: (ISidebarItem | ISidebarGroup)[] = [
-        {
-            groupLabel: 'General',
-        },
-        {
-            label: 'Dashboard',
-            path: ADMIN_BASE_PATH,
-            icon: <BsFillBarChartFill />,
-        },
-        {
-            label: 'Users',
-            path: `${ADMIN_BASE_PATH}/users`,
-            icon: <BsFillPeopleFill />,
-        },
-        {
-            label: 'Nested',
-            subItems: [
-                {
-                    label: 'Nested 1',
-                    path: `${ADMIN_BASE_PATH}/nested/nested1`,
-                },
-                {
-                    label: 'Nested 2',
-                    path: `${ADMIN_BASE_PATH}/nested/nested2`,
-                },
-            ],
-        },
-        {
-            groupLabel: 'Another Group',
-        },
-        {
-            label: 'Another Nested',
-            subItems: [
-                {
-                    label: 'Nested 3',
-                    path: `${ADMIN_BASE_PATH}/nested/nested3`,
-                },
-                {
-                    label: 'Nested 4',
-                    path: `${ADMIN_BASE_PATH}/nested/nested4`,
-                },
-            ],
-        },
-    ];
+    const { loginUser } = useAuth();
+    const [sidebarData, setSidebarData] = React.useState<
+        (ISidebarItem | ISidebarGroup)[]
+    >([]);
+
+    useEffect(() => {
+        switch (loginUser?.role) {
+            case Roles.SYSTEM.id:
+                setSidebarData(SYSTEM_SIDEBAR_ITEMS);
+                break;
+            case Roles.ISSUER.id:
+                setSidebarData(ISSUER_SIDEBAR_ITEMS);
+                break;
+            default:
+                setSidebarData([]);
+        }
+    }, [loginUser?.role]);
 
     // create ref for sidebar
     const sidebarRef = useRef<HTMLDivElement>(null);
@@ -116,8 +92,6 @@ const Sidebar: React.FC<Props> = ({ sidebarOpen, setSidebarOpen }) => {
         document.addEventListener('keydown', keyHandler);
         return () => document.removeEventListener('keydown', keyHandler);
     });
-
-    console.log(router.pathname);
 
     return (
         <div>
@@ -215,15 +189,16 @@ const Sidebar: React.FC<Props> = ({ sidebarOpen, setSidebarOpen }) => {
                 </div>
                 {/*Sidebar content*/}
                 <ul>
-                    {ADMIN_SIDEBAR_ITEMS.map((item) => {
+                    {sidebarData.map((item, index) => {
                         return !isSidebarGroup(item) ? (
                             <SidebarMenu
-                                key={(item as ISidebarItem).label}
+                                key={index}
                                 sidebarItem={item as ISidebarItem}
                                 currentPathName={router.pathname}
                             />
                         ) : (
                             <h3
+                                key={index}
                                 className={
                                     'tw-mt-4 tw-mb-3 tw-pl-3 tw-text-xs tw-font-bold tw-uppercase tw-text-slate-500 first:tw-mt-0'
                                 }

@@ -1,7 +1,7 @@
 import CampaignCard from 'components/Commons/CampaignCard/CampaignCard';
 import Link from 'next/link';
 import React from 'react';
-import { Autoplay, Keyboard, Mousewheel, Navigation, Pagination } from 'swiper';
+import { Autoplay, Keyboard, Navigation, Pagination } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { ICampaign } from 'types/campaign/ICampaign';
 

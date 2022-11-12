@@ -143,8 +143,8 @@ const CampaignCard: React.FC<Props> = ({ wrapperClassName, campaign }) => {
             >
                 <Image
                     className="tw-h-[220px] tw-w-full tw-object-cover tw-object-center tw-transition-transform tw-duration-300 group-hover:tw-scale-105"
-                    width={1000}
-                    height={1000}
+                    width={500}
+                    height={500}
                     alt=""
                     src={`https://picsum.photos/1920/1080?random={${Math.random()}}`}
                 />
@@ -172,7 +172,7 @@ const CampaignCard: React.FC<Props> = ({ wrapperClassName, campaign }) => {
                                         id: campaign.id,
                                     },
                                 }}
-                                className="tw-text-lg tw-font-medium tw-leading-6 tw-text-slate-800 tw-line-clamp-2 hover:tw-text-indigo-600"
+                                className="tw-text-lg tw-font-semibold tw-leading-6 tw-text-slate-800 tw-line-clamp-2 hover:tw-text-indigo-600"
                             >
                                 {campaign?.name}
                             </Link>

@@ -1,8 +1,8 @@
 import { IProtectedRoute } from 'constants/ProtectedRoutes';
-import { getRoleById } from 'constants/Roles';
 import { useRouter } from 'next/router';
 import React, { ReactNode, useEffect, useState } from 'react';
 import { useAuth } from '../../context/AuthContext';
+import { getRoleById, Roles } from '../../constants/Roles';
 
 type Props = {
     children: ReactNode;
@@ -10,24 +10,25 @@ type Props = {
 };
 
 const ProtectedRoute: React.FC<Props> = ({ children, routeData }) => {
-    const { user, loginUser } = useAuth();
+    const { loginUser } = useAuth();
     const router = useRouter();
     const [isChecking, setIsChecking] = useState<boolean>(true);
 
     useEffect(() => {
         (async () => {
             if (
-                !user ||
                 !loginUser ||
-                (routeData.allowedRoles !== 'all' &&
-                    !routeData.allowedRoles.includes(
-                        getRoleById(loginUser?.role)
-                    ))
+                (routeData.allowedRoleIDs !== 'all' &&
+                    !routeData.allowedRoleIDs.includes(loginUser?.role))
             ) {
-                await router.push('/?unauthorized=true');
+                await router.push(
+                    loginUser
+                        ? getRoleById(loginUser?.role).defaultRoute
+                        : Roles.CUSTOMER.defaultRoute
+                );
             } else setIsChecking(false);
         })().catch((err) => console.log(err));
-    }, [user, router, routeData.allowedRoles, loginUser]);
+    }, [router, routeData.allowedRoleIDs, loginUser]);
     return <>{!isChecking && children}</>;
 };
 

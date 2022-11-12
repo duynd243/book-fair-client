@@ -1,4 +1,5 @@
 import Header from '../Commons/Header/Header';
+import Footer from '../Commons/Footer';
 
 type Props = {
     maxWidth?: string;
@@ -17,6 +18,7 @@ const MainLayout: React.FC<Props> = ({
             <div className={`${maxWidth} tw-mx-auto tw-px-4 tw-py-4`}>
                 {children}
             </div>
+            <Footer maxWidth={maxWidth} />
         </>
     );
 };

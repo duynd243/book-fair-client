@@ -16,7 +16,7 @@ const AdminLayout: React.FC<Props> = ({ children }) => {
                 setSidebarOpen={setSidebarOpen}
             />
             {/* Content */}
-            <div className="tw-relative tw-flex tw-flex-1 tw-flex-col tw-overflow-y-auto tw-overflow-x-hidden">
+            <div className="tw-bg-slate-50 tw-relative tw-flex tw-flex-1 tw-flex-col tw-overflow-y-auto tw-overflow-x-hidden">
                 <Header
                     sidebarOpen={sidebarOpen}
                     setSidebarOpen={setSidebarOpen}

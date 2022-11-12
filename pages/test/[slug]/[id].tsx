@@ -9,16 +9,16 @@ const MyComponent = () => {
     console.log(router.query.id);
 
     return (
-        <div className="tw-max-w-5xl tw-mx-auto tw-flex tw-flex-col lg:tw-flex-row lg:tw-space-x-8 xl:tw-space-x-16">
+        <div className="tw-mx-auto tw-flex tw-max-w-5xl tw-flex-col lg:tw-flex-row lg:tw-space-x-8 xl:tw-space-x-16">
             {/* Content */}
             <div>
                 <div className="tw-mb-6">
                     <Link
-                        className="btn-sm tw-px-3 tw-bg-white border-slate-200 hover:border-slate-300 text-slate-600"
+                        className="btn-sm border-slate-200 hover:border-slate-300 text-slate-600 tw-bg-white tw-px-3"
                         href="/community/meetups"
                     >
                         <svg
-                            className="tw-fill-current text-slate-400 tw-mr-2"
+                            className="text-slate-400 tw-mr-2 tw-fill-current"
                             width="7"
                             height="12"
                             viewBox="0 0 7 12"
@@ -28,12 +28,12 @@ const MyComponent = () => {
                         <span>Back To Meetups</span>
                     </Link>
                 </div>
-                <div className="tw-text-sm tw-font-semibold tw-text-indigo-500 tw-uppercase tw-mb-2">
+                <div className="tw-mb-2 tw-text-sm tw-font-semibold tw-uppercase tw-text-indigo-500">
                     Mon 27 Dec, 2021 - 9:00 PM -&gt; 10:00 PM
                 </div>
                 <header className="tw-mb-4">
                     {/* Title */}
-                    <h1 className="tw-text-2xl md:tw-text-3xl text-slate-800 tw-font-bold tw-mb-2">
+                    <h1 className="text-slate-800 tw-mb-2 tw-text-2xl tw-font-bold md:tw-text-3xl">
                         The World of AI and Machine Learning — Open Chat
                     </h1>
                     <p>
@@ -44,10 +44,10 @@ const MyComponent = () => {
                 </header>
 
                 {/* Meta */}
-                <div className="tw-space-y-3 sm:tw-flex sm:tw-items-center sm:tw-justify-between sm:tw-space-y-0 tw-mb-6">
+                <div className="tw-mb-6 tw-space-y-3 sm:tw-flex sm:tw-items-center sm:tw-justify-between sm:tw-space-y-0">
                     {/* Author */}
                     <div className="tw-flex tw-items-center sm:tw-mr-4">
-                        <a className="tw-block tw-mr-2 shrink-0" href="#0">
+                        <a className="shrink-0 tw-mr-2 tw-block" href="#0">
                             <Image
                                 className="tw-rounded-full"
                                 src={''}
@@ -56,10 +56,10 @@ const MyComponent = () => {
                                 alt="User 04"
                             />
                         </a>
-                        <div className="tw-text-sm tw-whitespace-nowrap">
+                        <div className="tw-whitespace-nowrap tw-text-sm">
                             Hosted by{' '}
                             <a
-                                className="tw-font-semibold text-slate-800"
+                                className="text-slate-800 tw-font-semibold"
                                 href="#0"
                             >
                                 Monica Fishkin
@@ -67,18 +67,18 @@ const MyComponent = () => {
                         </div>
                     </div>
                     {/* Right side */}
-                    <div className="tw-flex tw-flex-wrap tw-items-center sm:tw-justify-end tw-space-x-2">
+                    <div className="tw-flex tw-flex-wrap tw-items-center tw-space-x-2 sm:tw-justify-end">
                         {/* Tags */}
-                        <div className="tw-text-xs tw-inline-flex tw-items-center tw-font-medium tw-bg-white text-slate-600 tw-rounded-full tw-text-center tw-px-2.5 tw-py-1">
+                        <div className="text-slate-600 tw-inline-flex tw-items-center tw-rounded-full tw-bg-white tw-px-2.5 tw-py-1 tw-text-center tw-text-xs tw-font-medium">
                             <svg
-                                className="tw-w-4 tw-h-3 fill-slate-400 tw-mr-2"
+                                className="fill-slate-400 tw-mr-2 tw-h-3 tw-w-4"
                                 viewBox="0 0 16 12"
                             >
                                 <path d="m16 2-4 2.4V2a2 2 0 0 0-2-2H2a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V7.6l4 2.4V2ZM2 10V2h8v8H2Z" />
                             </svg>
                             <span>Online Event</span>
                         </div>
-                        <div className="tw-text-xs tw-inline-flex tw-font-medium tw-uppercase bg-emerald-100 text-emerald-600 tw-rounded-full tw-text-center tw-px-2.5 tw-py-1">
+                        <div className="bg-emerald-100 text-emerald-600 tw-inline-flex tw-rounded-full tw-px-2.5 tw-py-1 tw-text-center tw-text-xs tw-font-medium tw-uppercase">
                             Free
                         </div>
                     </div>
@@ -97,7 +97,7 @@ const MyComponent = () => {
 
                 {/* Post content */}
                 <div>
-                    <h2 className="tw-text-xl tw-leading-snug text-slate-800 tw-font-bold tw-mb-2">
+                    <h2 className="text-slate-800 tw-mb-2 tw-text-xl tw-font-bold tw-leading-snug">
                         Meetup Details
                     </h2>
                     <p className="tw-mb-6">
@@ -123,14 +123,14 @@ const MyComponent = () => {
                         and revisit old ones.
                     </p>
                 </div>
-                <hr className="tw-my-6 tw-border-t border-slate-200" />
+                <hr className="border-slate-200 tw-my-6 tw-border-t" />
 
                 {/* Photos */}
                 <div>
-                    <h2 className="tw-text-xl tw-leading-snug text-slate-800 tw-font-bold tw-mb-2">
+                    <h2 className="text-slate-800 tw-mb-2 tw-text-xl tw-font-bold tw-leading-snug">
                         Photos (3)
                     </h2>
-                    <div className="tw-grid tw-grid-cols-3 tw-gap-4 tw-my-6">
+                    <div className="tw-my-6 tw-grid tw-grid-cols-3 tw-gap-4">
                         <a className="tw-block" href="#0">
                             <Image
                                 className="tw-w-full tw-rounded-sm"
@@ -161,17 +161,17 @@ const MyComponent = () => {
                     </div>
                 </div>
 
-                <hr className="tw-my-6 tw-border-t border-slate-200" />
+                <hr className="border-slate-200 tw-my-6 tw-border-t" />
 
                 {/* Comments */}
                 <div>
-                    <h2 className="tw-text-xl tw-leading-snug text-slate-800 tw-font-bold tw-mb-2">
+                    <h2 className="text-slate-800 tw-mb-2 tw-text-xl tw-font-bold tw-leading-snug">
                         Comments (3)
                     </h2>
-                    <ul className="tw-space-y-5 tw-my-6">
+                    <ul className="tw-my-6 tw-space-y-5">
                         {/* Comment */}
                         <li className="tw-flex tw-items-start">
-                            <a className="tw-block tw-mr-3 shrink-0" href="#0">
+                            <a className="shrink-0 tw-mr-3 tw-block" href="#0">
                                 <Image
                                     className="tw-rounded-full"
                                     src={''}
@@ -181,7 +181,7 @@ const MyComponent = () => {
                                 />
                             </a>
                             <div className="grow">
-                                <div className="tw-text-sm tw-font-semibold text-slate-800 tw-mb-2">
+                                <div className="text-slate-800 tw-mb-2 tw-text-sm tw-font-semibold">
                                     Taylor Nieman
                                 </div>
                                 <div className="tw-italic">
@@ -194,7 +194,7 @@ const MyComponent = () => {
                         </li>
                         {/* Comment */}
                         <li className="tw-flex tw-items-start">
-                            <a className="tw-block tw-mr-3 shrink-0" href="#0">
+                            <a className="shrink-0 tw-mr-3 tw-block" href="#0">
                                 <Image
                                     className="tw-rounded-full"
                                     src={''}
@@ -204,7 +204,7 @@ const MyComponent = () => {
                                 />
                             </a>
                             <div className="grow">
-                                <div className="tw-text-sm tw-font-semibold text-slate-800 tw-mb-2">
+                                <div className="text-slate-800 tw-mb-2 tw-text-sm tw-font-semibold">
                                     Meagan Loyst
                                 </div>
                                 <div className="tw-italic">
@@ -217,7 +217,7 @@ const MyComponent = () => {
                         </li>
                         {/* Comment */}
                         <li className="tw-flex tw-items-start">
-                            <a className="tw-block tw-mr-3 shrink-0" href="#0">
+                            <a className="shrink-0 tw-mr-3 tw-block" href="#0">
                                 <Image
                                     className="tw-rounded-full"
                                     src={''}
@@ -227,7 +227,7 @@ const MyComponent = () => {
                                 />
                             </a>
                             <div className="grow">
-                                <div className="tw-text-sm tw-font-semibold text-slate-800 tw-mb-2">
+                                <div className="text-slate-800 tw-mb-2 tw-text-sm tw-font-semibold">
                                     Frank Malik
                                 </div>
                                 <div className="tw-italic">
@@ -241,23 +241,23 @@ const MyComponent = () => {
                     </ul>
                 </div>
 
-                <hr className="tw-my-6 tw-border-t border-slate-200" />
+                <hr className="border-slate-200 tw-my-6 tw-border-t" />
 
                 {/* Similar Meetups */}
                 <div>
-                    <h2 className="tw-text-xl tw-leading-snug text-slate-800 tw-font-bold tw-mb-2">
+                    <h2 className="text-slate-800 tw-mb-2 tw-text-xl tw-font-bold tw-leading-snug">
                         Similar Meetups
                     </h2>
-                    <div className="tw-space-y-8 sm:tw-space-y-5 tw-my-6 lg:tw-mb-0">
+                    <div className="tw-my-6 tw-space-y-8 sm:tw-space-y-5 lg:tw-mb-0">
                         {/* Related item */}
-                        <article className="tw-flex tw-bg-white tw-shadow-lg tw-rounded-sm tw-border border-slate-200 tw-overflow-hidden">
+                        <article className="border-slate-200 tw-flex tw-overflow-hidden tw-rounded-sm tw-border tw-bg-white tw-shadow-lg">
                             {/* Image */}
                             <a
-                                className="tw-relative tw-block tw-w-24 sm:tw-w-56 lg:sidebar-expanded:tw-w-20 xl:sidebar-expanded:tw-w-56 shrink-0"
+                                className="lg:sidebar-expanded:tw-w-20 xl:sidebar-expanded:tw-w-56 shrink-0 tw-relative tw-block tw-w-24 sm:tw-w-56"
                                 href="#0"
                             >
                                 <Image
-                                    className="tw-absolute tw-object-cover tw-object-center tw-w-full tw-h-full"
+                                    className="tw-absolute tw-h-full tw-w-full tw-object-cover tw-object-center"
                                     src={''}
                                     width="220"
                                     height="236"
@@ -265,7 +265,7 @@ const MyComponent = () => {
                                 />
                                 {/* Like button */}
                                 <button className="tw-absolute tw-top-0 tw-right-0 tw-mt-4 tw-mr-4">
-                                    <div className="text-slate-100 bg-slate-900 tw-bg-opacity-60 tw-rounded-full">
+                                    <div className="text-slate-100 bg-slate-900 tw-rounded-full tw-bg-opacity-60">
                                         <span className="tw-sr-only">Like</span>
                                         <svg
                                             className="tw-h-8 tw-w-8 tw-fill-current"
@@ -277,16 +277,16 @@ const MyComponent = () => {
                                 </button>
                             </a>
                             {/* Content */}
-                            <div className="grow tw-p-5 tw-flex tw-flex-col">
+                            <div className="grow tw-flex tw-flex-col tw-p-5">
                                 <div className="grow">
-                                    <div className="tw-text-sm tw-font-semibold tw-text-indigo-500 tw-uppercase tw-mb-2">
+                                    <div className="tw-mb-2 tw-text-sm tw-font-semibold tw-uppercase tw-text-indigo-500">
                                         Mon 27 Dec, 2021
                                     </div>
                                     <a
-                                        className="tw-inline-flex tw-mb-2"
+                                        className="tw-mb-2 tw-inline-flex"
                                         href="#0"
                                     >
-                                        <h3 className="tw-text-lg tw-font-bold text-slate-800">
+                                        <h3 className="text-slate-800 tw-text-lg tw-font-bold">
                                             New York &amp; New Jersey Virtual
                                             Retreat 2021
                                         </h3>
@@ -299,11 +299,11 @@ const MyComponent = () => {
                                     </div>
                                 </div>
                                 {/* Footer */}
-                                <div className="tw-flex tw-justify-between tw-mt-3">
+                                <div className="tw-mt-3 tw-flex tw-justify-between">
                                     {/* Tag */}
-                                    <div className="tw-text-xs tw-inline-flex tw-items-center tw-font-medium bg-slate-100 text-slate-600 tw-rounded-full tw-text-center tw-px-2.5 tw-py-1">
+                                    <div className="bg-slate-100 text-slate-600 tw-inline-flex tw-items-center tw-rounded-full tw-px-2.5 tw-py-1 tw-text-center tw-text-xs tw-font-medium">
                                         <svg
-                                            className="tw-w-4 tw-h-3 fill-slate-400 tw-mr-2"
+                                            className="fill-slate-400 tw-mr-2 tw-h-3 tw-w-4"
                                             viewBox="0 0 16 12"
                                         >
                                             <path d="m16 2-4 2.4V2a2 2 0 0 0-2-2H2a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V7.6l4 2.4V2ZM2 10V2h8v8H2Z" />
@@ -312,30 +312,30 @@ const MyComponent = () => {
                                     </div>
                                     {/* Avatars */}
                                     <div className="tw-flex tw-items-center tw-space-x-2">
-                                        <div className="tw-flex tw--space-x-3 tw--ml-0.5">
+                                        <div className="tw--ml-0.5 tw-flex tw--space-x-3">
                                             <Image
-                                                className="tw-rounded-full tw-border-2 tw-border-white tw-box-content"
+                                                className="tw-box-content tw-rounded-full tw-border-2 tw-border-white"
                                                 src={''}
                                                 width="28"
                                                 height="28"
                                                 alt="User 02"
                                             />
                                             <Image
-                                                className="tw-rounded-full tw-border-2 tw-border-white tw-box-content"
+                                                className="tw-box-content tw-rounded-full tw-border-2 tw-border-white"
                                                 src={''}
                                                 width="28"
                                                 height="28"
                                                 alt="User 03"
                                             />
                                             <Image
-                                                className="tw-rounded-full tw-border-2 tw-border-white tw-box-content"
+                                                className="tw-box-content tw-rounded-full tw-border-2 tw-border-white"
                                                 src={''}
                                                 width="28"
                                                 height="28"
                                                 alt="User 04"
                                             />
                                         </div>
-                                        <div className="tw-text-xs tw-font-medium text-slate-400 tw-italic">
+                                        <div className="text-slate-400 tw-text-xs tw-font-medium tw-italic">
                                             +132
                                         </div>
                                     </div>
@@ -349,20 +349,20 @@ const MyComponent = () => {
             {/* Sidebar */}
             <div className="tw-space-y-4">
                 {/* 1st tw-block */}
-                <div className="tw-bg-white tw-p-5 tw-shadow-lg tw-rounded-sm tw-border border-slate-200 lg:tw-w-72 xl:tw-w-80">
+                <div className="border-slate-200 tw-rounded-sm tw-border tw-bg-white tw-p-5 tw-shadow-lg lg:tw-w-72 xl:tw-w-80">
                     <div className="tw-space-y-2">
-                        <button className="btn tw-w-full tw-bg-indigo-500 hover:tw-bg-indigo-600 tw-text-white">
+                        <button className="btn tw-w-full tw-bg-indigo-500 tw-text-white hover:tw-bg-indigo-600">
                             <svg
-                                className="tw-w-4 tw-h-4 tw-fill-current shrink-0"
+                                className="shrink-0 tw-h-4 tw-w-4 tw-fill-current"
                                 viewBox="0 0 16 16"
                             >
                                 <path d="m2.457 8.516.969-.99 2.516 2.481 5.324-5.304.985.989-6.309 6.284z" />
                             </svg>
                             <span className="tw-ml-1">Attending</span>
                         </button>
-                        <button className="btn tw-w-full border-slate-200 hover:border-slate-300 text-slate-600">
+                        <button className="btn border-slate-200 hover:border-slate-300 text-slate-600 tw-w-full">
                             <svg
-                                className="tw-w-4 tw-h-4 fill-rose-500 shrink-0"
+                                className="fill-rose-500 shrink-0 tw-h-4 tw-w-4"
                                 viewBox="0 0 16 16"
                             >
                                 <path d="M14.682 2.318A4.485 4.485 0 0 0 11.5 1 4.377 4.377 0 0 0 8 2.707 4.383 4.383 0 0 0 4.5 1a4.5 4.5 0 0 0-3.182 7.682L8 15l6.682-6.318a4.5 4.5 0 0 0 0-6.364Zm-1.4 4.933L8 12.247l-5.285-5A2.5 2.5 0 0 1 4.5 3c1.437 0 2.312.681 3.5 2.625C9.187 3.681 10.062 3 11.5 3a2.5 2.5 0 0 1 1.785 4.251h-.003Z" />
@@ -373,9 +373,9 @@ const MyComponent = () => {
                 </div>
 
                 {/* 2nd tw-block */}
-                <div className="tw-bg-white tw-p-5 tw-shadow-lg tw-rounded-sm tw-border border-slate-200 lg:tw-w-72 xl:tw-w-80">
-                    <div className="tw-flex tw-justify-between tw-space-x-1 tw-mb-5">
-                        <div className="tw-text-sm text-slate-800 tw-font-semibold">
+                <div className="border-slate-200 tw-rounded-sm tw-border tw-bg-white tw-p-5 tw-shadow-lg lg:tw-w-72 xl:tw-w-80">
+                    <div className="tw-mb-5 tw-flex tw-justify-between tw-space-x-1">
+                        <div className="text-slate-800 tw-text-sm tw-font-semibold">
                             Attendees (127)
                         </div>
                         <a
@@ -391,7 +391,7 @@ const MyComponent = () => {
                                 <div className="grow tw-flex tw-items-center">
                                     <div className="tw-relative tw-mr-3">
                                         <Image
-                                            className="tw-w-8 tw-h-8 tw-rounded-full"
+                                            className="tw-h-8 tw-w-8 tw-rounded-full"
                                             src={''}
                                             width="32"
                                             height="32"
@@ -399,7 +399,7 @@ const MyComponent = () => {
                                         />
                                     </div>
                                     <div className="tw-truncate">
-                                        <span className="tw-text-sm tw-font-medium text-slate-800">
+                                        <span className="text-slate-800 tw-text-sm tw-font-medium">
                                             Carolyn McNeail
                                         </span>
                                     </div>
@@ -407,7 +407,7 @@ const MyComponent = () => {
                                 <button className="text-slate-400 hover:text-slate-500 tw-rounded-full">
                                     <span className="tw-sr-only">Menu</span>
                                     <svg
-                                        className="tw-w-8 tw-h-8 tw-fill-current"
+                                        className="tw-h-8 tw-w-8 tw-fill-current"
                                         viewBox="0 0 32 32"
                                     >
                                         <circle cx="16" cy="16" r="2" />
@@ -422,7 +422,7 @@ const MyComponent = () => {
                                 <div className="grow tw-flex tw-items-center">
                                     <div className="tw-relative tw-mr-3">
                                         <Image
-                                            className="tw-w-8 tw-h-8 tw-rounded-full"
+                                            className="tw-h-8 tw-w-8 tw-rounded-full"
                                             src={''}
                                             width="32"
                                             height="32"
@@ -430,7 +430,7 @@ const MyComponent = () => {
                                         />
                                     </div>
                                     <div className="tw-truncate">
-                                        <span className="tw-text-sm tw-font-medium text-slate-800">
+                                        <span className="text-slate-800 tw-text-sm tw-font-medium">
                                             Dominik Lamakani
                                         </span>
                                     </div>
@@ -438,7 +438,7 @@ const MyComponent = () => {
                                 <button className="text-slate-400 hover:text-slate-500 tw-rounded-full">
                                     <span className="tw-sr-only">Menu</span>
                                     <svg
-                                        className="tw-w-8 tw-h-8 tw-fill-current"
+                                        className="tw-h-8 tw-w-8 tw-fill-current"
                                         viewBox="0 0 32 32"
                                     >
                                         <circle cx="16" cy="16" r="2" />
@@ -453,7 +453,7 @@ const MyComponent = () => {
                                 <div className="grow tw-flex tw-items-center">
                                     <div className="tw-relative tw-mr-3">
                                         <Image
-                                            className="tw-w-8 tw-h-8 tw-rounded-full"
+                                            className="tw-h-8 tw-w-8 tw-rounded-full"
                                             src={''}
                                             width="32"
                                             height="32"
@@ -461,7 +461,7 @@ const MyComponent = () => {
                                         />
                                     </div>
                                     <div className="tw-truncate">
-                                        <span className="tw-text-sm tw-font-medium text-slate-800">
+                                        <span className="text-slate-800 tw-text-sm tw-font-medium">
                                             Ivan Mesaros
                                         </span>
                                     </div>
@@ -469,7 +469,7 @@ const MyComponent = () => {
                                 <button className="text-slate-400 hover:text-slate-500 tw-rounded-full">
                                     <span className="tw-sr-only">Menu</span>
                                     <svg
-                                        className="tw-w-8 tw-h-8 tw-fill-current"
+                                        className="tw-h-8 tw-w-8 tw-fill-current"
                                         viewBox="0 0 32 32"
                                     >
                                         <circle cx="16" cy="16" r="2" />
@@ -484,7 +484,7 @@ const MyComponent = () => {
                                 <div className="grow tw-flex tw-items-center">
                                     <div className="tw-relative tw-mr-3">
                                         <Image
-                                            className="tw-w-8 tw-h-8 tw-rounded-full"
+                                            className="tw-h-8 tw-w-8 tw-rounded-full"
                                             src={''}
                                             width="32"
                                             height="32"
@@ -492,7 +492,7 @@ const MyComponent = () => {
                                         />
                                     </div>
                                     <div className="tw-truncate">
-                                        <span className="tw-text-sm tw-font-medium text-slate-800">
+                                        <span className="text-slate-800 tw-text-sm tw-font-medium">
                                             Maria Martinez
                                         </span>
                                     </div>
@@ -500,7 +500,7 @@ const MyComponent = () => {
                                 <button className="text-slate-400 hover:text-slate-500 tw-rounded-full">
                                     <span className="tw-sr-only">Menu</span>
                                     <svg
-                                        className="tw-w-8 tw-h-8 tw-fill-current"
+                                        className="tw-h-8 tw-w-8 tw-fill-current"
                                         viewBox="0 0 32 32"
                                     >
                                         <circle cx="16" cy="16" r="2" />
@@ -514,9 +514,9 @@ const MyComponent = () => {
                 </div>
 
                 {/* 3rd tw-block */}
-                <div className="tw-bg-white tw-p-5 tw-shadow-lg tw-rounded-sm tw-border border-slate-200 lg:tw-w-72 xl:tw-w-80">
-                    <div className="tw-flex tw-justify-between tw-space-x-1 tw-mb-5">
-                        <div className="tw-text-sm text-slate-800 tw-font-semibold">
+                <div className="border-slate-200 tw-rounded-sm tw-border tw-bg-white tw-p-5 tw-shadow-lg lg:tw-w-72 xl:tw-w-80">
+                    <div className="tw-mb-5 tw-flex tw-justify-between tw-space-x-1">
+                        <div className="text-slate-800 tw-text-sm tw-font-semibold">
                             Invite Friends
                         </div>
                         <a
@@ -532,7 +532,7 @@ const MyComponent = () => {
                                 <div className="grow tw-flex tw-items-center">
                                     <div className="tw-relative tw-mr-3">
                                         <Image
-                                            className="tw-w-8 tw-h-8 tw-rounded-full"
+                                            className="tw-h-8 tw-w-8 tw-rounded-full"
                                             src={''}
                                             width="32"
                                             height="32"
@@ -540,12 +540,12 @@ const MyComponent = () => {
                                         />
                                     </div>
                                     <div className="tw-truncate">
-                                        <span className="tw-text-sm tw-font-medium text-slate-800">
+                                        <span className="text-slate-800 tw-text-sm tw-font-medium">
                                             Haruki Masuno
                                         </span>
                                     </div>
                                 </div>
-                                <button className="tw-text-xs tw-inline-flex tw-font-medium tw-bg-indigo-100 tw-text-indigo-600 tw-rounded-full tw-text-center tw-px-2.5 tw-py-1">
+                                <button className="tw-inline-flex tw-rounded-full tw-bg-indigo-100 tw-px-2.5 tw-py-1 tw-text-center tw-text-xs tw-font-medium tw-text-indigo-600">
                                     Invite
                                 </button>
                             </div>
@@ -555,7 +555,7 @@ const MyComponent = () => {
                                 <div className="grow tw-flex tw-items-center">
                                     <div className="tw-relative tw-mr-3">
                                         <Image
-                                            className="tw-w-8 tw-h-8 tw-rounded-full"
+                                            className="tw-h-8 tw-w-8 tw-rounded-full"
                                             src={''}
                                             width="32"
                                             height="32"
@@ -563,12 +563,12 @@ const MyComponent = () => {
                                         />
                                     </div>
                                     <div className="tw-truncate">
-                                        <span className="tw-text-sm tw-font-medium text-slate-800">
+                                        <span className="text-slate-800 tw-text-sm tw-font-medium">
                                             Joe Huang
                                         </span>
                                     </div>
                                 </div>
-                                <button className="tw-text-xs tw-inline-flex tw-font-medium tw-bg-indigo-100 tw-text-indigo-600 tw-rounded-full tw-text-center tw-px-2.5 tw-py-1">
+                                <button className="tw-inline-flex tw-rounded-full tw-bg-indigo-100 tw-px-2.5 tw-py-1 tw-text-center tw-text-xs tw-font-medium tw-text-indigo-600">
                                     Invite
                                 </button>
                             </div>
@@ -578,7 +578,7 @@ const MyComponent = () => {
                                 <div className="grow tw-flex tw-items-center">
                                     <div className="tw-relative tw-mr-3">
                                         <Image
-                                            className="tw-w-8 tw-h-8 tw-rounded-full"
+                                            className="tw-h-8 tw-w-8 tw-rounded-full"
                                             src={''}
                                             width="32"
                                             height="32"
@@ -586,12 +586,12 @@ const MyComponent = () => {
                                         />
                                     </div>
                                     <div className="tw-truncate">
-                                        <span className="tw-text-sm tw-font-medium text-slate-800">
+                                        <span className="text-slate-800 tw-text-sm tw-font-medium">
                                             Carolyn McNeail
                                         </span>
                                     </div>
                                 </div>
-                                <button className="tw-text-xs tw-inline-flex tw-font-medium tw-bg-indigo-100 tw-text-indigo-600 tw-rounded-full tw-text-center tw-px-2.5 tw-py-1">
+                                <button className="tw-inline-flex tw-rounded-full tw-bg-indigo-100 tw-px-2.5 tw-py-1 tw-text-center tw-text-xs tw-font-medium tw-text-indigo-600">
                                     Invite
                                 </button>
                             </div>
@@ -601,7 +601,7 @@ const MyComponent = () => {
                                 <div className="grow tw-flex tw-items-center">
                                     <div className="tw-relative tw-mr-3">
                                         <Image
-                                            className="tw-w-8 tw-h-8 tw-rounded-full"
+                                            className="tw-h-8 tw-w-8 tw-rounded-full"
                                             src={''}
                                             width="32"
                                             height="32"
@@ -609,12 +609,12 @@ const MyComponent = () => {
                                         />
                                     </div>
                                     <div className="tw-truncate">
-                                        <span className="tw-text-sm tw-font-medium text-slate-800">
+                                        <span className="text-slate-800 tw-text-sm tw-font-medium">
                                             Lisa Sitwala
                                         </span>
                                     </div>
                                 </div>
-                                <button className="tw-text-xs tw-inline-flex tw-font-medium tw-bg-indigo-100 tw-text-indigo-600 tw-rounded-full tw-text-center tw-px-2.5 tw-py-1">
+                                <button className="tw-inline-flex tw-rounded-full tw-bg-indigo-100 tw-px-2.5 tw-py-1 tw-text-center tw-text-xs tw-font-medium tw-text-indigo-600">
                                     Invite
                                 </button>
                             </div>

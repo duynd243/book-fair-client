@@ -9,4 +9,5 @@ export interface ILoginUser {
     dob?: Date;
     role: number;
     imageUrl: string;
+    organizations?: number[];
 }

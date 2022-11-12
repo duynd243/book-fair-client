@@ -9,5 +9,5 @@ export interface IParticipation {
     status?: number;
     statusName?: string;
     note?: string;
-    issuer?: IUser[];
+    issuer?: IUser;
 }

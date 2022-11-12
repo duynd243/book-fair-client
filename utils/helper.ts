@@ -12,7 +12,9 @@ export function isInViewPort(element: Element): boolean {
         rect.right <= (window.innerWidth || html.clientWidth)
     );
 }
+
 const defaultLocaleFormat = { locale: vi };
+
 export function getFormattedDate(
     dateStr: string | undefined,
     localeFormat: {
@@ -25,9 +27,13 @@ export function getFormattedDate(
         day: date ? format(date, 'dd', localeFormat) : 'N/A',
         month: date ? format(date, 'MM', localeFormat) : 'N/A',
         year: date ? format(date, 'yyyy', localeFormat) : 'N/A',
+        withoutDayOfWeek: date
+            ? format(date, 'dd/MM/yyyy', localeFormat)
+            : 'N/A',
         fullDate: date ? format(date, 'eeee, dd/MM/yyyy', localeFormat) : 'N/A',
     };
 }
+
 const slugifyOptions = {
     replacement: '-',
     remove: /[*+~.()'"!:@]/g,
@@ -36,6 +42,7 @@ const slugifyOptions = {
     locale: 'vi',
     trim: true,
 };
+
 export function getSlug(str?: string) {
     return slugify(str || '', slugifyOptions);
 }
@@ -46,4 +53,11 @@ export function getSlugUrl(
     id?: number | string
 ) {
     return `${rootPath}/${getSlug(title)}/${id}`;
+}
+
+export function getFormattedPrice(number: number) {
+    return new Intl.NumberFormat('vi-VN', {
+        style: 'currency',
+        currency: 'VND',
+    }).format(number);
 }

@@ -41,7 +41,7 @@ const Header: React.FC<Props> = ({ maxWidth }) => {
     ];
 
     return (
-        <header className="tw-sticky tw-top-0 tw-top-0 tw-left-0 tw-right-0 tw-z-30 tw-animate-fadeInDown tw-bg-white/70 tw-shadow-sm tw-backdrop-blur-lg tw-transition-transform">
+        <header className="tw-sticky tw-top-0 tw-left-0 tw-right-0 tw-z-30 tw-animate-fadeInDown tw-bg-white/70 tw-shadow-sm tw-backdrop-blur-lg tw-transition-transform">
             <div
                 className={`${maxWidth} tw-relative tw-mx-auto tw-flex tw-h-16 tw-items-center tw-justify-between tw-px-4`}
             >
