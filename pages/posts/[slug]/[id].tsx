@@ -2,7 +2,7 @@ import React from 'react';
 import { NextPage } from 'next';
 
 const PostDetailsPage: NextPage = () => {
-    return <div>hehe</div>;
+    return <div>hehe hihi</div>;
 };
 
 export default PostDetailsPage;
