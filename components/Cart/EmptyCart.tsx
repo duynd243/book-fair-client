@@ -1,7 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import EmptyCartImage from '../../assets/images/cart/empty-cart.gif';
+import EmptyCartImage from '../../assets/images/Cart/empty-cart-gif.gif';
 
 const EmptyCart: React.FC = () => {
     return (
