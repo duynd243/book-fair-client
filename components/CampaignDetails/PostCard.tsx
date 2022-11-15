@@ -16,12 +16,14 @@ import {
 } from 'react-icons/io5';
 import Link from 'next/link';
 import { getFormattedPrice, getSlug } from '../../utils/helper';
+import { useAuth } from '../../context/AuthContext';
+import Swal from 'sweetalert2';
 
 const FeaturedItem: React.FC<{ children: React.ReactNode }> = ({
     children,
 }) => {
     return (
-        <li className="tw-flex tw-gap-2 tw-items-center tw-font-medium tw-text-slate-600">
+        <li className="tw-flex tw-items-center tw-gap-2 tw-font-medium tw-text-slate-600">
             {children}
         </li>
     );
@@ -32,6 +34,7 @@ type Props = {
 };
 
 const PostCard: React.FC<Props> = ({ data }) => {
+    const { handleAddToCart } = useAuth();
     const book = data?.campaignBooks[0]?.book;
     const postHref = {
         pathname: '/posts/[slug]/[id]',
@@ -40,9 +43,33 @@ const PostCard: React.FC<Props> = ({ data }) => {
             id: data?.id,
         },
     };
+
+    const addToCart = () => {
+        if (
+            data?.id &&
+            data?.campaignBooks[0].id &&
+            data?.campaignBooks[0]?.bookId
+        ) {
+            handleAddToCart({
+                campaignBookId: data?.campaignBooks[0].id,
+                postId: data?.id,
+                bookId: data?.campaignBooks[0]?.bookId,
+                quantity: 1,
+            });
+            Swal.fire({
+                title: 'Đã thêm vào giỏ hàng!',
+                text: 'Sản phẩm đã được thêm vào giỏ hàng.',
+                icon: 'success',
+                showConfirmButton: false,
+                showCancelButton: false,
+                timer: 1500,
+            });
+        }
+    };
+
     return (
-        <article className="tw-group tw-col-span-full tw-transition tw-duration-300 sm:tw-col-span-6 tw-bg-white tw-shadow-sm hover:tw-shadow-md tw-rounded-lg tw-border tw-border-slate-200 tw-overflow-hidden">
-            <div className="tw-flex tw-flex-col tw-h-full">
+        <article className="tw-group tw-col-span-full tw-overflow-hidden tw-rounded-lg tw-border tw-border-slate-200 tw-bg-white tw-shadow-sm tw-transition tw-duration-300 hover:tw-shadow-md sm:tw-col-span-6">
+            <div className="tw-flex tw-h-full tw-flex-col">
                 {/* Image */}
                 <Link href={postHref} className={'tw-overflow-hidden'}>
                     <Image
@@ -64,7 +91,7 @@ const PostCard: React.FC<Props> = ({ data }) => {
                         <header className="tw-mb-3 tw-flex tw-items-center">
                             <Image
                                 className={
-                                    'tw-rounded-full tw-w-[2.35rem] tw-h-[2.35rem] tw-object-cover tw-object-center tw-mr-3'
+                                    'tw-mr-3 tw-h-[2.35rem] tw-w-[2.35rem] tw-rounded-full tw-object-cover tw-object-center'
                                 }
                                 width={100}
                                 height={100}
@@ -77,11 +104,11 @@ const PostCard: React.FC<Props> = ({ data }) => {
                             <div>
                                 <Link
                                     href={postHref}
-                                    className="tw-text-lg tw-leading-6 tw-text-slate-800 tw-font-semibold"
+                                    className="tw-text-lg tw-font-semibold tw-leading-6 tw-text-slate-800"
                                 >
                                     {data?.name}
                                 </Link>
-                                <div className="tw-flex tw-items-center tw-text-slate-700 tw-text-sm">
+                                <div className="tw-flex tw-items-center tw-text-sm tw-text-slate-700">
                                     <span className="tw-font-semibold tw-text-blue-700">
                                         {
                                             data?.campaignBooks[0]
@@ -105,9 +132,9 @@ const PostCard: React.FC<Props> = ({ data }) => {
                             </div>
                         </header>
                         {/* Rating and price */}
-                        <div className="tw-flex tw-flex-wrap tw-justify-between tw-items-center tw-mb-4">
+                        <div className="tw-mb-4 tw-flex tw-flex-wrap tw-items-center tw-justify-between">
                             {/* Rating */}
-                            <div className="tw-flex tw-items-center tw-space-x-2 tw-mr-2">
+                            <div className="tw-mr-2 tw-flex tw-items-center tw-space-x-2">
                                 {/* Stars */}
                                 <div className="tw-flex tw-space-x-1">
                                     <button>
@@ -115,7 +142,7 @@ const PostCard: React.FC<Props> = ({ data }) => {
                                             1 star
                                         </span>
                                         <svg
-                                            className="tw-w-4 tw-h-4 tw-fill-current tw-text-amber-500"
+                                            className="tw-h-4 tw-w-4 tw-fill-current tw-text-amber-500"
                                             viewBox="0 0 16 16"
                                         >
                                             <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
@@ -126,7 +153,7 @@ const PostCard: React.FC<Props> = ({ data }) => {
                                             2 stars
                                         </span>
                                         <svg
-                                            className="tw-w-4 tw-h-4 tw-fill-current tw-text-amber-500"
+                                            className="tw-h-4 tw-w-4 tw-fill-current tw-text-amber-500"
                                             viewBox="0 0 16 16"
                                         >
                                             <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
@@ -137,7 +164,7 @@ const PostCard: React.FC<Props> = ({ data }) => {
                                             3 stars
                                         </span>
                                         <svg
-                                            className="tw-w-4 tw-h-4 tw-fill-current tw-text-amber-500"
+                                            className="tw-h-4 tw-w-4 tw-fill-current tw-text-amber-500"
                                             viewBox="0 0 16 16"
                                         >
                                             <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
@@ -148,7 +175,7 @@ const PostCard: React.FC<Props> = ({ data }) => {
                                             4 stars
                                         </span>
                                         <svg
-                                            className="tw-w-4 tw-h-4 tw-fill-current tw-text-amber-500"
+                                            className="tw-h-4 tw-w-4 tw-fill-current tw-text-amber-500"
                                             viewBox="0 0 16 16"
                                         >
                                             <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
@@ -159,7 +186,7 @@ const PostCard: React.FC<Props> = ({ data }) => {
                                             5 stars
                                         </span>
                                         <svg
-                                            className="tw-w-4 tw-h-4 tw-fill-current tw-text-slate-300"
+                                            className="tw-h-4 tw-w-4 tw-fill-current tw-text-slate-300"
                                             viewBox="0 0 16 16"
                                         >
                                             <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
@@ -173,7 +200,7 @@ const PostCard: React.FC<Props> = ({ data }) => {
                             </div>
                             {/* Price */}
                             <div>
-                                <div className="tw-inline-flex tw-text-base tw-font-semibold tw-bg-emerald-100 tw-text-emerald-600 tw-rounded-full tw-text-center tw-px-2.5 tw-py-0.5">
+                                <div className="tw-inline-flex tw-rounded-full tw-bg-emerald-100 tw-px-2.5 tw-py-0.5 tw-text-center tw-text-base tw-font-semibold tw-text-emerald-600">
                                     {data?.campaignBooks[0]?.coverPrice &&
                                     book?.price
                                         ? getFormattedPrice(
@@ -185,7 +212,7 @@ const PostCard: React.FC<Props> = ({ data }) => {
                             </div>
                         </div>
                         {/* Features list */}
-                        <ul className="tw-text-sm tw-space-y-2 tw-mb-5">
+                        <ul className="tw-mb-5 tw-space-y-2 tw-text-sm">
                             <FeaturedItem>
                                 <IoFileTray className={'tw-fill-gray-600'} />
                                 <div>
@@ -226,7 +253,10 @@ const PostCard: React.FC<Props> = ({ data }) => {
                         </ul>
                     </div>
                     {/* Card footer */}
-                    <button className="tw-rounded tw-py-1.5 tw-flex tw-gap-1.5 tw-items-center tw-justify-center tw-w-full tw-bg-indigo-500 hover:tw-bg-indigo-600 tw-text-white">
+                    <button
+                        onClick={addToCart}
+                        className="tw-flex tw-w-full tw-items-center tw-justify-center tw-gap-1.5 tw-rounded tw-bg-indigo-500 tw-py-1.5 tw-text-white hover:tw-bg-indigo-600"
+                    >
                         <IoBagCheck size={15} />
                         <span>Thêm vào giỏ hàng</span>
                     </button>

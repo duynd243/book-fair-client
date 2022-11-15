@@ -22,9 +22,11 @@ import { UserService } from 'services/UserService';
 import Swal from 'sweetalert2';
 import { ILoginUser } from 'types/user/ILoginUser';
 import LoadingProgress from '../components/Commons/LoadingProgress';
-import { getRoleById } from '../constants/Roles';
+import { ICartItem } from '../types/cart/ICartItem';
+import { Roles } from '../constants/Roles';
 
 export interface IAuthContext {
+    cart: ICartItem[];
     user: any;
     loginUser: ILoginUser;
     authLoading: boolean;
@@ -36,6 +38,11 @@ export interface IAuthContext {
         password: string,
         fullName: string
     ) => void;
+    handleAddToCart: (item: ICartItem) => void;
+    handleRemoveFromCart: (campaignBookId: number) => void;
+    handleClearCart: () => void;
+    handleUpdateCart: (id: number, quantity: number) => void;
+    getCartItemByCampaignBookId: (id: number) => ICartItem | undefined;
 }
 
 const AuthContext = createContext({} as IAuthContext);
@@ -45,20 +52,31 @@ type Props = {
     children: ReactNode;
 };
 
+const CART_KEY = 'cart';
+
 export const AuthContextProvider: React.FC<Props> = ({ children }) => {
     const [user, setUser] = useState(null);
     const [loginUser, setLoginUser] = useState<ILoginUser>(null!);
     const [authLoading, setAuthLoading] = useState<boolean>(true);
+    const [cart, setCart] = useState<ICartItem[]>([]);
 
     const googleProvider = new GoogleAuthProvider();
     const auth = getAuth();
     const router = useRouter();
+
+    useEffect(() => {
+        const cartData = JSON.parse(localStorage.getItem(CART_KEY) || '[]');
+        if (cartData) {
+            setCart(cartData);
+        }
+    }, []);
 
     const handleGoogleSignIn = () => {
         signInWithPopup(auth, googleProvider)
             .then(async (result) => {
                 console.log('Google Sign In: ', result);
                 toast.success('Đăng nhập thành công');
+                handleClearCart();
             })
             .catch((err) => {
                 console.log(err);
@@ -124,7 +142,7 @@ export const AuthContextProvider: React.FC<Props> = ({ children }) => {
             if (result.isConfirmed) {
                 await signOut(auth);
                 toast.success('Đăng xuất thành công');
-                await router.push('/');
+                await router.push('/').then(() => handleClearCart());
             }
         });
     };
@@ -142,6 +160,69 @@ export const AuthContextProvider: React.FC<Props> = ({ children }) => {
         }
     };
 
+    const checkValidCartAction = (): boolean => {
+        if (!loginUser) {
+            toast.error('Bạn cần đăng nhập để thực hiện chức năng này');
+            return false;
+        }
+        if (loginUser.role !== Roles.CUSTOMER.id) {
+            toast.error('Bạn không có quyền thực hiện chức năng này');
+            return false;
+        }
+        return true;
+    };
+
+    const saveCart = (cart: ICartItem[]) => {
+        setCart(cart);
+        localStorage.setItem('cart', JSON.stringify(cart));
+    };
+
+    const getCartItemByCampaignBookId = (id: number): ICartItem | undefined => {
+        return cart.find((item) => item.campaignBookId === id);
+    };
+
+    const handleAddToCart = (item: ICartItem) => {
+        if (!checkValidCartAction()) return;
+        const newCart = [...cart];
+        const index = newCart.findIndex(
+            (x) => x.campaignBookId === item.campaignBookId
+        );
+        if (index === -1) {
+            newCart.push(item);
+        } else {
+            newCart[index].quantity += item.quantity;
+        }
+        saveCart(newCart);
+    };
+
+    const handleRemoveFromCart = (campaignBookId: number) => {
+        if (!checkValidCartAction()) return;
+        const newCart = JSON.parse(localStorage.getItem('cart') || '[]');
+        const index = newCart.findIndex(
+            (i: ICartItem) => i.campaignBookId === campaignBookId
+        );
+        if (index !== -1) {
+            newCart.splice(index, 1);
+        }
+        saveCart(newCart);
+    };
+
+    const handleUpdateCart = (id: number, quantity: number) => {
+        if (!checkValidCartAction()) return;
+        const newCart = JSON.parse(localStorage.getItem('cart') || '[]');
+        const index = newCart.findIndex(
+            (i: ICartItem) => i.campaignBookId === id
+        );
+        if (index !== -1) {
+            newCart[index].quantity = quantity;
+        }
+        saveCart(newCart);
+    };
+
+    const handleClearCart = () => {
+        saveCart([]);
+    };
+
     useEffect(() => {
         const unsubscribe: Unsubscribe = onAuthStateChanged(
             auth,
@@ -156,10 +237,6 @@ export const AuthContextProvider: React.FC<Props> = ({ children }) => {
                     setLoginUser(null!);
                 }
                 setAuthLoading(false);
-                // const timer = setTimeout(() => {
-                //     setAuthLoading(false);
-                // }, 500);
-                // return () => clearTimeout(timer);
             }
         );
         return () => unsubscribe();
@@ -168,6 +245,7 @@ export const AuthContextProvider: React.FC<Props> = ({ children }) => {
     return (
         <AuthContext.Provider
             value={{
+                cart,
                 user,
                 loginUser,
                 authLoading,
@@ -175,6 +253,11 @@ export const AuthContextProvider: React.FC<Props> = ({ children }) => {
                 logOut,
                 handleEmailPasswordSignIn,
                 handleEmailPasswordSignUp,
+                handleAddToCart,
+                handleRemoveFromCart,
+                handleUpdateCart,
+                handleClearCart,
+                getCartItemByCampaignBookId,
             }}
         >
             {authLoading ? <LoadingProgress /> : children}

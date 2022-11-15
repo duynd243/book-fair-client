@@ -26,7 +26,7 @@ const FeaturedItem: React.FC<{ children: React.ReactNode }> = ({
     children,
 }) => {
     return (
-        <li className="tw-flex tw-gap-2 tw-items-center tw-font-medium tw-text-slate-600">
+        <li className="tw-flex tw-items-center tw-gap-2 tw-font-medium tw-text-slate-600">
             {children}
         </li>
     );
@@ -45,7 +45,7 @@ const IssuerActions: React.FC<{
         'tw-flex tw-items-center tw-gap-1.5 tw-text-slate-600 tw-font-medium tw-text-base tw-px-2.5 tw-py-1 tw-rounded-md tw-bg-slate-100 hover:tw-bg-slate-200';
 
     return (
-        <div className="tw-flex tw-gap-4 tw-justify-end tw-items-center tw-mt-3">
+        <div className="tw-mt-3 tw-flex tw-items-center tw-justify-end tw-gap-4">
             {(participationStatus ===
                 ParticipationStatuses.ISSUER_ACCEPTED.id ||
                 participationStatus ===
@@ -81,7 +81,7 @@ const IssuerActions: React.FC<{
                     <>
                         <button
                             className={
-                                'm-btn-lg tw-uppercase tw-text-base tw-gap-1.5 tw-bg-indigo-500 hover:tw-bg-indigo-600 tw-text-white'
+                                'm-btn-lg tw-gap-1.5 tw-bg-indigo-500 tw-text-base tw-uppercase tw-text-white hover:tw-bg-indigo-600'
                             }
                         >
                             <IoCheckmark />
@@ -89,7 +89,7 @@ const IssuerActions: React.FC<{
                         </button>
                         <button
                             className={
-                                'm-btn-lg tw-uppercase tw-text-base tw-gap-1.5 tw-bg-slate-500 hover:tw-bg-slate-600 tw-text-white'
+                                'm-btn-lg tw-gap-1.5 tw-bg-slate-500 tw-text-base tw-uppercase tw-text-white hover:tw-bg-slate-600'
                             }
                         >
                             <IoRemove />
@@ -101,7 +101,7 @@ const IssuerActions: React.FC<{
                 campaignStatus === CampaignStatuses.NOT_STARTED.id && (
                     <button
                         className={
-                            'm-btn-lg tw-uppercase tw-text-base tw-gap-1.5 tw-bg-indigo-500 hover:tw-bg-indigo-600 tw-text-white'
+                            'm-btn-lg tw-gap-1.5 tw-bg-indigo-500 tw-text-base tw-uppercase tw-text-white hover:tw-bg-indigo-600'
                         }
                     >
                         <IoPersonAdd />
@@ -114,7 +114,7 @@ const IssuerActions: React.FC<{
 
 const SystemActions: React.FC<{ campaign: ICampaign }> = ({ campaign }) => {
     return (
-        <div className="tw-flex tw-gap-4 tw-justify-end tw-items-center">
+        <div className="tw-flex tw-items-center tw-justify-end tw-gap-4">
             {/*<button className="tw-text-white tw-bg-red-500 tw-rounded tw-py-2 tw-px-4 hover:tw-bg-red-600 tw-transition tw-duration-300 tw-ease-in-out tw-font-medium">*/}
             {/*    Xóa*/}
             {/*</button>*/}
@@ -138,7 +138,7 @@ const AdminCampaignCard: React.FC<Props> = ({ campaign }) => {
             : undefined;
     console.log('participationOfIssuer', participationOfIssuer);
     return (
-        <div className="tw-p-5 tw-flex tw-flex-col  tw-h-full tw-bg-white tw-border tw-shadow-sm tw-rounded">
+        <div className="tw-flex tw-h-full tw-flex-col  tw-rounded tw-border tw-bg-white tw-p-5 tw-shadow-sm">
             {/*Header*/}
             <header className="tw-flex tw-items-center tw-justify-between">
                 <StatusLabel statusId={campaign?.status} />
@@ -156,9 +156,9 @@ const AdminCampaignCard: React.FC<Props> = ({ campaign }) => {
                     </div>
                 )}
             </header>
-            <div className="tw-grow tw-mt-3.5">
-                <div className="tw-inline-flex tw-text-slate-800 hover:tw-text-slate-900 tw-mb-1">
-                    <h2 className="tw-text-xl tw-leading-snug tw-font-semibold">
+            <div className="tw-mt-3.5 tw-grow">
+                <div className="tw-mb-1 tw-inline-flex tw-text-slate-800 hover:tw-text-slate-900">
+                    <h2 className="tw-text-xl tw-font-semibold tw-leading-snug">
                         {campaign?.name}
                     </h2>
                 </div>
@@ -167,7 +167,7 @@ const AdminCampaignCard: React.FC<Props> = ({ campaign }) => {
                 </div>
             </div>
             <footer className="tw-mt-5">
-                <div className="tw-text-sm tw-font-semibold tw-text-indigo-600 tw-mb-2">
+                <div className="tw-mb-2 tw-text-sm tw-font-semibold tw-text-indigo-600">
                     {getFormattedDate(campaign?.startDate).fullDate}{' '}
                     <span className="text-slate-400">-&gt;</span>{' '}
                     {getFormattedDate(campaign?.endDate).fullDate}

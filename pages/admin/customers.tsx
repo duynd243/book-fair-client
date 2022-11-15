@@ -22,16 +22,16 @@ const AdminUsersPage: NextPage = () => {
     );
     return (
         <AdminLayout>
-            <div className="sm:tw-flex sm:tw-justify-between sm:tw-items-center tw-mb-8">
+            <div className="tw-mb-8 sm:tw-flex sm:tw-items-center sm:tw-justify-between">
                 {/* Left: Title */}
                 <div className="tw-mb-4 sm:tw-mb-0">
-                    <h1 className="tw-text-2xl md:tw-text-3xl tw-text-slate-800 tw-font-bold">
+                    <h1 className="tw-text-2xl tw-font-bold tw-text-slate-800 md:tw-text-3xl">
                         Khách hàng ✨
                     </h1>
                 </div>
 
                 {/* Right: Actions */}
-                <div className="tw-grid tw-grid-flow-col sm:tw-auto-cols-max tw-justify-start sm:tw-justify-end tw-gap-2">
+                <div className="tw-grid tw-grid-flow-col tw-justify-start tw-gap-2 sm:tw-auto-cols-max sm:tw-justify-end">
                     {/* Search form */}
                     <SearchForm />
                     {/*/!* Filter button *!/*/}

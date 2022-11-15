@@ -6,13 +6,15 @@ import { BiLogIn, BiLogOut, BiSearch, BiUserPlus } from 'react-icons/bi';
 import { FcAddressBook } from 'react-icons/fc';
 import { DropdownItemProps } from './DropdownItem';
 import DropdownMenu from './DropdownMenu';
+import { Roles } from '../../../constants/Roles';
+import { HiOutlineShoppingBag } from 'react-icons/hi';
 
 type Props = {
     maxWidth: string;
 };
 
 const Header: React.FC<Props> = ({ maxWidth }) => {
-    const { user, loginUser, authLoading, logOut } = useAuth();
+    const { user, loginUser, logOut, cart } = useAuth();
 
     const guestMenuItems: DropdownItemProps[] = [
         {
@@ -46,10 +48,28 @@ const Header: React.FC<Props> = ({ maxWidth }) => {
                 className={`${maxWidth} tw-relative tw-mx-auto tw-flex tw-h-16 tw-items-center tw-justify-between tw-px-4`}
             >
                 {/*Profile dropdown*/}
-                <DropdownMenu
-                    wrapperClassName={'lg:tw-order-3'}
-                    menuItems={loginUser ? userMenuItems : guestMenuItems}
-                />
+                <div
+                    className={'lg:tw-order-3 tw-flex tw-gap-4 tw-items-center'}
+                >
+                    <div className={'lg:tw-order-2'}>
+                        <DropdownMenu
+                            menuItems={
+                                loginUser ? userMenuItems : guestMenuItems
+                            }
+                        />
+                    </div>
+                    {loginUser && loginUser?.role === Roles.CUSTOMER.id && (
+                        <Link href={'/cart'} className={'tw-group tw-relative'}>
+                            <HiOutlineShoppingBag
+                                className={'tw-text-slate-500'}
+                                size={28}
+                            />
+                            <div className="group-hover:tw-bg-indigo-600 tw-transition tw-duration-300 tw-w-5 tw-text-center tw-leading-relaxed tw-h-5 tw-absolute tw-top-0 -tw-right-2 tw-text-xs tw-bg-indigo-500 tw-text-white tw-rounded-full">
+                                {cart?.length || 0}
+                            </div>
+                        </Link>
+                    )}
+                </div>
                 {/*Logo*/}
                 <div className="tw-flex tw-items-center tw-gap-4">
                     <Link href={'/'}>

@@ -6,15 +6,13 @@ import DefaultAvatar from '../../../assets/images/default_avatar.png';
 import Image from 'next/image';
 
 type Props = {
-    wrapperClassName?: string;
-    buttonClassName?: string;
     menuItems: DropdownItemProps[];
 };
 
 const DropdownMenu: React.FC<Props> = (props) => {
     const { user, loginUser, authLoading, logOut } = useAuth();
     return (
-        <Menu as={'div'} className={props.wrapperClassName}>
+        <Menu as={'div'}>
             <Menu.Button
                 className={'tw-flex tw-items-center tw-justify-center'}
             >

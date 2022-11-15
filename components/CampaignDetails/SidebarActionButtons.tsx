@@ -14,7 +14,7 @@ type Props = {
 
 const RequestToJoinButton: React.FC<Props> = ({ campaign, issuers }) => {
     return (
-        <button className="tw-flex tw-gap-2 tw-items-center tw-justify-center tw-rounded tw-py-2 tw-w-full tw-bg-indigo-500 tw-text-white hover:tw-bg-indigo-600">
+        <button className="tw-flex tw-w-full tw-items-center tw-justify-center tw-gap-2 tw-rounded tw-bg-indigo-500 tw-py-2 tw-text-white hover:tw-bg-indigo-600">
             <IoPersonAdd size={14} />
             <span>Yêu cầu tham gia</span>
         </button>
@@ -23,7 +23,7 @@ const RequestToJoinButton: React.FC<Props> = ({ campaign, issuers }) => {
 
 const AlreadyJoinedButton: React.FC<Props> = ({ campaign, issuers }) => {
     return (
-        <button className="tw-flex tw-gap-2 tw-items-center tw-justify-center tw-rounded tw-py-2 tw-w-full tw-bg-green-500 tw-text-white hover:tw-bg-green-600">
+        <button className="tw-flex tw-w-full tw-items-center tw-justify-center tw-gap-2 tw-rounded tw-bg-green-500 tw-py-2 tw-text-white hover:tw-bg-green-600">
             <IoCheckmarkDone size={14} />
             <span>Đã tham gia</span>
         </button>
@@ -51,7 +51,7 @@ const SidebarActionButtons: React.FC<Props> = ({ campaign, issuers }) => {
     return (
         <SidebarBlockWrapper>
             <div className="tw-space-y-2">
-                <button className="tw-flex tw-gap-2 tw-items-center tw-justify-center tw-rounded tw-py-2 tw-w-full tw-bg-indigo-500 tw-text-white hover:tw-bg-indigo-600">
+                <button className="tw-flex tw-w-full tw-items-center tw-justify-center tw-gap-2 tw-rounded tw-bg-indigo-500 tw-py-2 tw-text-white hover:tw-bg-indigo-600">
                     <IoPersonAdd size={14} />
                     <span>Yêu cầu tham gia</span>
                 </button>
