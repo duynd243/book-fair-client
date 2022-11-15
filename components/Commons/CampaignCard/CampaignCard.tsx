@@ -15,10 +15,6 @@ import {
     getCampaignStatusById,
 } from '../../../constants/Statuses';
 
-type Props = {
-    wrapperClassName?: string;
-    campaign: ICampaign;
-};
 const IssuersLabel = ({ issuers }: { issuers: IUser[] }) => {
     let children;
     if (!issuers || issuers.length === 0) {
@@ -93,7 +89,10 @@ const StatusLabel = ({ statusId }: { statusId?: number }) => {
     );
 };
 
-const CampaignCard: React.FC<Props> = ({ wrapperClassName, campaign }) => {
+type Props = {
+    campaign: ICampaign;
+};
+const CampaignCard: React.FC<Props> = ({ campaign }) => {
     const issuers = campaign.participations
         ?.filter((p) => p.issuer)
         .map((p) => p.issuer) as IUser[];
@@ -129,9 +128,7 @@ const CampaignCard: React.FC<Props> = ({ wrapperClassName, campaign }) => {
     };
 
     return (
-        <article
-            className={`${wrapperClassName} tw-duration-400 tw-group tw-flex tw-h-full tw-flex-col tw-overflow-hidden tw-rounded-lg tw-border tw-bg-white tw-transition-transform hover:tw-shadow-md`}
-        >
+        <article className="tw-duration-400 tw-group tw-flex !tw-h-full tw-flex-col tw-overflow-hidden tw-rounded-lg tw-border tw-bg-white tw-transition-transform hover:tw-shadow-md">
             {/* Cover Image */}
             <Link
                 className="tw-overflow-hidden"

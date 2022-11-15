@@ -1,7 +1,7 @@
-import React from 'react';
-import { IUser } from '../../types/user/IUser';
 import { IBaseListResponse } from '../../types/response/IBaseListResponse';
-import CustomerRow from './CustomerRow';
+import React from 'react';
+import { IBookResponse } from '../../types/response/IBookResponse';
+import BookRow from './BookRow';
 
 const TableHeader = ({ label }: { label: string }) => {
     return (
@@ -12,17 +12,17 @@ const TableHeader = ({ label }: { label: string }) => {
 };
 
 type Props = {
-    data: IBaseListResponse<IUser>;
+    data: IBaseListResponse<IBookResponse>;
 };
 
-const CustomerTable: React.FC<Props> = ({ data }) => {
+const BookTable: React.FC<Props> = ({ data }) => {
     const metadata = data?.metadata;
-    const customers = data?.data;
+    const books = data?.data;
     return (
         <div className="tw-relative tw-rounded-sm tw-border tw-border-slate-200 tw-bg-white tw-shadow-lg">
             <header className="tw-px-5 tw-py-4">
                 <h2 className="tw-font-semibold tw-text-slate-800">
-                    Tổng số khách hàng{' '}
+                    Tổng số sách{' '}
                     <span className="tw-font-medium tw-text-slate-400">
                         {metadata?.total}
                     </span>
@@ -51,24 +51,24 @@ const CustomerTable: React.FC<Props> = ({ data }) => {
                                     </div>
                                 </th>
                                 <TableHeader label={'Code'} />
-                                <TableHeader label={'Họ Tên'} />
-                                <TableHeader label={'Email'} />
-                                <TableHeader label={'Số điện thoại'} />
-                                <TableHeader label={'Địa chỉ'} />
-                                <TableHeader label={'Ngày sinh'} />
-                                <TableHeader label={'Tổ chức'} />
+                                <TableHeader label={'Tên sách'} />
+                                <TableHeader label={'Giá'} />
+                                <TableHeader label={'Nhà phát hành'} />
+                                <TableHeader label={'Năm phát hành'} />
+                                <TableHeader label={'Số trang'} />
+                                <TableHeader label={'ISBN10'} />
+                                <TableHeader label={'ISBN13'} />
+                                <TableHeader label={'Kích cỡ'} />
+                                <TableHeader label={'Tác giả'} />
+                                <TableHeader label={'Thể loại'} />
+                                <TableHeader label={'Ngôn ngữ'} />
                                 <TableHeader label={''} />
                             </tr>
                         </thead>
                         {/* Table body */}
                         <tbody className="tw-divide-y tw-divide-slate-200 tw-text-sm">
-                            {customers?.map((customer) => {
-                                return (
-                                    <CustomerRow
-                                        key={customer.id}
-                                        customer={customer}
-                                    />
-                                );
+                            {books?.map((book) => {
+                                return <BookRow key={book.id} book={book} />;
                             })}
                         </tbody>
                     </table>
@@ -78,4 +78,4 @@ const CustomerTable: React.FC<Props> = ({ data }) => {
     );
 };
 
-export default CustomerTable;
+export default BookTable;

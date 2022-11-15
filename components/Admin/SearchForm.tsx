@@ -12,17 +12,17 @@ const SearchForm: React.FC<Props> = ({ placeholder = 'Tìm kiếm...' }) => {
             </label>
             <input
                 id="action-search"
-                className="tw-placeholder-slate-400 tw-leading-5 tw-py-2 tw-px-3 tw-border-slate-200 hover:tw-border-slate-300 focus:tw-border-slate-500 tw-shadow-sm tw-rounded tw-text-sm tw-text-slate-800 tw-bg-white tw-border focus:tw-ring-0 tw-form-input tw-pl-9 focus:tw-border-slate-300"
+                className="tw-form-input tw-rounded tw-border tw-border-slate-200 tw-bg-white tw-py-2 tw-px-3 tw-pl-9 tw-text-sm tw-leading-5 tw-text-slate-800 tw-placeholder-slate-400 tw-shadow-sm hover:tw-border-slate-300 focus:tw-border-slate-500 focus:tw-border-slate-300 focus:tw-ring-0"
                 type="search"
                 placeholder={placeholder}
             />
             <button
-                className="tw-absolute tw-inset-0 tw-right-auto tw-group"
+                className="tw-group tw-absolute tw-inset-0 tw-right-auto"
                 type="submit"
                 aria-label="Search"
             >
                 <svg
-                    className="tw-w-4 tw-h-4 tw-shrink-0 tw-fill-current tw-text-slate-400 group-hover:tw-text-slate-500 tw-ml-3 tw-mr-2"
+                    className="tw-ml-3 tw-mr-2 tw-h-4 tw-w-4 tw-shrink-0 tw-fill-current tw-text-slate-400 group-hover:tw-text-slate-500"
                     viewBox="0 0 16 16"
                     xmlns="http://www.w3.org/2000/svg"
                 >

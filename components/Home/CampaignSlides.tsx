@@ -46,7 +46,7 @@ const CampaignSlides: React.FC<Props> = ({ label, href, campaigns }) => {
                 modules={[Autoplay, Keyboard, Pagination, Navigation]}
             >
                 {campaigns.map((campaign) => (
-                    <SwiperSlide className="tw-h-auto" key={campaign?.id}>
+                    <SwiperSlide className="!tw-h-auto" key={campaign?.id}>
                         <CampaignCard campaign={campaign} />
                     </SwiperSlide>
                 ))}

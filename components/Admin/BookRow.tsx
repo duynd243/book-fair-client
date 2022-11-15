@@ -1,9 +1,7 @@
 import React from 'react';
-import { IUser } from '../../types/user/IUser';
+import { IBookResponse } from '../../types/response/IBookResponse';
 import Image from 'next/image';
-
 import DefaultAvatar from '../../assets/images/default_avatar.png';
-import { getFormattedDate } from '../../utils/helper';
 
 const TableData = ({
     alignClass = 'tw-text-left',
@@ -20,10 +18,10 @@ const TableData = ({
 };
 
 type Props = {
-    customer: IUser;
+    book: IBookResponse;
 };
 
-const CustomerRow: React.FC<Props> = ({ customer }) => {
+const BookRow: React.FC<Props> = ({ book }) => {
     const noDataLabel = 'Chưa có dữ liệu';
     return (
         <tr>
@@ -32,7 +30,7 @@ const CustomerRow: React.FC<Props> = ({ customer }) => {
                     <label className="tw-inline-flex">
                         <span className="tw-sr-only">Select</span>
                         <input
-                            id={customer?.id}
+                            id={String(book?.id)}
                             className="tw-form-checkbox"
                             type="checkbox"
                             onChange={() => {}}
@@ -43,42 +41,44 @@ const CustomerRow: React.FC<Props> = ({ customer }) => {
             </td>
 
             <td className="tw-whitespace-nowrap tw-px-2 tw-py-3 first:tw-pl-5 last:tw-pr-5">
-                <div className="tw-text-left">{customer?.code}</div>
+                <div className="tw-text-left">{book?.code}</div>
             </td>
             <td className="tw-whitespace-nowrap tw-px-2 tw-py-3 first:tw-pl-5 last:tw-pr-5">
                 <div className="tw-flex tw-items-center">
-                    <div className="shrink-0 tw-mr-2 tw-h-10 tw-w-10 sm:tw-mr-3">
+                    <div className="shrink-0 tw-mr-2 tw-h-[100px] tw-w-[64px] sm:tw-mr-3">
                         <Image
-                            className="tw-rounded-full"
-                            src={customer?.imageUrl || DefaultAvatar.src}
-                            width="40"
-                            height="40"
-                            alt={customer?.name || ''}
+                            className="tw-rounded"
+                            src={book?.imageUrl || DefaultAvatar.src}
+                            width="80"
+                            height="100"
+                            alt={book?.name || ''}
                         />
                     </div>
                     <div className="text-slate-800 tw-font-medium">
-                        {customer.name}
+                        {book.name}
                     </div>
                 </div>
             </td>
 
-            <TableData>{customer?.email}</TableData>
+            <TableData>{book?.price}</TableData>
             <TableData alignClass={'tw-text-center'}>
-                {customer?.phoneNumber || noDataLabel}
+                {book?.publisher?.name || noDataLabel}
             </TableData>
             <TableData alignClass={'tw-text-center'}>
-                {customer?.address || noDataLabel}
+                {book?.releasedYear || noDataLabel}
             </TableData>
             <TableData alignClass={'tw-text-center'}>
-                {customer?.dob
-                    ? getFormattedDate(customer?.dob).withoutDayOfWeek
-                    : 'Chưa có dữ liệu'}
+                {book?.page || noDataLabel}
             </TableData>
+            <TableData>{book?.isbn10 || noDataLabel}</TableData>
+            <TableData>{book?.isbn13 || noDataLabel}</TableData>
+            <TableData>{book?.size || noDataLabel}</TableData>
             <TableData>
-                {customer?.organizations
-                    ? customer?.organizations?.map((o) => o?.name).join(', ')
-                    : 'Chưa có dữ liệu'}
+                {book?.authorBooks?.map((a) => a.author?.name).join(', ') ||
+                    noDataLabel}
             </TableData>
+            <TableData>{book?.category?.name || noDataLabel}</TableData>
+            <TableData>{book?.language || noDataLabel}</TableData>
             <td className="tw-w-px tw-whitespace-nowrap tw-px-2 tw-py-3 first:tw-pl-5 last:tw-pr-5">
                 {/* Menu button */}
                 <button className="text-slate-400 hover:text-slate-500 tw-rounded-full">
@@ -97,4 +97,4 @@ const CustomerRow: React.FC<Props> = ({ customer }) => {
     );
 };
 
-export default CustomerRow;
+export default BookRow;

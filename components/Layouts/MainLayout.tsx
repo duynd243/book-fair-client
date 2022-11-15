@@ -2,7 +2,7 @@ import Header from '../Commons/Header/Header';
 import Footer from '../Commons/Footer';
 
 type Props = {
-    maxWidth?: string;
+    maxWidth?: 'tw-max-w-6xl' | 'tw-max-w-7xl' | 'tw-max-w-screen-xl';
     children: React.ReactNode;
 };
 

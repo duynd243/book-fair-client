@@ -1,5 +1,3 @@
-import { IBaseListResponse } from './../types/response/IBaseListResponse';
-import { ILoginUser } from './../types/user/ILoginUser';
 import { ILoginResponse } from './../types/response/ILoginResponse';
 import { AxiosInstance } from 'axios';
 import getAxiosClient from './axiosClient';

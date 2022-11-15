@@ -3,13 +3,15 @@ import { IoAdd } from 'react-icons/io5';
 
 type Props = {
     label: string;
+    onClick?: () => void;
 };
 
-const CreateButton: React.FC<Props> = ({ label }) => {
+const CreateButton: React.FC<Props> = ({ label, onClick }) => {
     return (
         <button
+            onClick={onClick}
             className={
-                'm-btn tw-gap-1 tw-bg-indigo-500 hover:tw-bg-indigo-600 tw-text-white'
+                'm-btn tw-gap-1 tw-bg-indigo-500 tw-text-white hover:tw-bg-indigo-600'
             }
         >
             <IoAdd size={16} />
