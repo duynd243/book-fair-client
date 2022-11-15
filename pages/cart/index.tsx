@@ -73,12 +73,12 @@ const CartPage: NextPage = () => {
             {cart?.length === 0 ? (
                 <EmptyCart />
             ) : (
-                <div className="tw-pt-8 tw-pb-14 tw-px-4 sm:tw-px-6 lg:tw-px-8 tw-bg-white">
+                <div className="tw-bg-white tw-px-4 tw-pt-8 tw-pb-14 sm:tw-px-6 lg:tw-px-8">
                     <h1 className="tw-text-3xl tw-font-extrabold tw-tracking-tight tw-text-gray-900 sm:tw-text-4xl">
                         Giỏ hàng
                     </h1>
 
-                    <form className="tw-mt-10 lg:tw-grid lg:tw-grid-cols-12 lg:tw-gap-x-12 lg:tw-items-start xl:tw-gap-x-16">
+                    <form className="tw-mt-10 lg:tw-grid lg:tw-grid-cols-12 lg:tw-items-start lg:tw-gap-x-12 xl:tw-gap-x-16">
                         <section
                             aria-labelledby="cart-heading"
                             className="lg:tw-col-span-7"
@@ -86,7 +86,7 @@ const CartPage: NextPage = () => {
                             <button
                                 onClick={clearCart}
                                 type="button"
-                                className="tw-flex tw-gap-1.5 tw-font-medium tw-text-slate-700 tw-items-center tw-bg-gray-50 tw-rounded-tl-md tw-px-2.5 tw-py-1 tw-ml-auto"
+                                className="tw-ml-auto tw-flex tw-items-center tw-gap-1.5 tw-rounded-tl-md tw-bg-gray-50 tw-px-2.5 tw-py-1 tw-font-medium tw-text-slate-700"
                             >
                                 <IoTrash />
                                 <span>Xoá giỏ hàng</span>
@@ -99,7 +99,7 @@ const CartPage: NextPage = () => {
                             ) : (
                                 <ul
                                     role="list"
-                                    className="tw-border-t tw-border-b tw-border-gray-200 tw-divide-y tw-divide-gray-200"
+                                    className="tw-divide-y tw-divide-gray-200 tw-border-t tw-border-b tw-border-gray-200"
                                 >
                                     {cart.map((cartItem) => (
                                         <CartRow
@@ -117,7 +117,7 @@ const CartPage: NextPage = () => {
                         {/* Order summary */}
                         <section
                             aria-labelledby="summary-heading"
-                            className="lg:tw-sticky lg:tw-top-20 tw-mt-16 tw-bg-gray-50 tw-rounded-lg tw-px-4 tw-py-6 sm:tw-p-6 lg:tw-p-8 lg:tw-mt-0 lg:tw-col-span-5"
+                            className="tw-mt-16 tw-rounded-lg tw-bg-gray-50 tw-px-4 tw-py-6 sm:tw-p-6 lg:tw-sticky lg:tw-top-20 lg:tw-col-span-5 lg:tw-mt-0 lg:tw-p-8"
                         >
                             <h2
                                 id="summary-heading"
@@ -135,7 +135,7 @@ const CartPage: NextPage = () => {
                                         {getFormattedPrice(getTotalPrice())}
                                     </dd>
                                 </div>
-                                <div className="tw-border-t tw-border-gray-200 tw-pt-4 tw-flex tw-items-center tw-justify-between">
+                                <div className="tw-flex tw-items-center tw-justify-between tw-border-t tw-border-gray-200 tw-pt-4">
                                     <dt className="tw-flex tw-text-sm tw-text-gray-600">
                                         <span>Phí dịch vụ</span>
                                         <a
@@ -156,7 +156,7 @@ const CartPage: NextPage = () => {
                                         {getFormattedPrice(0)}
                                     </dd>
                                 </div>
-                                <div className="tw-border-t tw-border-gray-200 tw-pt-4 tw-flex tw-items-center tw-justify-between">
+                                <div className="tw-flex tw-items-center tw-justify-between tw-border-t tw-border-gray-200 tw-pt-4">
                                     <dt className="tw-text-base tw-font-medium tw-text-gray-900">
                                         Tổng cộng
                                     </dt>
@@ -169,7 +169,7 @@ const CartPage: NextPage = () => {
                             <div className="tw-mt-6">
                                 <button
                                     type="submit"
-                                    className="tw-w-full tw-bg-indigo-600 tw-border tw-border-transparent tw-rounded-md tw-shadow-sm tw-py-3 tw-px-4 tw-text-base tw-font-medium tw-text-white hover:tw-bg-indigo-700 focus:tw-outline-none focus:tw-ring-2 focus:tw-ring-offset-2 focus:tw-ring-offset-gray-50 focus:tw-ring-indigo-500"
+                                    className="tw-w-full tw-rounded-md tw-border tw-border-transparent tw-bg-indigo-600 tw-py-3 tw-px-4 tw-text-base tw-font-medium tw-text-white tw-shadow-sm hover:tw-bg-indigo-700 focus:tw-outline-none focus:tw-ring-2 focus:tw-ring-indigo-500 focus:tw-ring-offset-2 focus:tw-ring-offset-gray-50"
                                 >
                                     Đặt hàng
                                 </button>

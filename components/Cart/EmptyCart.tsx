@@ -15,7 +15,7 @@ const EmptyCart: React.FC = () => {
             <p className={'tw-text-base'}>Giỏ hàng của bạn đang trống</p>
             <Link
                 className={
-                    'tw-py-2.5 tw-px-5 tw-mt-4 tw-mb-3 hover:tw-bg-indigo-500 tw-transition tw-duration-300 tw-rounded-md tw-bg-indigo-600 tw-text-white tw-flex tw-items-center'
+                    'tw-mt-4 tw-mb-3 tw-flex tw-items-center tw-rounded-md tw-bg-indigo-600 tw-py-2.5 tw-px-5 tw-text-white tw-transition tw-duration-300 hover:tw-bg-indigo-500'
                 }
                 href="/"
             >

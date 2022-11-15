@@ -58,11 +58,11 @@ const CartRow: React.FC<Props> = ({ data, cartItem }) => {
                         `https://picsum.photos/1920/1080?random={${Math.random()}}`
                     }
                     alt={book?.name || ''}
-                    className="tw-w-24 tw-h-24 tw-rounded-md tw-object-center tw-object-cover sm:tw-w-32 sm:tw-h-32"
+                    className="tw-h-24 tw-w-24 tw-rounded-md tw-object-cover tw-object-center sm:tw-h-32 sm:tw-w-32"
                 />
             </div>
 
-            <div className="tw-ml-4 tw-flex-1 tw-flex tw-flex-col sm:tw-ml-6">
+            <div className="tw-ml-4 tw-flex tw-flex-1 tw-flex-col sm:tw-ml-6">
                 <div>
                     <div className="tw-flex tw-justify-between">
                         <h4 className="tw-text-base">
@@ -83,7 +83,7 @@ const CartRow: React.FC<Props> = ({ data, cartItem }) => {
                                 : 'N/A'}
                         </p>
                     </div>
-                    <p className="tw-flex tw-items-center tw-gap-1 tw-mt-2 tw-text-sm tw-text-gray-500">
+                    <p className="tw-mt-2 tw-flex tw-items-center tw-gap-1 tw-text-sm tw-text-gray-500">
                         <IoPricetag />
                         Đơn giá:{' '}
                         <span className={'tw-font-medium tw-text-slate-600'}>
@@ -95,7 +95,7 @@ const CartRow: React.FC<Props> = ({ data, cartItem }) => {
                                 : 'N/A'}
                         </span>
                     </p>
-                    <p className="tw-flex tw-items-center tw-gap-1 tw-mt-1 tw-text-sm tw-text-gray-500">
+                    <p className="tw-mt-1 tw-flex tw-items-center tw-gap-1 tw-text-sm tw-text-gray-500">
                         <IoFileTray />
                         Số lượng:{' '}
                         <span className={'tw-font-medium tw-text-slate-600'}>
@@ -104,15 +104,15 @@ const CartRow: React.FC<Props> = ({ data, cartItem }) => {
                     </p>
                 </div>
 
-                <div className="tw-mt-4 tw-flex-1 tw-flex tw-items-end tw-justify-between">
-                    <p className="tw-bg-slate-50 tw-px-2.5 tw-py-1 tw-rounded-md tw-font-medium tw-text-slate-600 tw-flex tw-items-center tw-text-sm">
+                <div className="tw-mt-4 tw-flex tw-flex-1 tw-items-end tw-justify-between">
+                    <p className="tw-flex tw-items-center tw-rounded-md tw-bg-slate-50 tw-px-2.5 tw-py-1 tw-text-sm tw-font-medium tw-text-slate-600">
                         <span>Từ sự kiện: {data?.campaign?.name}</span>
                     </p>
                     <div className="tw-ml-4">
                         <button
                             onClick={clearItem}
                             type="button"
-                            className="tw-flex tw-items-center tw-py-1 tw-gap-1 tw-rounded tw-px-2 tw-text-sm tw-bg-slate-100 tw-font-medium tw-text-slate-600 hover:tw-text-slate-500"
+                            className="tw-flex tw-items-center tw-gap-1 tw-rounded tw-bg-slate-100 tw-py-1 tw-px-2 tw-text-sm tw-font-medium tw-text-slate-600 hover:tw-text-slate-500"
                         >
                             <IoClose />
                             <span>Xoá</span>

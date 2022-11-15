@@ -49,7 +49,7 @@ const Header: React.FC<Props> = ({ maxWidth }) => {
             >
                 {/*Profile dropdown*/}
                 <div
-                    className={'lg:tw-order-3 tw-flex tw-gap-4 tw-items-center'}
+                    className={'tw-flex tw-items-center tw-gap-4 lg:tw-order-3'}
                 >
                     <div className={'lg:tw-order-2'}>
                         <DropdownMenu
@@ -64,7 +64,7 @@ const Header: React.FC<Props> = ({ maxWidth }) => {
                                 className={'tw-text-slate-500'}
                                 size={28}
                             />
-                            <div className="group-hover:tw-bg-indigo-600 tw-transition tw-duration-300 tw-w-5 tw-text-center tw-leading-relaxed tw-h-5 tw-absolute tw-top-0 -tw-right-2 tw-text-xs tw-bg-indigo-500 tw-text-white tw-rounded-full">
+                            <div className="tw-absolute tw-top-0 -tw-right-2 tw-h-5 tw-w-5 tw-rounded-full tw-bg-indigo-500 tw-text-center tw-text-xs tw-leading-relaxed tw-text-white tw-transition tw-duration-300 group-hover:tw-bg-indigo-600">
                                 {cart?.length || 0}
                             </div>
                         </Link>
