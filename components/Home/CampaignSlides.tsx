@@ -23,7 +23,7 @@ const CampaignSlides: React.FC<Props> = ({ label, href, campaigns }) => {
             </Link>
 
             <Swiper
-                className="tw-py-3"
+                className="!tw-py-3"
                 spaceBetween={25}
                 breakpoints={{
                     640: {

@@ -48,22 +48,26 @@ const PostCard: React.FC<Props> = ({ data }) => {
         if (
             data?.id &&
             data?.campaignBooks[0].id &&
-            data?.campaignBooks[0]?.bookId
+            data?.campaignBooks[0]?.bookId &&
+            data?.campaignId
         ) {
-            handleAddToCart({
+            const result = handleAddToCart({
                 campaignBookId: data?.campaignBooks[0].id,
                 postId: data?.id,
                 bookId: data?.campaignBooks[0]?.bookId,
                 quantity: 1,
+                campaignId: data?.campaignId,
             });
-            Swal.fire({
-                title: 'Đã thêm vào giỏ hàng!',
-                text: 'Sản phẩm đã được thêm vào giỏ hàng.',
-                icon: 'success',
-                showConfirmButton: false,
-                showCancelButton: false,
-                timer: 1500,
-            });
+            if (result) {
+                Swal.fire({
+                    title: 'Đã thêm vào giỏ hàng!',
+                    text: 'Sản phẩm đã được thêm vào giỏ hàng.',
+                    icon: 'success',
+                    showConfirmButton: false,
+                    showCancelButton: false,
+                    timer: 1500,
+                });
+            }
         }
     };
 

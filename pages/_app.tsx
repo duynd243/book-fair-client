@@ -13,6 +13,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import '../styles/globals.css';
+import Script from 'next/script';
 
 initFirebaseApp();
 const queryClient: QueryClient = new QueryClient();

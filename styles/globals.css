@@ -112,3 +112,7 @@
 .m-btn-xs {
     @apply tw-px-2 tw-py-0.5;
 }
+
+.input-error {
+    @apply tw-text-red-500 tw-mt-1 tw-text-sm tw-font-medium;
+}

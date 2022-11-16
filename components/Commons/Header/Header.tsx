@@ -35,6 +35,10 @@ const Header: React.FC<Props> = ({ maxWidth }) => {
             text: loginUser?.name || user?.displayName,
         },
         {
+            href: '/orders',
+            text: 'Đơn hàng',
+        },
+        {
             onClick: logOut,
             text: 'Đăng xuất',
             isWarning: true,

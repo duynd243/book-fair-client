@@ -50,7 +50,7 @@ const SidebarMenu: React.FC<Props> = ({ sidebarItem, currentPathName }) => {
     if (sidebarItem.subItems && sidebarItem.subItems.length > 0) {
         return (
             <SidebarMenuWrapper isActive={activeSubItem !== undefined}>
-                {/*Parent*/}s
+                {/*Parent*/}
                 <a
                     className={`tw-block tw-cursor-pointer tw-truncate tw-text-slate-200 tw-transition tw-duration-150 hover:tw-text-white ${
                         activeSubItem && 'hover:tw-text-slate-200'

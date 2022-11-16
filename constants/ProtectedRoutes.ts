@@ -11,6 +11,10 @@ export const PROTECTED_ROUTES: IProtectedRoute[] = [
         allowedRoleIDs: [Roles.CUSTOMER.id],
     },
     {
+        path: '/orders',
+        allowedRoleIDs: [Roles.CUSTOMER.id],
+    },
+    {
         path: '/admin',
         allowedRoleIDs: [Roles.SYSTEM.id],
     },

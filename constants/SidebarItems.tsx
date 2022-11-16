@@ -26,6 +26,16 @@ export const SYSTEM_SIDEBAR_ITEMS: (ISidebarItem | ISidebarGroup)[] = [
         label: 'Sự kiện',
         path: `${SYSTEM_BASE_PATH}/campaigns`,
         icon: <BsFillCalendarWeekFill />,
+        subItems: [
+            {
+                label: 'Danh sách',
+                path: `${SYSTEM_BASE_PATH}/campaigns`,
+            },
+            {
+                label: 'Tạo mới',
+                path: `${SYSTEM_BASE_PATH}/campaigns/create`,
+            },
+        ],
     },
     {
         label: 'Nhà phát hành',

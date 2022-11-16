@@ -63,8 +63,6 @@ const MainContent: React.FC<Props> = ({ campaign }) => {
         }
     );
 
-    console.log(posts);
-
     return (
         <div>
             <div className="tw-mb-6">
@@ -108,9 +106,12 @@ const MainContent: React.FC<Props> = ({ campaign }) => {
             <figure className="tw-mb-6">
                 <Image
                     className="tw-w-full tw-rounded"
-                    src={`https://picsum.photos/1920/1080?random={${Math.random()}}`}
-                    width={640}
-                    height={360}
+                    src={
+                        campaign?.imageUrl ||
+                        `https://picsum.photos/1920/1080?random={${Math.random()}}`
+                    }
+                    width={1000}
+                    height={1000}
                     alt=""
                 />
             </figure>

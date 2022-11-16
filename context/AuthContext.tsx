@@ -38,7 +38,7 @@ export interface IAuthContext {
         password: string,
         fullName: string
     ) => void;
-    handleAddToCart: (item: ICartItem) => void;
+    handleAddToCart: (item: ICartItem) => boolean;
     handleRemoveFromCart: (campaignBookId: number) => void;
     handleClearCart: () => void;
     handleUpdateCart: (id: number, quantity: number) => void;
@@ -181,8 +181,8 @@ export const AuthContextProvider: React.FC<Props> = ({ children }) => {
         return cart.find((item) => item.campaignBookId === id);
     };
 
-    const handleAddToCart = (item: ICartItem) => {
-        if (!checkValidCartAction()) return;
+    const handleAddToCart = (item: ICartItem): boolean => {
+        if (!checkValidCartAction()) return false;
         const newCart = [...cart];
         const index = newCart.findIndex(
             (x) => x.campaignBookId === item.campaignBookId
@@ -193,6 +193,7 @@ export const AuthContextProvider: React.FC<Props> = ({ children }) => {
             newCart[index].quantity += item.quantity;
         }
         saveCart(newCart);
+        return true;
     };
 
     const handleRemoveFromCart = (campaignBookId: number) => {

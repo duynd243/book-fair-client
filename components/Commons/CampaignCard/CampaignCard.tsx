@@ -143,7 +143,10 @@ const CampaignCard: React.FC<Props> = ({ campaign }) => {
                     width={500}
                     height={500}
                     alt=""
-                    src={`https://picsum.photos/1920/1080?random={${Math.random()}}`}
+                    src={
+                        campaign?.imageUrl ||
+                        `https://picsum.photos/1920/1080?random={${Math.random()}}`
+                    }
                 />
             </Link>
             {/* Content */}

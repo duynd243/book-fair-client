@@ -9,7 +9,7 @@ type Props = {
 const Header: React.FC<Props> = ({ sidebarOpen, setSidebarOpen }) => {
     const [searchModalOpen, setSearchModalOpen] = useState<boolean>(false);
     return (
-        <header className="tw-sticky tw-top-0 tw-z-30 tw-border-b tw-border-slate-200 tw-bg-white">
+        <header className="tw-sticky tw-top-0 tw-z-10 tw-border-b tw-border-slate-200 tw-bg-white">
             <div className="tw-px-4 sm:tw-px-6 lg:tw-px-8">
                 <div className="-tw-mb-px tw-flex tw-h-16 tw-items-center tw-justify-between">
                     {/* Header: Left side */}

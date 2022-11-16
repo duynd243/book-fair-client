@@ -19,7 +19,7 @@ const DashboardPage: NextPage = () => {
             <div className={'tw-flex tw-items-center tw-justify-end'}>
                 <Datepicker
                     placeholder="Select..."
-                    enableRelativeDates={true}
+                    enableRelativeDates={false}
                     handleSelect={undefined}
                     defaultStartDate={null}
                     defaultEndDate={null}

@@ -18,4 +18,12 @@ export class SystemCampaignService {
         });
         return response.data;
     };
+
+    createCampaign$System = async (data: ICampaign) => {
+        const response = await this.axiosClient.post<ICampaign>(
+            '/admin/campaigns',
+            { ...data }
+        );
+        return response.data;
+    };
 }
