@@ -30,16 +30,16 @@ const DropdownProfile: React.FC<{ align: string }> = ({ align }) => {
     });
 
     return (
-        <div className="tw-relative tw-inline-flex">
+        <div className="relative inline-flex">
             <button
                 ref={trigger}
-                className="tw-group tw-inline-flex tw-items-center tw-justify-center"
+                className="group inline-flex items-center justify-center"
                 aria-haspopup="true"
                 onClick={() => setDropdownOpen(!dropdownOpen)}
                 aria-expanded={dropdownOpen}
             >
                 <Image
-                    className="tw-h-8 tw-w-8 tw-rounded-full"
+                    className="h-8 w-8 rounded-full"
                     src={
                         loginUser?.imageUrl ||
                         user?.photoURL ||
@@ -49,12 +49,12 @@ const DropdownProfile: React.FC<{ align: string }> = ({ align }) => {
                     height="32"
                     alt={loginUser?.name}
                 />
-                <div className="tw-flex tw-items-center tw-truncate">
-                    <span className="tw-ml-2 tw-hidden tw-truncate tw-text-sm tw-font-medium group-hover:tw-text-slate-800 lg:tw-block">
+                <div className="flex items-center truncate">
+                    <span className="ml-2 hidden truncate text-sm font-medium group-hover:text-slate-800 lg:block">
                         {loginUser?.name || user?.displayName}
                     </span>
                     <svg
-                        className="tw-ml-1 tw-h-3 tw-w-3 tw-shrink-0 tw-fill-current tw-text-slate-400"
+                        className="ml-1 h-3 w-3 shrink-0 fill-current text-slate-400"
                         viewBox="0 0 12 12"
                     >
                         <path d="M5.9 11.4L.5 6l1.4-1.4 4 4 4-4L11.3 6z" />
@@ -63,34 +63,34 @@ const DropdownProfile: React.FC<{ align: string }> = ({ align }) => {
             </button>
 
             <Transition
-                className={`tw-absolute tw-top-full tw-z-10 tw-mt-3 tw-min-w-44 tw-origin-top-right tw-overflow-hidden tw-rounded tw-border tw-border-slate-200 tw-bg-white tw-py-1.5 tw-shadow-lg ${
-                    align === 'right' ? 'tw-right-0' : 'tw-left-0'
+                className={`absolute top-full z-10 mt-3 min-w-44 origin-top-right overflow-hidden rounded border border-slate-200 bg-white py-1.5 shadow-lg ${
+                    align === 'right' ? 'right-0' : 'left-0'
                 }`}
                 show={dropdownOpen}
-                enter="tw-transition tw-ease-out tw-duration-200 tw-transform"
-                enterFrom="tw-opacity-0 -tw-translate-y-2"
-                enterTo="tw-opacity-100 tw-translate-y-0"
-                leave="tw-transition tw-ease-out tw-duration-200"
-                leaveFrom="tw-opacity-100"
-                leaveTo="tw-opacity-0"
+                enter="transition ease-out duration-200 transform"
+                enterFrom="opacity-0 -translate-y-2"
+                enterTo="opacity-100 translate-y-0"
+                leave="transition ease-out duration-200"
+                leaveFrom="opacity-100"
+                leaveTo="opacity-0"
             >
                 <div
                     ref={dropdown}
                     onFocus={() => setDropdownOpen(true)}
                     onBlur={() => setDropdownOpen(false)}
                 >
-                    <div className="tw-mb-1 tw-border-b tw-border-slate-200 tw-px-3 tw-pt-0.5 tw-pb-2">
-                        <div className="tw-font-medium tw-text-slate-800">
+                    <div className="mb-1 border-b border-slate-200 px-3 pt-0.5 pb-2">
+                        <div className="font-medium text-slate-800">
                             {loginUser?.name || user?.displayName}
                         </div>
-                        <div className="tw-text-xs tw-italic tw-text-slate-500">
+                        <div className="text-xs italic text-slate-500">
                             {getRoleById(loginUser?.role)?.displayName}
                         </div>
                     </div>
                     <ul>
                         <li>
                             <Link
-                                className="tw-flex tw-items-center tw-py-1 tw-px-3 tw-text-sm tw-font-medium tw-text-indigo-500 hover:tw-text-indigo-600"
+                                className="flex items-center py-1 px-3 text-sm font-medium text-indigo-500 hover:text-indigo-600"
                                 href="/settings"
                                 onClick={() => setDropdownOpen(!dropdownOpen)}
                             >
@@ -99,7 +99,7 @@ const DropdownProfile: React.FC<{ align: string }> = ({ align }) => {
                         </li>
                         <li>
                             <Link
-                                className="tw-flex tw-items-center tw-py-1 tw-px-3 tw-text-sm tw-font-medium tw-text-indigo-500 hover:tw-text-indigo-600"
+                                className="flex items-center py-1 px-3 text-sm font-medium text-indigo-500 hover:text-indigo-600"
                                 href=""
                                 onClick={() => {
                                     setDropdownOpen(!dropdownOpen);

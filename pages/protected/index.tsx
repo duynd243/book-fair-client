@@ -1,13 +1,22 @@
 import { useAuth } from 'context/AuthContext';
 import Link from 'next/link';
+import Image from 'next/image';
 
 const ProtectedPage = () => {
     const { loginUser, user } = useAuth();
 
     return (
-        <div className="tw-flex tw-h-screen tw-w-screen tw-flex-col tw-items-center tw-justify-center">
+        <div className="flex h-screen w-screen flex-col items-center justify-center">
+            <Image
+                src={user.photoURL}
+                alt={user.displayName}
+                className={'mb-2'}
+                width={50}
+                height={50}
+            />
+            <p>{user.photoURL}</p>
             <button
-                className="tw-btn-primary tw-btn tw-mb-4"
+                className="btn-primary btn mb-4"
                 onClick={async () => {
                     if (loginUser && loginUser.accessToken) {
                         try {
@@ -26,7 +35,7 @@ const ProtectedPage = () => {
                 Copy Token
             </button>
             <button
-                className="tw-btn-primary tw-btn tw-mb-4"
+                className="btn-primary btn mb-4"
                 onClick={async () => {
                     if (user) {
                         const idToken = await user.getIdToken();
@@ -45,7 +54,7 @@ const ProtectedPage = () => {
             >
                 Copy Firebase Id Token
             </button>
-            <Link href={'/'} className="tw-btn">
+            <Link href={'/'} className="btn">
                 Go Home
             </Link>
         </div>

@@ -34,8 +34,8 @@ const CampaignDetailsPage: NextPage = () => {
         .map((p) => p.issuer) as IUser[];
 
     return (
-        <MainLayout maxWidth={'tw-max-w-6xl'}>
-            <div className="tw-mx-auto tw-flex tw-flex-col lg:tw-flex-row lg:tw-space-x-8 xl:tw-space-x-16">
+        <MainLayout maxWidth={'max-w-6xl'}>
+            <div className="mx-auto flex flex-col lg:flex-row lg:space-x-8 xl:space-x-16">
                 {campaign && (
                     <>
                         {/* Content */}

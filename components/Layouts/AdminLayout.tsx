@@ -9,14 +9,14 @@ type Props = {
 const AdminLayout: React.FC<Props> = ({ children }) => {
     const [sidebarOpen, setSidebarOpen] = useState<boolean>(false);
     return (
-        <div className="tw-flex tw-h-screen tw-overflow-hidden">
+        <div className="flex h-screen overflow-hidden">
             {/* Sidebar */}
             <Sidebar
                 sidebarOpen={sidebarOpen}
                 setSidebarOpen={setSidebarOpen}
             />
             {/* Content */}
-            <div className="tw-relative tw-flex tw-flex-1 tw-flex-col tw-overflow-y-auto tw-overflow-x-hidden tw-bg-slate-50">
+            <div className="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden bg-slate-50">
                 <Header
                     sidebarOpen={sidebarOpen}
                     setSidebarOpen={setSidebarOpen}
@@ -24,7 +24,7 @@ const AdminLayout: React.FC<Props> = ({ children }) => {
                 <main>
                     <div
                         className={
-                            'tw-mx-auto tw-w-full tw-max-w-9xl tw-px-4 tw-py-8 sm:tw-px-6 lg:tw-px-8'
+                            'mx-auto w-full max-w-9xl px-4 py-8 sm:px-6 lg:px-8'
                         }
                     >
                         {children}

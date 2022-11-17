@@ -2,11 +2,11 @@ import Header from '../Commons/Header/Header';
 import Footer from '../Commons/Footer';
 
 type Props = {
-    maxWidth?: 'tw-max-w-6xl' | 'tw-max-w-7xl' | 'tw-max-w-screen-xl';
+    maxWidth?: 'max-w-6xl' | 'max-w-7xl' | 'max-w-screen-xl';
     children: React.ReactNode;
 };
 
-const defaultMaxWidth = 'tw-max-w-screen-xl';
+const defaultMaxWidth = 'max-w-screen-xl';
 
 const MainLayout: React.FC<Props> = ({
     children,
@@ -15,9 +15,7 @@ const MainLayout: React.FC<Props> = ({
     return (
         <>
             <Header maxWidth={maxWidth} />
-            <div className={`${maxWidth} tw-mx-auto tw-px-4 tw-py-4`}>
-                {children}
-            </div>
+            <div className={`${maxWidth} mx-auto px-4 py-4`}>{children}</div>
             <Footer maxWidth={maxWidth} />
         </>
     );

@@ -6,30 +6,28 @@ type Props = {
 
 const Footer: React.FC<Props> = ({ maxWidth }) => {
     return (
-        <footer className="tw-bg-gray-50">
-            <div
-                className={`${maxWidth} tw-mx-auto tw-px-4 tw-py-16 sm:tw-px-6 lg:tw-px-8`}
-            >
-                <div className="tw-grid tw-grid-cols-1 tw-gap-8 lg:tw-grid-cols-3">
+        <footer className="bg-gray-50">
+            <div className={`${maxWidth} mx-auto px-4 py-16 sm:px-6 lg:px-8`}>
+                <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
                     <div>
-                        <span className="tw-block tw-h-10 tw-w-32 tw-rounded-lg tw-bg-gray-200"></span>
+                        <span className="block h-10 w-32 rounded-lg bg-gray-200"></span>
 
-                        <p className="tw-mt-4 tw-max-w-xs tw-text-sm tw-text-gray-500">
+                        <p className="mt-4 max-w-xs text-sm text-gray-500">
                             Lorem ipsum dolor sit amet consectetur adipisicing
                             elit. Voluptas, accusantium.
                         </p>
 
-                        <div className="tw-mt-8 tw-flex tw-gap-6 tw-text-gray-500">
+                        <div className="mt-8 flex gap-6 text-gray-500">
                             <a
-                                className="hover:tw-opacity-75"
+                                className="hover:opacity-75"
                                 href=""
                                 target="_blank"
                                 rel="noreferrer"
                             >
-                                <span className="tw-sr-only"> Facebook </span>
+                                <span className="sr-only"> Facebook </span>
 
                                 <svg
-                                    className="tw-h-6 tw-w-6"
+                                    className="h-6 w-6"
                                     fill="currentColor"
                                     viewBox="0 0 24 24"
                                     aria-hidden="true"
@@ -43,15 +41,15 @@ const Footer: React.FC<Props> = ({ maxWidth }) => {
                             </a>
 
                             <a
-                                className="hover:tw-opacity-75"
+                                className="hover:opacity-75"
                                 href=""
                                 target="_blank"
                                 rel="noreferrer"
                             >
-                                <span className="tw-sr-only"> Instagram </span>
+                                <span className="sr-only"> Instagram </span>
 
                                 <svg
-                                    className="tw-h-6 tw-w-6"
+                                    className="h-6 w-6"
                                     fill="currentColor"
                                     viewBox="0 0 24 24"
                                     aria-hidden="true"
@@ -65,15 +63,15 @@ const Footer: React.FC<Props> = ({ maxWidth }) => {
                             </a>
 
                             <a
-                                className="hover:tw-opacity-75"
+                                className="hover:opacity-75"
                                 href=""
                                 target="_blank"
                                 rel="noreferrer"
                             >
-                                <span className="tw-sr-only"> Twitter </span>
+                                <span className="sr-only"> Twitter </span>
 
                                 <svg
-                                    className="tw-h-6 tw-w-6"
+                                    className="h-6 w-6"
                                     fill="currentColor"
                                     viewBox="0 0 24 24"
                                     aria-hidden="true"
@@ -83,15 +81,15 @@ const Footer: React.FC<Props> = ({ maxWidth }) => {
                             </a>
 
                             <a
-                                className="hover:tw-opacity-75"
+                                className="hover:opacity-75"
                                 href=""
                                 target="_blank"
                                 rel="noreferrer"
                             >
-                                <span className="tw-sr-only"> GitHub </span>
+                                <span className="sr-only"> GitHub </span>
 
                                 <svg
-                                    className="tw-h-6 tw-w-6"
+                                    className="h-6 w-6"
                                     fill="currentColor"
                                     viewBox="0 0 24 24"
                                     aria-hidden="true"
@@ -105,15 +103,15 @@ const Footer: React.FC<Props> = ({ maxWidth }) => {
                             </a>
 
                             <a
-                                className="hover:tw-opacity-75"
+                                className="hover:opacity-75"
                                 href=""
                                 target="_blank"
                                 rel="noreferrer"
                             >
-                                <span className="tw-sr-only"> Dribbble </span>
+                                <span className="sr-only"> Dribbble </span>
 
                                 <svg
-                                    className="tw-h-6 tw-w-6"
+                                    className="h-6 w-6"
                                     fill="currentColor"
                                     viewBox="0 0 24 24"
                                     aria-hidden="true"
@@ -128,27 +126,27 @@ const Footer: React.FC<Props> = ({ maxWidth }) => {
                         </div>
                     </div>
 
-                    <div className="tw-grid tw-grid-cols-1 tw-gap-8 sm:tw-grid-cols-2 lg:tw-col-span-2 lg:tw-grid-cols-4">
+                    <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:col-span-2 lg:grid-cols-4">
                         <div>
-                            <p className="tw-font-medium">Company</p>
+                            <p className="font-medium">Company</p>
 
                             <nav
                                 aria-label="Footer Nav"
-                                className="tw-mt-4 tw-flex tw-flex-col tw-space-y-2 tw-text-sm tw-text-gray-500"
+                                className="mt-4 flex flex-col space-y-2 text-sm text-gray-500"
                             >
-                                <a className="hover:tw-opacity-75" href="">
+                                <a className="hover:opacity-75" href="">
                                     {' '}
                                     About{' '}
                                 </a>
-                                <a className="hover:tw-opacity-75" href="">
+                                <a className="hover:opacity-75" href="">
                                     {' '}
                                     Meet the Team{' '}
                                 </a>
-                                <a className="hover:tw-opacity-75" href="">
+                                <a className="hover:opacity-75" href="">
                                     {' '}
                                     History{' '}
                                 </a>
-                                <a className="hover:tw-opacity-75" href="">
+                                <a className="hover:opacity-75" href="">
                                     {' '}
                                     Careers{' '}
                                 </a>
@@ -156,26 +154,26 @@ const Footer: React.FC<Props> = ({ maxWidth }) => {
                         </div>
 
                         <div>
-                            <p className="tw-font-medium">Services</p>
+                            <p className="font-medium">Services</p>
 
-                            <nav className="tw-mt-4 tw-flex tw-flex-col tw-space-y-2 tw-text-sm tw-text-gray-500">
-                                <a className="hover:tw-opacity-75" href="">
+                            <nav className="mt-4 flex flex-col space-y-2 text-sm text-gray-500">
+                                <a className="hover:opacity-75" href="">
                                     {' '}
                                     1on1 Coaching{' '}
                                 </a>
-                                <a className="hover:tw-opacity-75" href="">
+                                <a className="hover:opacity-75" href="">
                                     {' '}
                                     Company Review{' '}
                                 </a>
-                                <a className="hover:tw-opacity-75" href="">
+                                <a className="hover:opacity-75" href="">
                                     {' '}
                                     Accounts Review{' '}
                                 </a>
-                                <a className="hover:tw-opacity-75" href="">
+                                <a className="hover:opacity-75" href="">
                                     {' '}
                                     HR Consulting{' '}
                                 </a>
-                                <a className="hover:tw-opacity-75" href="">
+                                <a className="hover:opacity-75" href="">
                                     {' '}
                                     SEO Optimisation{' '}
                                 </a>
@@ -183,18 +181,18 @@ const Footer: React.FC<Props> = ({ maxWidth }) => {
                         </div>
 
                         <div>
-                            <p className="tw-font-medium">Helpful Links</p>
+                            <p className="font-medium">Helpful Links</p>
 
-                            <nav className="tw-mt-4 tw-flex tw-flex-col tw-space-y-2 tw-text-sm tw-text-gray-500">
-                                <a className="hover:tw-opacity-75" href="">
+                            <nav className="mt-4 flex flex-col space-y-2 text-sm text-gray-500">
+                                <a className="hover:opacity-75" href="">
                                     {' '}
                                     Contact{' '}
                                 </a>
-                                <a className="hover:tw-opacity-75" href="">
+                                <a className="hover:opacity-75" href="">
                                     {' '}
                                     FAQs{' '}
                                 </a>
-                                <a className="hover:tw-opacity-75" href="">
+                                <a className="hover:opacity-75" href="">
                                     {' '}
                                     Live Chat{' '}
                                 </a>
@@ -202,22 +200,22 @@ const Footer: React.FC<Props> = ({ maxWidth }) => {
                         </div>
 
                         <div>
-                            <p className="tw-font-medium">Legal</p>
+                            <p className="font-medium">Legal</p>
 
-                            <nav className="tw-mt-4 tw-flex tw-flex-col tw-space-y-2 tw-text-sm tw-text-gray-500">
-                                <a className="hover:tw-opacity-75" href="">
+                            <nav className="mt-4 flex flex-col space-y-2 text-sm text-gray-500">
+                                <a className="hover:opacity-75" href="">
                                     {' '}
                                     Privacy Policy{' '}
                                 </a>
-                                <a className="hover:tw-opacity-75" href="">
+                                <a className="hover:opacity-75" href="">
                                     {' '}
                                     Terms & Conditions{' '}
                                 </a>
-                                <a className="hover:tw-opacity-75" href="">
+                                <a className="hover:opacity-75" href="">
                                     {' '}
                                     Returns Policy{' '}
                                 </a>
-                                <a className="hover:tw-opacity-75" href="">
+                                <a className="hover:opacity-75" href="">
                                     {' '}
                                     Accessibility{' '}
                                 </a>
@@ -226,7 +224,7 @@ const Footer: React.FC<Props> = ({ maxWidth }) => {
                     </div>
                 </div>
 
-                <p className="tw-mt-8 tw-text-xs tw-text-gray-500">
+                <p className="mt-8 text-xs text-gray-500">
                     &copy; 2022 Company Name
                 </p>
             </div>

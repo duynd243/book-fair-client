@@ -23,7 +23,7 @@ const FeaturedItem: React.FC<{ children: React.ReactNode }> = ({
     children,
 }) => {
     return (
-        <li className="tw-flex tw-items-center tw-gap-2 tw-font-medium tw-text-slate-600">
+        <li className="flex items-center gap-2 font-medium text-slate-600">
             {children}
         </li>
     );
@@ -72,12 +72,12 @@ const PostCard: React.FC<Props> = ({ data }) => {
     };
 
     return (
-        <article className="tw-group tw-col-span-full tw-overflow-hidden tw-rounded-lg tw-border tw-border-slate-200 tw-bg-white tw-shadow-sm tw-transition tw-duration-300 hover:tw-shadow-md sm:tw-col-span-6">
-            <div className="tw-flex tw-h-full tw-flex-col">
+        <article className="group col-span-full overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm transition duration-300 hover:shadow-md sm:col-span-6">
+            <div className="flex h-full flex-col">
                 {/* Image */}
-                <Link href={postHref} className={'tw-overflow-hidden'}>
+                <Link href={postHref} className={'overflow-hidden'}>
                     <Image
-                        className="tw-h-[220px] tw-w-full tw-object-cover tw-object-center tw-transition-transform tw-duration-300 group-hover:tw-scale-105"
+                        className="h-[220px] w-full object-cover object-center transition-transform duration-300 group-hover:scale-105"
                         width={500}
                         height={500}
                         src={
@@ -88,14 +88,14 @@ const PostCard: React.FC<Props> = ({ data }) => {
                     />
                 </Link>
                 {/* Card Content */}
-                <div className="grow tw-flex tw-flex-col tw-py-5 tw-px-6">
+                <div className="grow flex flex-col py-5 px-6">
                     {/* Card body */}
                     <div className="grow">
                         {/* Header */}
-                        <header className="tw-mb-3 tw-flex tw-items-center">
+                        <header className="mb-3 flex items-center">
                             <Image
                                 className={
-                                    'tw-mr-3 tw-h-[2.35rem] tw-w-[2.35rem] tw-rounded-full tw-object-cover tw-object-center'
+                                    'mr-3 h-[2.35rem] w-[2.35rem] rounded-full object-cover object-center'
                                 }
                                 width={100}
                                 height={100}
@@ -108,12 +108,12 @@ const PostCard: React.FC<Props> = ({ data }) => {
                             <div>
                                 <Link
                                     href={postHref}
-                                    className="tw-text-lg tw-font-semibold tw-leading-6 tw-text-slate-800"
+                                    className="text-lg font-semibold leading-6 text-slate-800"
                                 >
                                     {data?.name}
                                 </Link>
-                                <div className="tw-flex tw-items-center tw-text-sm tw-text-slate-700">
-                                    <span className="tw-font-semibold tw-text-blue-700">
+                                <div className="flex items-center text-sm text-slate-700">
+                                    <span className="font-semibold text-blue-700">
                                         {
                                             data?.campaignBooks[0]
                                                 ?.participation?.issuer?.name
@@ -136,61 +136,51 @@ const PostCard: React.FC<Props> = ({ data }) => {
                             </div>
                         </header>
                         {/* Rating and price */}
-                        <div className="tw-mb-4 tw-flex tw-flex-wrap tw-items-center tw-justify-between">
+                        <div className="mb-4 flex flex-wrap items-center justify-between">
                             {/* Rating */}
-                            <div className="tw-mr-2 tw-flex tw-items-center tw-space-x-2">
+                            <div className="mr-2 flex items-center space-x-2">
                                 {/* Stars */}
-                                <div className="tw-flex tw-space-x-1">
+                                <div className="flex space-x-1">
                                     <button>
-                                        <span className="tw-sr-only">
-                                            1 star
-                                        </span>
+                                        <span className="sr-only">1 star</span>
                                         <svg
-                                            className="tw-h-4 tw-w-4 tw-fill-current tw-text-amber-500"
+                                            className="h-4 w-4 fill-current text-amber-500"
                                             viewBox="0 0 16 16"
                                         >
                                             <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
                                         </svg>
                                     </button>
                                     <button>
-                                        <span className="tw-sr-only">
-                                            2 stars
-                                        </span>
+                                        <span className="sr-only">2 stars</span>
                                         <svg
-                                            className="tw-h-4 tw-w-4 tw-fill-current tw-text-amber-500"
+                                            className="h-4 w-4 fill-current text-amber-500"
                                             viewBox="0 0 16 16"
                                         >
                                             <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
                                         </svg>
                                     </button>
                                     <button>
-                                        <span className="tw-sr-only">
-                                            3 stars
-                                        </span>
+                                        <span className="sr-only">3 stars</span>
                                         <svg
-                                            className="tw-h-4 tw-w-4 tw-fill-current tw-text-amber-500"
+                                            className="h-4 w-4 fill-current text-amber-500"
                                             viewBox="0 0 16 16"
                                         >
                                             <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
                                         </svg>
                                     </button>
                                     <button>
-                                        <span className="tw-sr-only">
-                                            4 stars
-                                        </span>
+                                        <span className="sr-only">4 stars</span>
                                         <svg
-                                            className="tw-h-4 tw-w-4 tw-fill-current tw-text-amber-500"
+                                            className="h-4 w-4 fill-current text-amber-500"
                                             viewBox="0 0 16 16"
                                         >
                                             <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
                                         </svg>
                                     </button>
                                     <button>
-                                        <span className="tw-sr-only">
-                                            5 stars
-                                        </span>
+                                        <span className="sr-only">5 stars</span>
                                         <svg
-                                            className="tw-h-4 tw-w-4 tw-fill-current tw-text-slate-300"
+                                            className="h-4 w-4 fill-current text-slate-300"
                                             viewBox="0 0 16 16"
                                         >
                                             <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
@@ -198,13 +188,13 @@ const PostCard: React.FC<Props> = ({ data }) => {
                                     </button>
                                 </div>
                                 {/* Rate */}
-                                <div className="tw-inline-flex tw-text-sm tw-font-medium tw-text-amber-600">
+                                <div className="inline-flex text-sm font-medium text-amber-600">
                                     4.2
                                 </div>
                             </div>
                             {/* Price */}
                             <div>
-                                <div className="tw-inline-flex tw-rounded-full tw-bg-emerald-100 tw-px-2.5 tw-py-0.5 tw-text-center tw-text-base tw-font-semibold tw-text-emerald-600">
+                                <div className="inline-flex rounded-full bg-emerald-100 px-2.5 py-0.5 text-center text-base font-semibold text-emerald-600">
                                     {data?.campaignBooks[0]?.coverPrice &&
                                     book?.price
                                         ? getFormattedPrice(
@@ -216,16 +206,16 @@ const PostCard: React.FC<Props> = ({ data }) => {
                             </div>
                         </div>
                         {/* Features list */}
-                        <ul className="tw-mb-5 tw-space-y-2 tw-text-sm">
+                        <ul className="mb-5 space-y-2 text-sm">
                             <FeaturedItem>
-                                <IoFileTray className={'tw-fill-gray-600'} />
+                                <IoFileTray className={'fill-gray-600'} />
                                 <div>
                                     Xuất bản bởi{' '}
                                     {book?.publisher?.name || 'N/A'}
                                 </div>
                             </FeaturedItem>
                             <FeaturedItem>
-                                <IoPerson className={'tw-fill-gray-600'} />
+                                <IoPerson className={'fill-gray-600'} />
                                 <div>
                                     {book?.authorBooks
                                         ?.map((a) => a.author?.name)
@@ -233,23 +223,21 @@ const PostCard: React.FC<Props> = ({ data }) => {
                                 </div>
                             </FeaturedItem>
                             <FeaturedItem>
-                                <IoPricetag className={'tw-fill-gray-600'} />
+                                <IoPricetag className={'fill-gray-600'} />
                                 <div>
                                     Thể loại: {book?.category?.name || 'N/A'}
                                 </div>
                             </FeaturedItem>
                             <FeaturedItem>
-                                <IoDocumentText
-                                    className={'tw-fill-gray-600'}
-                                />
+                                <IoDocumentText className={'fill-gray-600'} />
                                 <div>{book?.page} Trang</div>
                             </FeaturedItem>
                             <FeaturedItem>
-                                <IoLanguage className={'tw-fill-gray-600'} />
+                                <IoLanguage className={'fill-gray-600'} />
                                 <div>Ngôn ngữ: {book?.language || 'N/A'}</div>
                             </FeaturedItem>
                             <FeaturedItem>
-                                <IoCalendar className={'tw-fill-gray-600'} />
+                                <IoCalendar className={'fill-gray-600'} />
                                 <div>
                                     Xuất bản năm {book?.releasedYear || 'N/A'}
                                 </div>
@@ -259,7 +247,7 @@ const PostCard: React.FC<Props> = ({ data }) => {
                     {/* Card footer */}
                     <button
                         onClick={addToCart}
-                        className="tw-flex tw-w-full tw-items-center tw-justify-center tw-gap-1.5 tw-rounded tw-bg-indigo-500 tw-py-1.5 tw-text-white hover:tw-bg-indigo-600"
+                        className="flex w-full items-center justify-center gap-1.5 rounded bg-indigo-500 py-1.5 text-white hover:bg-indigo-600"
                     >
                         <IoBagCheck size={15} />
                         <span>Thêm vào giỏ hàng</span>

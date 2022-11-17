@@ -8,29 +8,27 @@ const NotFoundPage: NextPage = () => {
             <Head>
                 <title>404 - Page Not Found</title>
             </Head>
-            <div className="tw-flex tw-h-screen tw-w-screen tw-items-center tw-justify-center tw-bg-gray-100">
-                <div className="container tw-flex tw-flex-col tw-items-center tw-justify-center tw-px-5 tw-text-gray-700 md:tw-flex-row">
-                    <div className="tw-max-w-md">
-                        <div className="font-dark tw-text-5xl tw-font-bold">
-                            404
-                        </div>
-                        <p className="tw-mt-4 tw-mb-2 tw-text-2xl tw-font-light tw-leading-normal md:tw-text-3xl">
+            <div className="flex h-screen w-screen items-center justify-center bg-gray-100">
+                <div className="container flex flex-col items-center justify-center px-5 text-gray-700 md:flex-row">
+                    <div className="max-w-md">
+                        <div className="font-dark text-5xl font-bold">404</div>
+                        <p className="mt-4 mb-2 text-2xl font-light leading-normal md:text-3xl">
                             Rất tiếc, trang bạn yêu cầu không tồn tại.
                         </p>
-                        <p className="tw-mb-8">
+                        <p className="mb-8">
                             Nhưng đừng lo, bạn sẽ tìm thấy hàng vạn thứ tuyệt
                             vời khác ở trang chủ của chúng mình ^.^
                         </p>
                         <Link
                             href="/"
                             className={
-                                'focus:tw-shadow-outline-blue tw-inline tw-rounded-lg tw-border tw-border-transparent tw-bg-blue-600 tw-px-4 tw-py-2 tw-text-sm tw-font-medium tw-leading-5 tw-text-white tw-shadow tw-transition-colors tw-duration-150 hover:tw-bg-blue-700 focus:tw-outline-none active:tw-bg-blue-600'
+                                'focus:shadow-outline-blue inline rounded-lg border border-transparent bg-blue-600 px-4 py-2 text-sm font-medium leading-5 text-white shadow transition-colors duration-150 hover:bg-blue-700 focus:outline-none active:bg-blue-600'
                             }
                         >
                             Đến Trang chủ
                         </Link>
                     </div>
-                    <div className="tw-max-w-lg">
+                    <div className="max-w-lg">
                         <svg
                             id="Layer_1"
                             data-name="Layer 1"

@@ -37,21 +37,21 @@ const LoginForm: React.FC = () => {
             <h1
                 onClick={() =>
                     toast.success('Login success', {
-                        className: '!tw-opacity-[0.85]',
+                        className: '!opacity-[0.85]',
                         autoClose: false,
                         theme: 'dark',
                     })
                 }
-                className="tw-mb-6 tw-text-3xl tw-font-bold tw-text-slate-800"
+                className="mb-6 text-3xl font-bold text-slate-800"
             >
                 Chào bạn trở lại! ✨
             </h1>
             {/* Form */}
-            <form onSubmit={form.handleSubmit} className="tw-text-[#475569]">
+            <form onSubmit={form.handleSubmit} className="text-[#475569]">
                 <div>
                     <div>
                         <label
-                            className="tw-mb-1 tw-block tw-text-sm tw-font-medium"
+                            className="mb-1 block text-sm font-medium"
                             htmlFor="email"
                         >
                             Email
@@ -64,9 +64,9 @@ const LoginForm: React.FC = () => {
                             type="email"
                         />
                     </div>
-                    <div className="tw-mt-4">
+                    <div className="mt-4">
                         <label
-                            className="tw-mb-1 tw-block tw-text-sm tw-font-medium"
+                            className="mb-1 block text-sm font-medium"
                             htmlFor="password"
                         >
                             Mật khẩu
@@ -83,21 +83,21 @@ const LoginForm: React.FC = () => {
                         {form.errors && <p>{JSON.stringify(form.errors)}</p>}
                     </div>
                 </div>
-                <div className="tw-mt-6 tw-flex tw-flex-wrap tw-items-center tw-justify-between tw-gap-2">
-                    <div className="tw-mr-1">
-                        <a className="tw-text-sm tw-underline hover:tw-no-underline">
+                <div className="mt-6 flex flex-wrap items-center justify-between gap-2">
+                    <div className="mr-1">
+                        <a className="text-sm underline hover:no-underline">
                             Quên mật khẩu?
                         </a>
                     </div>
                     <button
                         type="submit"
                         disabled={authLoading}
-                        className="tw-transform tw-cursor-pointer tw-rounded-md tw-bg-indigo-600 tw-px-5 tw-py-2.5 tw-text-sm tw-font-medium tw-tracking-wide tw-text-white tw-transition-colors tw-duration-300 hover:tw-bg-indigo-500 focus:tw-bg-indigo-500 focus:tw-outline-none"
+                        className="transform cursor-pointer rounded-md bg-indigo-600 px-5 py-2.5 text-sm font-medium tracking-wide text-white transition-colors duration-300 hover:bg-indigo-500 focus:bg-indigo-500 focus:outline-none"
                     >
                         Đăng nhập
                     </button>
                 </div>
-                <div className="tw-my-5 tw-text-center tw-text-xs tw-font-medium tw-uppercase tw-text-gray-500">
+                <div className="my-5 text-center text-xs font-medium uppercase text-gray-500">
                     Hoặc đăng nhập với
                 </div>
                 <SocialLoginButton
@@ -106,18 +106,18 @@ const LoginForm: React.FC = () => {
                     actionType={ActionTypes.LOGIN}
                 />
                 <SocialLoginButton
-                    wrapperClasses={'tw-mt-4'}
+                    wrapperClasses={'mt-4'}
                     provider={AuthProviders.FACEBOOK}
                     actionType={ActionTypes.LOGIN}
                 />
             </form>
             {/* Footer */}
-            <div className="tw-mt-6 tw-border-t-[1px] tw-border-slate-200 tw-pt-5">
-                <div className="tw-text-sm">
+            <div className="mt-6 border-t-[1px] border-slate-200 pt-5">
+                <div className="text-sm">
                     Bạn chưa có tài khoản?{' '}
                     <Link
                         className={
-                            'tw-font-medium tw-text-indigo-500 hover:tw-text-indigo-600'
+                            'font-medium text-indigo-500 hover:text-indigo-600'
                         }
                         href="/signup"
                     >

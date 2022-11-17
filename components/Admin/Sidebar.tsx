@@ -60,7 +60,7 @@ const Sidebar: React.FC<Props> = ({ sidebarOpen, setSidebarOpen }) => {
     useEffect(() => {
         const sidebar = sidebarRef.current;
         if (sidebar) {
-            const selected = sidebar.querySelector('.tw-bg-blue-600');
+            const selected = sidebar.querySelector('.bg-blue-600');
             if (selected && !isInViewPort(selected)) {
                 selected.scrollIntoView();
             }
@@ -97,33 +97,33 @@ const Sidebar: React.FC<Props> = ({ sidebarOpen, setSidebarOpen }) => {
         <div>
             {/* Sidebar backdrop (mobile only) */}
             <div
-                className={`tw-fixed tw-inset-0 tw-z-40 tw-bg-slate-900 tw-bg-opacity-30 tw-transition-opacity tw-duration-200 lg:tw-z-auto lg:tw-hidden ${
+                className={`fixed inset-0 z-40 bg-slate-900 bg-opacity-30 transition-opacity duration-200 lg:z-auto lg:hidden ${
                     sidebarOpen
-                        ? 'tw-opacity-100'
-                        : 'tw-pointer-events-none tw-opacity-0'
+                        ? 'opacity-100'
+                        : 'pointer-events-none opacity-0'
                 }`}
                 aria-hidden="true"
             ></div>
             {/* Sidebar */}
             <div
                 ref={sidebarRef}
-                className={`no-scrollbar tw-absolute tw-left-0 tw-top-0 tw-z-40 tw-flex tw-h-screen tw-w-64 tw-shrink-0 tw-flex-col tw-overflow-y-scroll tw-bg-gray-800 tw-p-4 tw-transition-all tw-duration-200 tw-ease-in-out lg:tw-static lg:tw-left-auto lg:tw-top-auto lg:!tw-w-64 lg:tw-translate-x-0 lg:tw-overflow-y-auto 2xl:!tw-w-64 ${
-                    sidebarOpen ? 'tw-translate-x-0' : '-tw-translate-x-64'
+                className={`no-scrollbar absolute left-0 top-0 z-40 flex h-screen w-64 shrink-0 flex-col overflow-y-scroll bg-gray-800 p-4 transition-all duration-200 ease-in-out lg:static lg:left-auto lg:top-auto lg:!w-64 lg:translate-x-0 lg:overflow-y-auto 2xl:!w-64 ${
+                    sidebarOpen ? 'translate-x-0' : '-translate-x-64'
                 }`}
             >
                 {/*Sidebar header*/}
-                <div className="tw-mb-10 tw-flex tw-justify-between tw-pr-3 sm:tw-px-2">
+                <div className="mb-10 flex justify-between pr-3 sm:px-2">
                     {/* Close button */}
                     <button
                         ref={trigger}
-                        className="tw-text-slate-500 hover:tw-text-slate-400 lg:tw-hidden"
+                        className="text-slate-500 hover:text-slate-400 lg:hidden"
                         onClick={() => setSidebarOpen(!sidebarOpen)}
                         aria-controls="sidebar"
                         aria-expanded={sidebarOpen}
                     >
-                        <span className="tw-sr-only">Close sidebar</span>
+                        <span className="sr-only">Close sidebar</span>
                         <svg
-                            className="tw-h-6 tw-w-6 tw-fill-current"
+                            className="h-6 w-6 fill-current"
                             viewBox="0 0 24 24"
                             xmlns="http://www.w3.org/2000/svg"
                         >
@@ -133,7 +133,7 @@ const Sidebar: React.FC<Props> = ({ sidebarOpen, setSidebarOpen }) => {
                     {/* Logo */}
                     <Link
                         href={`/${router.pathname.split('/')[1]}` || '/'}
-                        className="tw-block"
+                        className="block"
                     >
                         <svg width="32" height="32" viewBox="0 0 32 32">
                             <defs>
@@ -200,7 +200,7 @@ const Sidebar: React.FC<Props> = ({ sidebarOpen, setSidebarOpen }) => {
                             <h3
                                 key={index}
                                 className={
-                                    'tw-mt-4 tw-mb-3 tw-pl-3 tw-text-xs tw-font-bold tw-uppercase tw-text-slate-500 first:tw-mt-0'
+                                    'mt-4 mb-3 pl-3 text-xs font-bold uppercase text-slate-500 first:mt-0'
                                 }
                             >
                                 {(item as ISidebarGroup).groupLabel}

@@ -16,7 +16,7 @@ const DashboardPage: NextPage = () => {
                 tooltip=""
                 marginTop="mt-0"
             />
-            <div className={'tw-flex tw-items-center tw-justify-end'}>
+            <div className={'flex items-center justify-end'}>
                 <Datepicker
                     placeholder="Select..."
                     enableRelativeDates={false}

@@ -16,14 +16,14 @@ const DropdownItem: React.FC<DropdownItemProps> = (props) => {
             <Link href={props.href || ''}>
                 <div
                     onClick={props.onClick}
-                    className={`tw-block tw-flex tw-cursor-pointer tw-items-center tw-justify-between tw-rounded-lg tw-px-4 tw-py-3 tw-text-base tw-text-base tw-font-medium ${
+                    className={`block flex cursor-pointer items-center justify-between rounded-lg px-4 py-3 text-base text-base font-medium ${
                         props.isWarning
-                            ? 'tw-text-red-700 hover:tw-bg-red-50'
-                            : 'tw-text-gray-500 hover:tw-bg-gray-100 hover:tw-text-gray-700'
+                            ? 'text-red-700 hover:bg-red-50'
+                            : 'text-gray-500 hover:bg-gray-100 hover:text-gray-700'
                     }`}
                 >
                     {props.text}
-                    <div className={'tw-scale-[1.2]'}>{props.icon}</div>
+                    <div className={'scale-[1.2]'}>{props.icon}</div>
                 </div>
             </Link>
         </Menu.Item>

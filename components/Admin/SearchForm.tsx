@@ -6,23 +6,23 @@ type Props = {
 
 const SearchForm: React.FC<Props> = ({ placeholder = 'Tìm kiếm...' }) => {
     return (
-        <form className="tw-relative">
-            <label htmlFor="action-search" className="tw-sr-only">
+        <form className="relative">
+            <label htmlFor="action-search" className="sr-only">
                 Search
             </label>
             <input
                 id="action-search"
-                className="tw-form-input tw-rounded tw-border tw-border-slate-200 tw-bg-white tw-py-2 tw-px-3 tw-pl-9 tw-text-sm tw-leading-5 tw-text-slate-800 tw-placeholder-slate-400 tw-shadow-sm hover:tw-border-slate-300 focus:tw-border-slate-500 focus:tw-border-slate-300 focus:tw-ring-0"
+                className="form-input rounded border border-slate-200 bg-white py-2 px-3 pl-9 text-sm leading-5 text-slate-800 placeholder-slate-400 shadow-sm hover:border-slate-300 focus:border-slate-500 focus:border-slate-300 focus:ring-0"
                 type="search"
                 placeholder={placeholder}
             />
             <button
-                className="tw-group tw-absolute tw-inset-0 tw-right-auto"
+                className="group absolute inset-0 right-auto"
                 type="submit"
                 aria-label="Search"
             >
                 <svg
-                    className="tw-ml-3 tw-mr-2 tw-h-4 tw-w-4 tw-shrink-0 tw-fill-current tw-text-slate-400 group-hover:tw-text-slate-500"
+                    className="ml-3 mr-2 h-4 w-4 shrink-0 fill-current text-slate-400 group-hover:text-slate-500"
                     viewBox="0 0 16 16"
                     xmlns="http://www.w3.org/2000/svg"
                 >

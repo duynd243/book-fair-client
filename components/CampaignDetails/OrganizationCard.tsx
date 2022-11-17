@@ -7,20 +7,16 @@ type Props = {
 };
 const OrganizationCard: React.FC<Props> = ({ organization }) => {
     return (
-        <div className="tw-flex tw-w-full tw-items-center tw-space-x-4 tw-rounded-lg tw-border tw-bg-white tw-p-4 tw-shadow-sm tw-transition tw-duration-300 hover:tw-shadow-md">
-            <div className="tw-flex tw-items-center tw-justify-center tw-rounded-full tw-bg-blue-50 tw-p-3.5">
-                <FaBuilding size={32} className={'tw-fill-blue-500'} />
+        <div className="flex w-full items-center space-x-4 rounded-lg border bg-white p-4 shadow-sm transition duration-300 hover:shadow-md">
+            <div className="flex items-center justify-center rounded-full bg-blue-50 p-3.5">
+                <FaBuilding size={32} className={'fill-blue-500'} />
             </div>
             {/*Org Info*/}
             <div>
-                <div
-                    className={
-                        'tw-mb-1 tw-text-base tw-font-bold tw-text-slate-700'
-                    }
-                >
+                <div className={'mb-1 text-base font-bold text-slate-700'}>
                     {organization?.organization?.name}
                 </div>
-                <div className={'tw-text-sm tw-text-slate-500'}>
+                <div className={'text-sm text-slate-500'}>
                     {organization?.organization?.address} -{' '}
                     {organization?.organization?.phoneNumber}
                 </div>

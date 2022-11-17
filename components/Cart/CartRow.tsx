@@ -48,8 +48,8 @@ const CartRow: React.FC<Props> = ({ data, cartItem }) => {
     };
 
     return (
-        <li key={book?.id} className="tw-flex tw-py-6">
-            <div className="tw-flex-shrink-0">
+        <li key={book?.id} className="flex py-6">
+            <div className="flex-shrink-0">
                 <Image
                     width={500}
                     height={500}
@@ -58,22 +58,22 @@ const CartRow: React.FC<Props> = ({ data, cartItem }) => {
                         `https://picsum.photos/1920/1080?random={${Math.random()}}`
                     }
                     alt={book?.name || ''}
-                    className="tw-h-24 tw-w-24 tw-rounded-md tw-object-cover tw-object-center sm:tw-h-32 sm:tw-w-32"
+                    className="h-24 w-24 rounded-md object-cover object-center sm:h-32 sm:w-32"
                 />
             </div>
 
-            <div className="tw-ml-4 tw-flex tw-flex-1 tw-flex-col sm:tw-ml-6">
+            <div className="ml-4 flex flex-1 flex-col sm:ml-6">
                 <div>
-                    <div className="tw-flex tw-justify-between">
-                        <h4 className="tw-text-base">
+                    <div className="flex justify-between">
+                        <h4 className="text-base">
                             <Link
                                 href={postHref}
-                                className="tw-font-medium tw-text-gray-700 hover:tw-text-gray-800"
+                                className="font-medium text-gray-700 hover:text-gray-800"
                             >
                                 {book?.name}
                             </Link>
                         </h4>
-                        <p className="tw-ml-4 tw-text-base tw-font-semibold tw-text-indigo-700">
+                        <p className="ml-4 text-base font-semibold text-indigo-700">
                             {data?.campaignBooks[0]?.coverPrice && book?.price
                                 ? getFormattedPrice(
                                       (data?.campaignBooks[0]?.coverPrice +
@@ -83,10 +83,10 @@ const CartRow: React.FC<Props> = ({ data, cartItem }) => {
                                 : 'N/A'}
                         </p>
                     </div>
-                    <p className="tw-mt-2 tw-flex tw-items-center tw-gap-1 tw-text-sm tw-text-gray-500">
+                    <p className="mt-2 flex items-center gap-1 text-sm text-gray-500">
                         <IoPricetag />
                         Đơn giá:{' '}
-                        <span className={'tw-font-medium tw-text-slate-600'}>
+                        <span className={'font-medium text-slate-600'}>
                             {data?.campaignBooks[0]?.coverPrice && book?.price
                                 ? getFormattedPrice(
                                       data?.campaignBooks[0]?.coverPrice +
@@ -95,24 +95,24 @@ const CartRow: React.FC<Props> = ({ data, cartItem }) => {
                                 : 'N/A'}
                         </span>
                     </p>
-                    <p className="tw-mt-1 tw-flex tw-items-center tw-gap-1 tw-text-sm tw-text-gray-500">
+                    <p className="mt-1 flex items-center gap-1 text-sm text-gray-500">
                         <IoFileTray />
                         Số lượng:{' '}
-                        <span className={'tw-font-medium tw-text-slate-600'}>
+                        <span className={'font-medium text-slate-600'}>
                             {cartItem.quantity}
                         </span>
                     </p>
                 </div>
 
-                <div className="tw-mt-4 tw-flex tw-flex-1 tw-items-end tw-justify-between">
-                    <p className="tw-flex tw-items-center tw-rounded-md tw-bg-slate-50 tw-px-2.5 tw-py-1 tw-text-sm tw-font-medium tw-text-slate-600">
+                <div className="mt-4 flex flex-1 items-end justify-between">
+                    <p className="flex items-center rounded-md bg-slate-50 px-2.5 py-1 text-sm font-medium text-slate-600">
                         <span>Từ sự kiện: {data?.campaign?.name}</span>
                     </p>
-                    <div className="tw-ml-4">
+                    <div className="ml-4">
                         <button
                             onClick={clearItem}
                             type="button"
-                            className="tw-flex tw-items-center tw-gap-1 tw-rounded tw-bg-slate-100 tw-py-1 tw-px-2 tw-text-sm tw-font-medium tw-text-slate-600 hover:tw-text-slate-500"
+                            className="flex items-center gap-1 rounded bg-slate-100 py-1 px-2 text-sm font-medium text-slate-600 hover:text-slate-500"
                         >
                             <IoClose />
                             <span>Xoá</span>

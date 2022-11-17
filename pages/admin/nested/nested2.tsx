@@ -28,9 +28,9 @@ const Nested2 = () => {
                                 <Tab key={index} as={Fragment}>
                                     {(props) => (
                                         <button
-                                            className={`tw-rounded tw-py-2 tw-px-4 tw-outline-none ${
+                                            className={`rounded py-2 px-4 outline-none ${
                                                 props.selected &&
-                                                'tw-bg-violet-500 tw-font-medium tw-text-white'
+                                                'bg-violet-500 font-medium text-white'
                                             }`}
                                         >
                                             {tab.label}

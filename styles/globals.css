@@ -37,82 +37,82 @@
 }
 
 .swal2-popup {
-    @apply !tw-rounded-xl
-    !tw-px-6
-    !tw-pt-6
-    !tw-pb-8
-    !tw-shadow-sm;
+    @apply !rounded-xl
+    !px-6
+    !pt-6
+    !pb-8
+    !shadow-sm;
 }
 
 .swal2-close {
-    @apply !tw-h-[1.1rem]
-    !tw-w-[1.1rem]
-    focus:!tw-shadow-none;
+    @apply !h-[1.1rem]
+    !w-[1.1rem]
+    focus:!shadow-none;
 }
 
 .swal2-icon {
-    @apply !tw-scale-[0.92];
+    @apply !scale-[0.92];
 }
 
 .swal2-actions {
-    @apply !tw-mt-10
-    !tw-block
-    !tw-w-full
-    sm:!tw-flex
-    sm:!tw-gap-1;
+    @apply !mt-10
+    !block
+    !w-full
+    sm:!flex
+    sm:!gap-1;
 }
 
 .swal2-actions button {
-    @apply !tw-w-full
-    !tw-rounded-lg
-    !tw-border-2
-    !tw-py-2.5
-    !tw-text-base
-    !tw-font-medium
-    !tw-outline-none
-    !tw-ring-blue-500
-    !tw-ring-offset-2
-    focus:!tw-shadow-sm
-    sm:!tw-flex-1;
+    @apply !w-full
+    !rounded-lg
+    !border-2
+    !py-2.5
+    !text-base
+    !font-medium
+    !outline-none
+    !ring-blue-500
+    !ring-offset-2
+    focus:!shadow-sm
+    sm:!flex-1;
 }
 
 .swal2-styled.swal2-confirm {
-    @apply !tw-border-blue-500
-    !tw-bg-blue-500
-    !tw-text-white
-    hover:!tw-bg-blue-600;
+    @apply !border-blue-500
+    !bg-blue-500
+    !text-white
+    hover:!bg-blue-600;
 }
 
 .swal2-styled.swal2-cancel {
-    @apply !tw-border-solid
-    !tw-border-[#EDEDED]
-    !tw-bg-white
-    !tw-text-[#6D6D6D];
+    @apply !border-solid
+    !border-[#EDEDED]
+    !bg-white
+    !text-[#6D6D6D];
 }
 
 .m-btn,
 .m-btn-lg,
 .m-btn-sm,
 .m-btn-xs {
-    @apply tw-inline-flex tw-items-center tw-justify-center tw-rounded tw-border tw-border-transparent tw-text-sm tw-font-medium tw-leading-5 tw-shadow-sm tw-transition tw-duration-150 tw-ease-in-out;
+    @apply inline-flex items-center justify-center rounded border border-transparent text-sm font-medium leading-5 shadow-sm transition duration-150 ease-in-out;
 }
 
 .m-btn {
-    @apply tw-px-3 tw-py-2;
+    @apply px-3 py-2;
 }
 
 .m-btn-lg {
-    @apply tw-px-4 tw-py-3;
+    @apply px-4 py-3;
 }
 
 .m-btn-sm {
-    @apply tw-px-2 tw-py-1;
+    @apply px-2 py-1;
 }
 
 .m-btn-xs {
-    @apply tw-px-2 tw-py-0.5;
+    @apply px-2 py-0.5;
 }
 
 .input-error {
-    @apply tw-text-red-500 tw-mt-1 tw-text-sm tw-font-medium;
+    @apply text-red-500 mt-1 text-sm font-medium;
 }

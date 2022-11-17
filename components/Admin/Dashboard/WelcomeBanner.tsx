@@ -13,10 +13,10 @@ const WelcomeBanner: React.FC = () => {
     };
 
     return (
-        <div className="tw-relative tw-mb-8 tw-overflow-hidden tw-rounded-sm tw-bg-indigo-200 tw-p-4 sm:tw-p-6">
+        <div className="relative mb-8 overflow-hidden rounded-sm bg-indigo-200 p-4 sm:p-6">
             {/* Background illustration */}
             <div
-                className="tw-pointer-events-none tw-absolute tw-right-0 tw-top-0 -tw-mt-4 tw-mr-16 tw-hidden xl:tw-block"
+                className="pointer-events-none absolute right-0 top-0 -mt-4 mr-16 hidden xl:block"
                 aria-hidden="true"
             >
                 <svg
@@ -101,8 +101,8 @@ const WelcomeBanner: React.FC = () => {
             </div>
 
             {/* Content */}
-            <div className="tw-relative">
-                <h1 className="tw-mb-1 tw-text-2xl tw-font-bold tw-text-slate-800 md:tw-text-3xl">
+            <div className="relative">
+                <h1 className="mb-1 text-2xl font-bold text-slate-800 md:text-3xl">
                     {getGreeting()}, {loginUser?.name || user?.displayName} 👋
                 </h1>
                 <p>Here is what’s happening with your projects today:</p>

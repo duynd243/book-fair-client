@@ -193,36 +193,36 @@ const AdminCreateCampaignPage: NextPage = () => {
         <AdminLayout>
             <form
                 onSubmit={form.handleSubmit}
-                className="tw-bg-white tw-p-10 tw-mx-auto tw-max-w-6xl tw-space-y-8 tw-divide-y tw-divide-gray-200"
+                className="bg-white p-10 mx-auto max-w-6xl space-y-8 divide-y divide-gray-200"
             >
-                <div className="tw-space-y-8 tw-divide-y tw-divide-gray-200">
+                <div className="space-y-8 divide-y divide-gray-200">
                     <div>
                         <div>
-                            <h3 className="tw-text-lg tw-leading-6 tw-font-medium tw-text-gray-900">
+                            <h3 className="text-lg leading-6 font-medium text-gray-900">
                                 Thông tin chung
                             </h3>
-                            <p className="tw-mt-1 tw-text-sm tw-text-gray-500">
+                            <p className="mt-1 text-sm text-gray-500">
                                 This information will be displayed publicly so
                                 be careful what you share.
                             </p>
                         </div>
 
-                        <div className="tw-mt-6 tw-grid tw-grid-cols-1 tw-gap-y-6 tw-gap-x-4 sm:tw-grid-cols-6">
-                            <div className="sm:tw-col-span-6">
+                        <div className="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
+                            <div className="sm:col-span-6">
                                 <label
                                     htmlFor="campaignName"
-                                    className="tw-block tw-text-sm tw-font-medium tw-text-gray-700"
+                                    className="block text-sm font-medium text-gray-700"
                                 >
                                     Tên sự kiện
                                 </label>
-                                <div className="tw-mt-1">
+                                <div className="mt-1">
                                     <input
                                         value={form.values.campaignName}
                                         onChange={form.handleChange}
                                         type="text"
                                         name="campaignName"
                                         id="campaignName"
-                                        className="tw-shadow-sm focus:tw-ring-indigo-500 focus:tw-border-indigo-500 tw-block tw-w-full sm:tw-text-sm tw-border-gray-300 tw-rounded-md"
+                                        className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
                                     />
                                 </div>
                                 {form.errors.campaignName &&
@@ -233,21 +233,21 @@ const AdminCreateCampaignPage: NextPage = () => {
                                     )}
                             </div>
 
-                            <div className="sm:tw-col-span-6">
+                            <div className="sm:col-span-6">
                                 <label
                                     htmlFor="campaignDesc"
-                                    className="tw-block tw-text-sm tw-font-medium tw-text-gray-700"
+                                    className="block text-sm font-medium text-gray-700"
                                 >
                                     Mô tả
                                 </label>
-                                <div className="tw-mt-1">
+                                <div className="mt-1">
                                     <textarea
                                         value={form.values.campaignDesc}
                                         onChange={form.handleChange}
                                         id="campaignDesc"
                                         name="campaignDesc"
                                         rows={3}
-                                        className="tw-shadow-sm focus:tw-ring-indigo-500 focus:tw-border-indigo-500 tw-block tw-w-full sm:tw-text-sm tw-border tw-border-gray-300 tw-rounded-md"
+                                        className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border border-gray-300 rounded-md"
                                     />
                                 </div>
                                 {form.errors.campaignDesc &&
@@ -258,19 +258,19 @@ const AdminCreateCampaignPage: NextPage = () => {
                                     )}
                             </div>
 
-                            <div className="sm:tw-col-span-6">
+                            <div className="sm:col-span-6">
                                 <label
                                     htmlFor="cover-photo"
-                                    className="tw-block tw-text-sm tw-font-medium tw-text-gray-700"
+                                    className="block text-sm font-medium text-gray-700"
                                 >
                                     Cover photo
                                 </label>
-                                <div className="tw-mt-1 tw-flex tw-justify-center tw-px-6 tw-pt-5 tw-pb-6 tw-border-2 tw-border-gray-300 tw-border-dashed tw-rounded-md">
-                                    <div className="tw-space-y-1 tw-text-center">
+                                <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
+                                    <div className="space-y-1 text-center">
                                         {coverPhoto ? (
                                             <Image
                                                 className={
-                                                    'tw-object-cover tw-mb-4 tw-object-center tw-rounded-md'
+                                                    'object-cover mb-4 object-center rounded-md'
                                                 }
                                                 width={500}
                                                 height={500}
@@ -281,7 +281,7 @@ const AdminCreateCampaignPage: NextPage = () => {
                                             />
                                         ) : (
                                             <svg
-                                                className="tw-mx-auto tw-h-12 tw-w-12 tw-text-gray-400"
+                                                className="mx-auto h-12 w-12 text-gray-400"
                                                 stroke="currentColor"
                                                 fill="none"
                                                 viewBox="0 0 48 48"
@@ -295,10 +295,10 @@ const AdminCreateCampaignPage: NextPage = () => {
                                                 />
                                             </svg>
                                         )}
-                                        <div className="tw-flex tw-text-sm tw-justify-center tw-text-gray-600">
+                                        <div className="flex text-sm justify-center text-gray-600">
                                             <label
                                                 htmlFor="file-upload"
-                                                className="tw-relative tw-cursor-pointer tw-bg-white tw-rounded-md tw-font-medium tw-text-indigo-600 hover:tw-text-indigo-500 focus-within:tw-outline-none focus-within:tw-ring-2 focus-within:tw-ring-offset-2 focus-within:tw-ring-indigo-500"
+                                                className="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500"
                                             >
                                                 <span>
                                                     {coverPhoto
@@ -314,11 +314,11 @@ const AdminCreateCampaignPage: NextPage = () => {
                                                     id="file-upload"
                                                     name="file-upload"
                                                     type="file"
-                                                    className="tw-sr-only"
+                                                    className="sr-only"
                                                 />
                                             </label>
                                         </div>
-                                        <p className="tw-text-xs tw-text-gray-500">
+                                        <p className="text-xs text-gray-500">
                                             PNG, JPG, GIF up to 1MB
                                         </p>
                                     </div>
@@ -327,32 +327,32 @@ const AdminCreateCampaignPage: NextPage = () => {
                         </div>
                     </div>
 
-                    <div className="tw-pt-8">
+                    <div className="pt-8">
                         <div>
-                            <h3 className="tw-text-lg tw-leading-6 tw-font-medium tw-text-gray-900">
+                            <h3 className="text-lg leading-6 font-medium text-gray-900">
                                 Thời gian và địa điểm
                             </h3>
-                            <p className="tw-mt-1 tw-text-sm tw-text-gray-500">
+                            <p className="mt-1 text-sm text-gray-500">
                                 Use a permanent address where you can receive
                                 mail.
                             </p>
                         </div>
-                        <div className="tw-mt-6 tw-grid tw-grid-cols-1 tw-gap-y-6 tw-gap-x-4 sm:tw-grid-cols-6">
-                            <div className="sm:tw-col-span-3">
+                        <div className="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
+                            <div className="sm:col-span-3">
                                 <label
                                     htmlFor="startDate"
-                                    className="tw-block tw-text-sm tw-font-medium tw-text-gray-700"
+                                    className="block text-sm font-medium text-gray-700"
                                 >
                                     Ngày bắt đầu
                                 </label>
-                                <div className="tw-mt-1">
+                                <div className="mt-1">
                                     <input
                                         value={form.values.startDate}
                                         onChange={form.handleChange}
                                         type="date"
                                         name="startDate"
                                         id="startDate"
-                                        className="tw-shadow-sm focus:tw-ring-indigo-500 focus:tw-border-indigo-500 tw-block tw-w-full sm:tw-text-sm tw-border-gray-300 tw-rounded-md"
+                                        className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
                                     />
                                 </div>
                                 {form.errors.startDate &&
@@ -363,21 +363,21 @@ const AdminCreateCampaignPage: NextPage = () => {
                                     )}
                             </div>
 
-                            <div className="sm:tw-col-span-3">
+                            <div className="sm:col-span-3">
                                 <label
                                     htmlFor="endDate"
-                                    className="tw-block tw-text-sm tw-font-medium tw-text-gray-700"
+                                    className="block text-sm font-medium text-gray-700"
                                 >
                                     Ngày kết thúc
                                 </label>
-                                <div className="tw-mt-1">
+                                <div className="mt-1">
                                     <input
                                         value={form.values.endDate}
                                         onChange={form.handleChange}
                                         type="date"
                                         name="endDate"
                                         id="endDate"
-                                        className="tw-shadow-sm focus:tw-ring-indigo-500 focus:tw-border-indigo-500 tw-block tw-w-full sm:tw-text-sm tw-border-gray-300 tw-rounded-md"
+                                        className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
                                     />
                                 </div>
                                 {form.errors.endDate &&
@@ -387,21 +387,21 @@ const AdminCreateCampaignPage: NextPage = () => {
                                         </div>
                                     )}
                             </div>
-                            <div className="sm:tw-col-span-6">
+                            <div className="sm:col-span-6">
                                 <label
                                     htmlFor="address"
-                                    className="tw-block tw-text-sm tw-font-medium tw-text-gray-700"
+                                    className="block text-sm font-medium text-gray-700"
                                 >
                                     Địa chỉ
                                 </label>
-                                <div className="tw-mt-1">
+                                <div className="mt-1">
                                     <input
                                         value={form.values.address}
                                         onChange={form.handleChange}
                                         type="text"
                                         name="address"
                                         id="address"
-                                        className="tw-shadow-sm focus:tw-ring-indigo-500 focus:tw-border-indigo-500 tw-block tw-w-full sm:tw-text-sm tw-border-gray-300 tw-rounded-md"
+                                        className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
                                     />
                                 </div>
                                 {form.errors.address &&
@@ -414,24 +414,24 @@ const AdminCreateCampaignPage: NextPage = () => {
                         </div>
                     </div>
 
-                    <div className="tw-pt-8">
+                    <div className="pt-8">
                         <div>
-                            <h3 className="tw-text-lg tw-leading-6 tw-font-medium tw-text-gray-900">
+                            <h3 className="text-lg leading-6 font-medium text-gray-900">
                                 Tổ chức
                             </h3>
                         </div>
-                        <div className="tw-mt-3">
+                        <div className="mt-3">
                             {isInitialLoading ? (
                                 <div>Đang tải...</div>
                             ) : (
                                 organizations &&
                                 organizations?.pages.length > 0 && (
                                     <fieldset>
-                                        <legend className="tw-text-base tw-font-medium tw-text-gray-900">
+                                        <legend className="text-base font-medium text-gray-900">
                                             Chọn các tổ chức mà sự kiện này
                                             thuộc về
                                         </legend>
-                                        <div className="tw-mt-4 tw-grid tw-gap-x-4 tw-gap-y-6 tw-grid-cols-1 sm:tw-grid-cols-12">
+                                        <div className="mt-4 grid gap-x-4 gap-y-6 grid-cols-1 sm:grid-cols-12">
                                             {organizations?.pages.map((value) =>
                                                 value.data.map(
                                                     (organization) => (
@@ -439,9 +439,9 @@ const AdminCreateCampaignPage: NextPage = () => {
                                                             key={
                                                                 organization?.id
                                                             }
-                                                            className="sm:tw-col-span-6 tw-relative tw-flex tw-items-start"
+                                                            className="sm:col-span-6 relative flex items-start"
                                                         >
-                                                            <div className="tw-flex tw-items-center tw-h-5">
+                                                            <div className="flex items-center h-5">
                                                                 <input
                                                                     onChange={(
                                                                         e
@@ -454,19 +454,19 @@ const AdminCreateCampaignPage: NextPage = () => {
                                                                     id={`organization-${organization?.id}`}
                                                                     name="organizations"
                                                                     type="checkbox"
-                                                                    className="focus:tw-ring-indigo-500 tw-h-4 tw-w-4 tw-text-indigo-600 tw-border-gray-300 tw-rounded"
+                                                                    className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
                                                                 />
                                                             </div>
-                                                            <div className="tw-ml-3 tw-text-sm">
+                                                            <div className="ml-3 text-sm">
                                                                 <label
                                                                     htmlFor={`organization-${organization?.id}`}
-                                                                    className="tw-font-medium tw-text-gray-700"
+                                                                    className="font-medium text-gray-700"
                                                                 >
                                                                     {
                                                                         organization?.name
                                                                     }
                                                                 </label>
-                                                                <p className="tw-text-gray-500">
+                                                                <p className="text-gray-500">
                                                                     {
                                                                         organization?.address
                                                                     }{' '}
@@ -488,7 +488,7 @@ const AdminCreateCampaignPage: NextPage = () => {
                                 <button
                                     disabled={isFetchingNextPage}
                                     className={
-                                        'tw-bg-slate-900 tw-text-white tw-py-1 tw-px-2.5 tw-rounded tw-mt-4'
+                                        'bg-slate-900 text-white py-1 px-2.5 rounded mt-4'
                                     }
                                     onClick={() => fetchNextPage()}
                                 >
@@ -499,12 +499,12 @@ const AdminCreateCampaignPage: NextPage = () => {
                     </div>
                 </div>
 
-                <div className="tw-pt-5">
-                    <div className="tw-flex tw-justify-end">
+                <div className="pt-5">
+                    <div className="flex justify-end">
                         <button
                             disabled={isCreating}
                             type="submit"
-                            className="tw-ml-3 tw-inline-flex tw-justify-center tw-py-2 tw-px-4 tw-border tw-border-transparent tw-shadow-sm tw-text-sm tw-font-medium tw-rounded-md tw-text-white tw-bg-indigo-600 hover:tw-bg-indigo-700 focus:tw-outline-none focus:tw-ring-2 focus:tw-ring-offset-2 focus:tw-ring-indigo-500"
+                            className="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                         >
                             Tạo sự kiện
                         </button>

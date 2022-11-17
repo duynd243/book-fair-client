@@ -17,7 +17,7 @@ const AvatarGroup: React.FC<Props> = ({ avatars, max = 3 }) => {
     }, [avatars, max]);
 
     return (
-        <div className="tw-flex tw-items-center -tw-space-x-2">
+        <div className="flex items-center -space-x-2">
             {avatars
                 .slice(0, showAll ? avatars.length : max)
                 .map((avatar, index) => (
@@ -26,13 +26,13 @@ const AvatarGroup: React.FC<Props> = ({ avatars, max = 3 }) => {
                         key={index}
                         width={40}
                         height={40}
-                        className="tw-h-7 tw-w-7 tw-rounded-full tw-border tw-border-slate-50 tw-object-cover tw-shadow-sm tw-drop-shadow-sm"
+                        className="h-7 w-7 rounded-full border border-slate-50 object-cover shadow-sm drop-shadow-sm"
                         src={avatar.src}
                         alt={avatar.title || ''}
                     />
                 ))}
             {!showAll && (
-                <div className="tw-flex tw-h-7 tw-w-7 tw-items-center tw-justify-center tw-rounded-full tw-border tw-border-slate-50 tw-bg-slate-200 tw-text-xs tw-font-medium tw-text-gray-500">
+                <div className="flex h-7 w-7 items-center justify-center rounded-full border border-slate-50 bg-slate-200 text-xs font-medium text-gray-500">
                     +{avatars.length - max}
                 </div>
             )}

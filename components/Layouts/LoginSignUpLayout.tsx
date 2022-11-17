@@ -9,7 +9,7 @@ import CoverImage from './../../assets/images/LoginSignUp/login-cover.jpeg';
 import { getRoleById } from '../../constants/Roles';
 
 export const inputClass: string =
-    'tw-border-gray-200 tw-drop-shadow-sm tw-appearance-none tw-border tw-rounded tw-w-full tw-py-2 tw-px-3 text-grey-darker';
+    'border-gray-200 drop-shadow-sm appearance-none border rounded w-full py-2 px-3 text-grey-darker';
 
 type Props = {
     children: JSX.Element;
@@ -32,16 +32,16 @@ const LoginSignUpLayout: React.FC<Props> = ({ children }) => {
     }
 
     return (
-        <main className="tw-bg-white">
-            <div className="tw-relative tw-flex">
+        <main className="bg-white">
+            <div className="relative flex">
                 {/* Content */}
-                <div className="tw-w-full md:tw-w-1/2">
-                    <div className="wl tw-flex tw-h-full tw-min-h-screen tw-flex-col">
+                <div className="w-full md:w-1/2">
+                    <div className="wl flex h-full min-h-screen flex-col">
                         {/* Header */}
                         <div>
-                            <div className="tw-flex tw-h-16 tw-items-center tw-justify-between tw-px-4 sm:tw-px-6 lg:tw-px-8">
+                            <div className="flex h-16 items-center justify-between px-4 sm:px-6 lg:px-8">
                                 {/* Logo */}
-                                <Link href={'/'} className={'tw-block'}>
+                                <Link href={'/'} className={'block'}>
                                     <svg
                                         width={32}
                                         height={32}
@@ -105,24 +105,24 @@ const LoginSignUpLayout: React.FC<Props> = ({ children }) => {
                                 </Link>
                             </div>
                         </div>
-                        <div className="tw-mx-auto tw-my-auto tw-w-full tw-max-w-sm tw-px-4 tw-py-8">
+                        <div className="mx-auto my-auto w-full max-w-sm px-4 py-8">
                             {children}
                         </div>
                     </div>
                 </div>
                 {/* Image */}
                 <div
-                    className="tw-absolute tw-top-0 tw-right-0 tw-bottom-0 tw-hidden md:tw-block md:tw-w-1/2"
+                    className="absolute top-0 right-0 bottom-0 hidden md:block md:w-1/2"
                     aria-hidden="true"
                 >
                     <Image
-                        className="tw-h-full tw-w-full tw-object-cover tw-object-center"
+                        className="h-full w-full object-cover object-center"
                         src={CoverImage}
                         width={760}
                         height={1024}
                         alt="Authentication image"
                     />
-                    <div className="tw-absolute tw-top-1/4 tw-left-0 tw-ml-8 tw-hidden -tw-translate-x-1/2 lg:tw-block">
+                    <div className="absolute top-1/4 left-0 ml-8 hidden -translate-x-1/2 lg:block">
                         <Image
                             src={AuthDecoration}
                             width={218}

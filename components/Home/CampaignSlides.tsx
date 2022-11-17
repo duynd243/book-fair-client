@@ -16,14 +16,14 @@ const CampaignSlides: React.FC<Props> = ({ label, href, campaigns }) => {
     return (
         <>
             <Link
-                className="tw-mt-4 tw-flex tw-items-center tw-justify-between tw-text-2xl tw-font-semibold tw-text-gray-800"
+                className="mt-4 flex items-center justify-between text-2xl font-semibold text-gray-800"
                 href={href || ''}
             >
                 {label}
             </Link>
 
             <Swiper
-                className="!tw-py-3"
+                className="!py-3"
                 spaceBetween={25}
                 breakpoints={{
                     640: {
@@ -46,7 +46,7 @@ const CampaignSlides: React.FC<Props> = ({ label, href, campaigns }) => {
                 modules={[Autoplay, Keyboard, Pagination, Navigation]}
             >
                 {campaigns.map((campaign) => (
-                    <SwiperSlide className="!tw-h-auto" key={campaign?.id}>
+                    <SwiperSlide className="!h-auto" key={campaign?.id}>
                         <CampaignCard campaign={campaign} />
                     </SwiperSlide>
                 ))}

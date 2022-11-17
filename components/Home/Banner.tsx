@@ -15,10 +15,10 @@ const NavigationButton: React.FC<{
 }> = ({ direction, onClick }) => {
     return (
         <button
-            className={`tw-absolute tw-top-1/2 tw-z-[100] tw-hidden tw-h-7 tw-w-7 -tw-translate-y-1/2 tw-items-center tw-justify-center tw-rounded-full tw-bg-white tw-transition-all hover:tw-bg-gray-100 group-hover:tw-flex ${
+            className={`absolute top-1/2 z-[100] hidden h-7 w-7 -translate-y-1/2 items-center justify-center rounded-full bg-white transition-all hover:bg-gray-100 group-hover:flex ${
                 direction === NavigationDirection.PREV
-                    ? 'tw-left-2.5'
-                    : 'tw-right-2.5'
+                    ? 'left-2.5'
+                    : 'right-2.5'
             } `}
             onClick={onClick}
         >
@@ -54,7 +54,7 @@ const Banner: React.FC = () => {
                     clickable: true,
                 }}
                 modules={[Autoplay, Keyboard, Pagination, Navigation]}
-                className="tw-group !tw-h-[300px]"
+                className="group !h-[300px]"
                 style={{
                     height: '300px',
                 }}
@@ -67,7 +67,7 @@ const Banner: React.FC = () => {
                                 alt="Picture of the author"
                                 width={1000}
                                 height={1000}
-                                className="!tw-h-[300px] tw-w-full tw-object-cover tw-object-center"
+                                className="!h-[300px] w-full object-cover object-center"
                             />
                         </Slider>
                     </SwiperSlide>
@@ -86,11 +86,7 @@ const Banner: React.FC = () => {
 };
 const Slider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     return (
-        <div
-            className={
-                '!tw-h-full tw-overflow-hidden tw-rounded-lg tw-bg-slate-500'
-            }
-        >
+        <div className={'!h-full overflow-hidden rounded-lg bg-slate-500'}>
             {children}
         </div>
     );

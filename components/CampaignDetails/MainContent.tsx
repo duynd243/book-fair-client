@@ -21,8 +21,8 @@ import PostCard from './PostCard';
 
 const EmptySection: React.FC<{ text: string }> = ({ text }) => {
     return (
-        <div className="tw-py-6 tw-text-center">
-            <p className="tw-text-slate-600">{text}</p>
+        <div className="py-6 text-center">
+            <p className="text-slate-600">{text}</p>
         </div>
     );
 };
@@ -65,35 +65,35 @@ const MainContent: React.FC<Props> = ({ campaign }) => {
 
     return (
         <div>
-            <div className="tw-mb-6">
+            <div className="mb-6">
                 <Link
-                    className="tw-flex tw-w-fit tw-items-center tw-justify-between tw-rounded tw-border-slate-200 tw-bg-slate-100 tw-px-3.5 tw-py-1.5 tw-text-base tw-font-medium tw-text-slate-600 tw-transition tw-duration-150 tw-ease-in-out hover:tw-border-slate-300 hover:tw-bg-slate-200"
+                    className="flex w-fit items-center justify-between rounded border-slate-200 bg-slate-100 px-3.5 py-1.5 text-base font-medium text-slate-600 transition duration-150 ease-in-out hover:border-slate-300 hover:bg-slate-200"
                     href="/campaigns"
                 >
                     <IoChevronBack size={'17'} />
                     <span>Quay lại</span>
                 </Link>
             </div>
-            <div className="tw-mb-2 tw-flex tw-flex-wrap tw-items-center tw-gap-1 tw-text-sm tw-font-semibold tw-uppercase tw-text-indigo-500">
+            <div className="mb-2 flex flex-wrap items-center gap-1 text-sm font-semibold uppercase text-indigo-500">
                 {getFormattedDate(campaign?.startDate).fullDate}
-                <IoArrowForward className={'tw-fill-indigo-500'} />
+                <IoArrowForward className={'fill-indigo-500'} />
                 {getFormattedDate(campaign?.endDate).fullDate}
             </div>
-            <header className="tw-mb-4">
+            <header className="mb-4">
                 {/* Title */}
-                <h1 className="text-slate-800 tw-mb-2 tw-text-2xl tw-font-bold md:tw-text-3xl">
+                <h1 className="text-slate-800 mb-2 text-2xl font-bold md:text-3xl">
                     {campaign?.name}
                 </h1>
             </header>
 
             {/* Meta */}
-            <div className="tw-mb-6 tw-space-y-3 sm:tw-flex sm:tw-items-center sm:tw-justify-between sm:tw-space-y-0">
+            <div className="mb-6 space-y-3 sm:flex sm:items-center sm:justify-between sm:space-y-0">
                 {/* Location */}
-                <div className="tw-flex tw-items-center tw-gap-1 sm:tw-mr-4">
-                    <IoLocationSharp size={20} className={'tw-fill-red-700'} />
-                    <div className="tw-whitespace-nowrap tw-text-sm">
+                <div className="flex items-center gap-1 sm:mr-4">
+                    <IoLocationSharp size={20} className={'fill-red-700'} />
+                    <div className="whitespace-nowrap text-sm">
                         Diễn ra tại{' '}
-                        <span className="text-slate-800 tw-font-semibold">
+                        <span className="text-slate-800 font-semibold">
                             {campaign?.address}
                         </span>
                     </div>
@@ -103,9 +103,9 @@ const MainContent: React.FC<Props> = ({ campaign }) => {
             </div>
 
             {/* Image */}
-            <figure className="tw-mb-6">
+            <figure className="mb-6">
                 <Image
-                    className="tw-w-full tw-rounded"
+                    className="w-full rounded"
                     src={
                         campaign?.imageUrl ||
                         `https://picsum.photos/1920/1080?random={${Math.random()}}`
@@ -119,9 +119,7 @@ const MainContent: React.FC<Props> = ({ campaign }) => {
             {/* Description */}
             <div>
                 <ContentHeader text={'Mô tả sự kiện'} />
-                <p className="tw-mt-2 tw-mb-6 tw-break-words">
-                    {campaign?.description}
-                </p>
+                <p className="mt-2 mb-6 break-words">{campaign?.description}</p>
             </div>
             <Separator />
 
@@ -131,7 +129,7 @@ const MainContent: React.FC<Props> = ({ campaign }) => {
                     text={`Tổ chức (${organizations?.length || 0})`}
                 />
                 {organizations && organizations?.length > 0 ? (
-                    <div className="tw-my-6 tw-grid  tw-gap-4 sm:tw-grid-cols-2">
+                    <div className="my-6 grid  gap-4 sm:grid-cols-2">
                         {organizations.map((org) => (
                             <OrganizationCard organization={org} key={org.id} />
                         ))}
@@ -150,10 +148,10 @@ const MainContent: React.FC<Props> = ({ campaign }) => {
                     text={`Bài đăng (${posts?.pages[0]?.metadata.total || 0})`}
                 />
                 {isInitialLoading ? (
-                    <div className={'tw-my-6'}>Đang tải...</div>
+                    <div className={'my-6'}>Đang tải...</div>
                 ) : posts && posts?.pages.length > 0 ? (
-                    <div className="tw-my-6">
-                        <div className="tw-grid tw-grid-cols-12 tw-gap-6">
+                    <div className="my-6">
+                        <div className="grid grid-cols-12 gap-6">
                             {posts?.pages?.map((value) =>
                                 value.data.map((post: IPostResponse) => (
                                     <PostCard data={post} key={post?.id} />
@@ -164,7 +162,7 @@ const MainContent: React.FC<Props> = ({ campaign }) => {
                             <button
                                 onClick={() => fetchNextPage()}
                                 disabled={isFetchingNextPage}
-                                className="tw-mx-auto tw-mt-4 tw-block tw-rounded tw-bg-indigo-50 tw-px-4 tw-py-2 tw-text-base tw-font-medium tw-text-indigo-500 tw-transition disabled:tw-bg-gray-50 disabled:tw-text-gray-500"
+                                className="mx-auto mt-4 block rounded bg-indigo-50 px-4 py-2 text-base font-medium text-indigo-500 transition disabled:bg-gray-50 disabled:text-gray-500"
                             >
                                 {isFetchingNextPage
                                     ? 'Đang tải...'
@@ -183,12 +181,12 @@ const MainContent: React.FC<Props> = ({ campaign }) => {
             <div>
                 <ContentHeader text={'Bình luận (3)'} />
 
-                <ul className="tw-my-6 tw-space-y-5">
+                <ul className="my-6 space-y-5">
                     {/* Comment */}
-                    <li className="tw-flex tw-items-start">
-                        <a className="shrink-0 tw-mr-3 tw-block" href="#0">
+                    <li className="flex items-start">
+                        <a className="shrink-0 mr-3 block" href="#0">
                             <Image
-                                className="tw-rounded-full"
+                                className="rounded-full"
                                 src={DefaultAvatar.src}
                                 width="32"
                                 height="32"
@@ -196,10 +194,10 @@ const MainContent: React.FC<Props> = ({ campaign }) => {
                             />
                         </a>
                         <div className="grow">
-                            <div className="text-slate-800 tw-mb-2 tw-text-sm tw-font-semibold">
+                            <div className="text-slate-800 mb-2 text-sm font-semibold">
                                 Taylor Nieman
                             </div>
-                            <div className="tw-italic">
+                            <div className="italic">
                                 “Lorem ipsum dolor sit amet, consectetur
                                 adipiscing elit, sed do eiusmod tempor
                                 incididunt ut labore et dolore magna aliqua. Ut
@@ -208,10 +206,10 @@ const MainContent: React.FC<Props> = ({ campaign }) => {
                         </div>
                     </li>
                     {/* Comment */}
-                    <li className="tw-flex tw-items-start">
-                        <a className="shrink-0 tw-mr-3 tw-block" href="#0">
+                    <li className="flex items-start">
+                        <a className="shrink-0 mr-3 block" href="#0">
                             <Image
-                                className="tw-rounded-full"
+                                className="rounded-full"
                                 src={DefaultAvatar.src}
                                 width="32"
                                 height="32"
@@ -219,10 +217,10 @@ const MainContent: React.FC<Props> = ({ campaign }) => {
                             />
                         </a>
                         <div className="grow">
-                            <div className="text-slate-800 tw-mb-2 tw-text-sm tw-font-semibold">
+                            <div className="text-slate-800 mb-2 text-sm font-semibold">
                                 Meagan Loyst
                             </div>
-                            <div className="tw-italic">
+                            <div className="italic">
                                 “Lorem ipsum dolor sit amet, consectetur
                                 adipiscing elit, sed do eiusmod tempor
                                 incididunt ut labore et dolore magna aliqua. Ut
@@ -231,10 +229,10 @@ const MainContent: React.FC<Props> = ({ campaign }) => {
                         </div>
                     </li>
                     {/* Comment */}
-                    <li className="tw-flex tw-items-start">
-                        <a className="shrink-0 tw-mr-3 tw-block" href="#0">
+                    <li className="flex items-start">
+                        <a className="shrink-0 mr-3 block" href="#0">
                             <Image
-                                className="tw-rounded-full"
+                                className="rounded-full"
                                 src={DefaultAvatar.src}
                                 width="32"
                                 height="32"
@@ -242,10 +240,10 @@ const MainContent: React.FC<Props> = ({ campaign }) => {
                             />
                         </a>
                         <div className="grow">
-                            <div className="text-slate-800 tw-mb-2 tw-text-sm tw-font-semibold">
+                            <div className="text-slate-800 mb-2 text-sm font-semibold">
                                 Frank Malik
                             </div>
-                            <div className="tw-italic">
+                            <div className="italic">
                                 “Lorem ipsum dolor sit amet, consectetur
                                 adipiscing elit, sed do eiusmod tempor
                                 incididunt ut labore et dolore magna aliqua. Ut

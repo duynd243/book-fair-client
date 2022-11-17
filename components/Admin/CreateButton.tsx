@@ -14,7 +14,7 @@ const CreateButton: React.FC<Props> = ({ label, onClick, href }) => {
             href={href || '#'}
             onClick={onClick}
             className={
-                'm-btn tw-gap-1 tw-bg-indigo-500 tw-text-white hover:tw-bg-indigo-600'
+                'm-btn gap-1 bg-indigo-500 text-white hover:bg-indigo-600'
             }
         >
             <IoAdd size={16} />

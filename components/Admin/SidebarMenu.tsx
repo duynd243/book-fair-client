@@ -13,8 +13,8 @@ const SidebarMenuWrapper: React.FC<{
 }> = ({ isActive, children }) => {
     return (
         <li
-            className={`tw-mb-0.5 tw-select-none tw-rounded tw-px-3.5 tw-py-1.5 last:tw-mb-0 ${
-                isActive && 'tw-bg-gray-900'
+            className={`mb-0.5 select-none rounded px-3.5 py-1.5 last:mb-0 ${
+                isActive && 'bg-gray-900'
             }`}
         >
             {children}
@@ -27,11 +27,7 @@ const SidebarMenuIcon: React.FC<{
     isActive: boolean;
 }> = ({ icon, isActive }) => {
     return (
-        <span
-            className={`${
-                isActive ? 'tw-text-indigo-500' : 'tw-text-indigo-300'
-            }`}
-        >
+        <span className={`${isActive ? 'text-indigo-500' : 'text-indigo-300'}`}>
             {icon}
         </span>
     );
@@ -52,31 +48,31 @@ const SidebarMenu: React.FC<Props> = ({ sidebarItem, currentPathName }) => {
             <SidebarMenuWrapper isActive={activeSubItem !== undefined}>
                 {/*Parent*/}
                 <a
-                    className={`tw-block tw-cursor-pointer tw-truncate tw-text-slate-200 tw-transition tw-duration-150 hover:tw-text-white ${
-                        activeSubItem && 'hover:tw-text-slate-200'
+                    className={`block cursor-pointer truncate text-slate-200 transition duration-150 hover:text-white ${
+                        activeSubItem && 'hover:text-slate-200'
                     }`}
                     onClick={(e) => {
                         e.preventDefault();
                         setIsExpanded(!isExpanded);
                     }}
                 >
-                    <div className=" tw-flex tw-items-center tw-justify-between tw-py-2">
-                        <div className="tw-flex tw-items-center">
+                    <div className=" flex items-center justify-between py-2">
+                        <div className="flex items-center">
                             {sidebarItem?.icon && (
                                 <SidebarMenuIcon
                                     icon={sidebarItem.icon}
                                     isActive={activeSubItem !== undefined}
                                 />
                             )}
-                            <span className="tw-ml-3 tw-text-sm tw-font-medium tw-duration-200">
+                            <span className="ml-3 text-sm font-medium duration-200">
                                 {sidebarItem.label}
                             </span>
                         </div>
                         {/* Expand / Collapse Icon */}
-                        <div className="tw-ml-2 tw-flex tw-shrink-0">
+                        <div className="ml-2 flex shrink-0">
                             <svg
-                                className={`tw-ml-1 tw-h-3 tw-w-3 tw-shrink-0 tw-fill-current tw-text-slate-400 tw-transition-all ${
-                                    isExpanded && 'tw-rotate-180'
+                                className={`ml-1 h-3 w-3 shrink-0 fill-current text-slate-400 transition-all ${
+                                    isExpanded && 'rotate-180'
                                 }`}
                                 viewBox="0 0 12 12"
                             >
@@ -86,26 +82,26 @@ const SidebarMenu: React.FC<Props> = ({ sidebarItem, currentPathName }) => {
                     </div>
                 </a>
                 {/*Sub Items*/}
-                <div className="tw-block">
+                <div className="block">
                     <ul
-                        className={`tw-mt-1 tw-animate-floatUp tw-pl-9 tw-transition ${
-                            !isExpanded && 'tw-hidden'
+                        className={`mt-1 animate-floatUp pl-9 transition ${
+                            !isExpanded && 'hidden'
                         }`}
                     >
                         {sidebarItem.subItems.map((subItem) => (
                             <li
                                 key={subItem?.path || subItem?.label}
-                                className="tw-mb-1 last:tw-mb-0"
+                                className="mb-1 last:mb-0"
                             >
                                 <Link
                                     onClick={subItem.onClick}
                                     href={subItem.path || ''}
-                                    className={`tw-block tw-truncate tw-py-2 tw-text-slate-400 tw-transition tw-duration-150 hover:tw-text-slate-200 ${
+                                    className={`block truncate py-2 text-slate-400 transition duration-150 hover:text-slate-200 ${
                                         activeSubItem?.path === subItem?.path &&
-                                        '!tw-text-indigo-500'
+                                        '!text-indigo-500'
                                     }`}
                                 >
-                                    <span className="tw-text-sm tw-font-medium tw-duration-200">
+                                    <span className="text-sm font-medium duration-200">
                                         {subItem.label}
                                     </span>
                                 </Link>
@@ -119,18 +115,18 @@ const SidebarMenu: React.FC<Props> = ({ sidebarItem, currentPathName }) => {
     return (
         <SidebarMenuWrapper isActive={isPathActive}>
             <Link
-                className={`tw-block tw-truncate tw-text-slate-200 tw-transition tw-duration-150 hover:tw-text-white
-                ${isPathActive && 'hover:tw-text-slate-200'}`}
+                className={`block truncate text-slate-200 transition duration-150 hover:text-white
+                ${isPathActive && 'hover:text-slate-200'}`}
                 href={sidebarItem?.path || ''}
             >
-                <div className="tw-flex tw-items-center tw-py-2">
+                <div className="flex items-center py-2">
                     {sidebarItem?.icon && (
                         <SidebarMenuIcon
                             icon={sidebarItem.icon}
                             isActive={isPathActive}
                         />
                     )}
-                    <span className="tw-ml-3 tw-text-sm tw-font-medium tw-duration-200">
+                    <span className="ml-3 text-sm font-medium duration-200">
                         {sidebarItem.label}
                     </span>
                 </div>

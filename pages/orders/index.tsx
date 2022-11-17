@@ -20,38 +20,38 @@ const ViewOrdersPage: NextPage = () => {
         orderService.getOrders()
     );
     return (
-        <MainLayout maxWidth={'tw-max-w-6xl'}>
-            <div className="tw-bg-white">
-                <div className="tw-py-16 sm:tw-py-24">
-                    <div className="tw-max-w-7xl tw-mx-auto sm:tw-px-2 lg:tw-px-8">
-                        <div className="tw-max-w-2xl tw-mx-auto tw-px-4 lg:tw-max-w-4xl lg:tw-px-0">
+        <MainLayout maxWidth={'max-w-6xl'}>
+            <div className="bg-white">
+                <div className="py-16 sm:py-24">
+                    <div className="max-w-7xl mx-auto sm:px-2 lg:px-8">
+                        <div className="max-w-2xl mx-auto px-4 lg:max-w-4xl lg:px-0">
                             {orders?.data.map((order) => (
                                 <div
                                     key={order?.id}
-                                    className="tw-mb-8 tw-bg-white tw-border-t tw-border-b tw-border-gray-200 tw-shadow-sm sm:tw-rounded-lg sm:tw-border"
+                                    className="mb-8 bg-white border-t border-b border-gray-200 shadow-sm sm:rounded-lg sm:border"
                                 >
-                                    <h3 className="tw-sr-only">
+                                    <h3 className="sr-only">
                                         Order placed on{' '}
                                         <time dateTime={order?.orderDate}>
                                             {order?.orderDate}
                                         </time>
                                     </h3>
 
-                                    <div className="tw-flex tw-items-center tw-p-4 tw-border-b tw-border-gray-200 sm:tw-p-6 sm:tw-grid sm:tw-grid-cols-4 sm:tw-gap-x-6">
-                                        <dl className="tw-flex-1 tw-grid tw-grid-cols-2 tw-gap-x-6 tw-text-sm sm:tw-col-span-3 sm:tw-grid-cols-3 lg:tw-col-span-2">
+                                    <div className="flex items-center p-4 border-b border-gray-200 sm:p-6 sm:grid sm:grid-cols-4 sm:gap-x-6">
+                                        <dl className="flex-1 grid grid-cols-2 gap-x-6 text-sm sm:col-span-3 sm:grid-cols-3 lg:col-span-2">
                                             <div>
-                                                <dt className="tw-font-medium tw-text-gray-900">
+                                                <dt className="font-medium text-gray-900">
                                                     Mã đơn hàng
                                                 </dt>
-                                                <dd className="tw-mt-1 tw-text-gray-500">
+                                                <dd className="mt-1 text-gray-500">
                                                     {order?.id}
                                                 </dd>
                                             </div>
-                                            <div className="tw-hidden sm:tw-block">
-                                                <dt className="tw-font-medium tw-text-gray-900">
+                                            <div className="hidden sm:block">
+                                                <dt className="font-medium text-gray-900">
                                                     Ngày đặt hàng
                                                 </dt>
-                                                <dd className="tw-mt-1 tw-text-gray-500">
+                                                <dd className="mt-1 text-gray-500">
                                                     <time
                                                         dateTime={
                                                             order?.orderDate
@@ -66,10 +66,10 @@ const ViewOrdersPage: NextPage = () => {
                                                 </dd>
                                             </div>
                                             <div>
-                                                <dt className="tw-font-medium tw-text-gray-900">
+                                                <dt className="font-medium text-gray-900">
                                                     Tổng tiền
                                                 </dt>
-                                                <dd className="tw-mt-1 tw-font-medium tw-text-gray-900">
+                                                <dd className="mt-1 font-medium text-gray-900">
                                                     {order?.total
                                                         ? getFormattedPrice(
                                                               order?.total
@@ -79,22 +79,22 @@ const ViewOrdersPage: NextPage = () => {
                                             </div>
                                         </dl>
 
-                                        <div className="tw-hidden lg:tw-col-span-2 lg:tw-flex lg:tw-items-center lg:tw-justify-end lg:tw-space-x-4">
+                                        <div className="hidden lg:col-span-2 lg:flex lg:items-center lg:justify-end lg:space-x-4">
                                             <a
                                                 href={'#'}
-                                                className="tw-flex tw-items-center tw-justify-center tw-bg-white tw-py-2 tw-px-2.5 tw-border tw-border-gray-300 tw-rounded-md tw-shadow-sm tw-text-sm tw-font-medium tw-text-gray-700 hover:tw-bg-gray-50 focus:tw-outline-none focus:tw-ring-2 focus:tw-ring-offset-2 focus:tw-ring-indigo-500"
+                                                className="flex items-center justify-center bg-white py-2 px-2.5 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                                             >
                                                 <span>View Order</span>
-                                                <span className="tw-sr-only">
+                                                <span className="sr-only">
                                                     {'#'}
                                                 </span>
                                             </a>
                                             <a
                                                 href={'#'}
-                                                className="tw-flex tw-items-center tw-justify-center tw-bg-white tw-py-2 tw-px-2.5 tw-border tw-border-gray-300 tw-rounded-md tw-shadow-sm tw-text-sm tw-font-medium tw-text-gray-700 hover:tw-bg-gray-50 focus:tw-outline-none focus:tw-ring-2 focus:tw-ring-offset-2 focus:tw-ring-indigo-500"
+                                                className="flex items-center justify-center bg-white py-2 px-2.5 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                                             >
                                                 <span>View Invoice</span>
-                                                <span className="tw-sr-only">
+                                                <span className="sr-only">
                                                     for order {order?.id}
                                                 </span>
                                             </a>
@@ -102,19 +102,19 @@ const ViewOrdersPage: NextPage = () => {
                                     </div>
 
                                     {/* Products */}
-                                    <h4 className="tw-sr-only">Items</h4>
+                                    <h4 className="sr-only">Items</h4>
                                     <ul
                                         role="list"
-                                        className="tw-divide-y tw-divide-gray-200"
+                                        className="divide-y divide-gray-200"
                                     >
                                         {order?.orderDetails?.map(
                                             (orderDetail) => (
                                                 <li
                                                     key={orderDetail?.id}
-                                                    className="tw-p-4 sm:tw-p-6"
+                                                    className="p-4 sm:p-6"
                                                 >
-                                                    <div className="tw-flex tw-items-center sm:tw-items-start">
-                                                        <div className="tw-flex-shrink-0 tw-w-20 tw-h-20 tw-bg-gray-200 tw-rounded-lg tw-overflow-hidden sm:tw-w-40 sm:tw-h-40">
+                                                    <div className="flex items-center sm:items-start">
+                                                        <div className="flex-shrink-0 w-20 h-20 bg-gray-200 rounded-lg overflow-hidden sm:w-40 sm:h-40">
                                                             <img
                                                                 src={
                                                                     orderDetail
@@ -123,11 +123,11 @@ const ViewOrdersPage: NextPage = () => {
                                                                         ?.imageUrl
                                                                 }
                                                                 alt={''}
-                                                                className="full tw-h-full tw-object-center tw-object-cover"
+                                                                className="full h-full object-center object-cover"
                                                             />
                                                         </div>
-                                                        <div className="tw-flex-1 tw-ml-6 tw-text-sm">
-                                                            <div className="tw-font-medium tw-text-gray-900 sm:tw-flex sm:tw-justify-between">
+                                                        <div className="flex-1 ml-6 text-sm">
+                                                            <div className="font-medium text-gray-900 sm:flex sm:justify-between">
                                                                 <h5>
                                                                     {
                                                                         orderDetail
@@ -136,13 +136,13 @@ const ViewOrdersPage: NextPage = () => {
                                                                             ?.name
                                                                     }
                                                                 </h5>
-                                                                <p className="tw-mt-2 sm:tw-mt-0">
+                                                                <p className="mt-2 sm:mt-0">
                                                                     {
                                                                         orderDetail?.price
                                                                     }
                                                                 </p>
                                                             </div>
-                                                            <p className="tw-hidden tw-text-gray-500 sm:tw-block sm:tw-mt-2">
+                                                            <p className="hidden text-gray-500 sm:block sm:mt-2">
                                                                 {
                                                                     orderDetail
                                                                         ?.campaignBook
@@ -153,13 +153,13 @@ const ViewOrdersPage: NextPage = () => {
                                                         </div>
                                                     </div>
 
-                                                    <div className="tw-mt-6 sm:tw-flex sm:tw-justify-between">
-                                                        <div className="tw-flex tw-items-center">
+                                                    <div className="mt-6 sm:flex sm:justify-between">
+                                                        <div className="flex items-center">
                                                             <IoAddOutline
-                                                                className="tw-w-5 tw-h-5 tw-text-green-500"
+                                                                className="w-5 h-5 text-green-500"
                                                                 aria-hidden="true"
                                                             />
-                                                            <p className="tw-ml-2 tw-text-sm tw-font-medium tw-text-gray-500">
+                                                            <p className="ml-2 text-sm font-medium text-gray-500">
                                                                 Delivered on{' '}
                                                                 {/*<time*/}
                                                                 {/*    dateTime={*/}
@@ -173,19 +173,19 @@ const ViewOrdersPage: NextPage = () => {
                                                             </p>
                                                         </div>
 
-                                                        <div className="tw-mt-6 tw-border-t tw-border-gray-200 tw-pt-4 tw-flex tw-items-center tw-space-x-4 tw-divide-x tw-divide-gray-200 tw-text-sm tw-font-medium sm:tw-mt-0 sm:tw-ml-4 sm:tw-border-none sm:tw-pt-0">
-                                                            <div className="tw-flex-1 tw-flex tw-justify-center">
+                                                        <div className="mt-6 border-t border-gray-200 pt-4 flex items-center space-x-4 divide-x divide-gray-200 text-sm font-medium sm:mt-0 sm:ml-4 sm:border-none sm:pt-0">
+                                                            <div className="flex-1 flex justify-center">
                                                                 <a
                                                                     href={'#'}
-                                                                    className="tw-text-indigo-600 tw-whitespace-nowrap hover:tw-text-indigo-500"
+                                                                    className="text-indigo-600 whitespace-nowrap hover:text-indigo-500"
                                                                 >
                                                                     View product
                                                                 </a>
                                                             </div>
-                                                            <div className="tw-flex-1 tw-pl-4 tw-flex tw-justify-center">
+                                                            <div className="flex-1 pl-4 flex justify-center">
                                                                 <a
                                                                     href="#"
-                                                                    className="tw-text-indigo-600 tw-whitespace-nowrap hover:tw-text-indigo-500"
+                                                                    className="text-indigo-600 whitespace-nowrap hover:text-indigo-500"
                                                                 >
                                                                     Buy again
                                                                 </a>

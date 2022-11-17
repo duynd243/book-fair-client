@@ -14,7 +14,7 @@ export default async function SSRPage() {
                 <li>abc</li>
                 {/* {posts?.map((post: any) => {
                     return (
-                        <li className={'tw-mb-4'} key={post?.id}>
+                        <li className={'mb-4'} key={post?.id}>
                             Title: {post?.title}
                         </li>
                     );

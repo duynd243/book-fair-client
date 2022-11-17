@@ -23,15 +23,15 @@ const SignUpForm: React.FC = () => {
 
     return (
         <>
-            <h1 className="tw-mb-6 tw-text-3xl tw-font-bold tw-text-slate-800">
+            <h1 className="mb-6 text-3xl font-bold text-slate-800">
                 Đăng ký Tài khoản ✨
             </h1>
             {/* Form */}
-            <form onSubmit={onSubmit} className="tw-text-[#475569]">
+            <form onSubmit={onSubmit} className="text-[#475569]">
                 <div>
                     <div>
                         <label
-                            className="tw-mb-1 tw-block tw-text-sm tw-font-medium"
+                            className="mb-1 block text-sm font-medium"
                             htmlFor="email"
                         >
                             Email
@@ -45,9 +45,9 @@ const SignUpForm: React.FC = () => {
                             type="email"
                         />
                     </div>
-                    <div className="tw-mt-4">
+                    <div className="mt-4">
                         <label
-                            className="tw-mb-1 tw-block tw-text-sm tw-font-medium"
+                            className="mb-1 block text-sm font-medium"
                             htmlFor="fullName"
                         >
                             Họ và Tên
@@ -62,9 +62,9 @@ const SignUpForm: React.FC = () => {
                             autoComplete="on"
                         />
                     </div>
-                    <div className="tw-mt-4">
+                    <div className="mt-4">
                         <label
-                            className="tw-mb-1 tw-block tw-text-sm tw-font-medium"
+                            className="mb-1 block text-sm font-medium"
                             htmlFor="password"
                         >
                             Mật khẩu
@@ -79,9 +79,9 @@ const SignUpForm: React.FC = () => {
                             autoComplete="on"
                         />
                     </div>
-                    <div className="tw-mt-4">
+                    <div className="mt-4">
                         <label
-                            className="tw-mb-1 tw-block tw-text-sm tw-font-medium"
+                            className="mb-1 block text-sm font-medium"
                             htmlFor="confirmPassword"
                         >
                             Xác nhận mật khẩu
@@ -95,16 +95,16 @@ const SignUpForm: React.FC = () => {
                         />
                     </div>
                 </div>
-                <div className="tw-mt-6 tw-flex tw-flex-wrap tw-items-center tw-justify-between">
+                <div className="mt-6 flex flex-wrap items-center justify-between">
                     <button
                         disabled={authLoading}
                         type={'submit'}
-                        className="tw-w-full tw-transform tw-cursor-pointer tw-rounded-md tw-bg-indigo-600 tw-px-5 tw-py-2.5 tw-text-center tw-text-sm tw-font-medium tw-capitalize tw-tracking-wide tw-text-white tw-transition-colors tw-duration-300 hover:tw-bg-indigo-500 focus:tw-bg-indigo-500 focus:tw-outline-none"
+                        className="w-full transform cursor-pointer rounded-md bg-indigo-600 px-5 py-2.5 text-center text-sm font-medium capitalize tracking-wide text-white transition-colors duration-300 hover:bg-indigo-500 focus:bg-indigo-500 focus:outline-none"
                     >
                         Đăng ký
                     </button>
                 </div>
-                <div className="tw-my-5 tw-text-center tw-text-xs tw-font-medium tw-uppercase tw-text-gray-500">
+                <div className="my-5 text-center text-xs font-medium uppercase text-gray-500">
                     Hoặc đăng ký với
                 </div>
                 <SocialLoginButton
@@ -112,18 +112,18 @@ const SignUpForm: React.FC = () => {
                     actionType={ActionTypes.SIGNUP}
                 />
                 <SocialLoginButton
-                    wrapperClasses={'tw-mt-4'}
+                    wrapperClasses={'mt-4'}
                     provider={AuthProviders.FACEBOOK}
                     actionType={ActionTypes.SIGNUP}
                 />
             </form>
             {/* Footer */}
-            <div className="tw-mt-6 tw-border-t-[1px] tw-border-slate-200 tw-pt-5">
-                <div className="tw-text-sm">
+            <div className="mt-6 border-t-[1px] border-slate-200 pt-5">
+                <div className="text-sm">
                     Bạn đã có tài khoản?{' '}
                     <Link
                         href="/login"
-                        className="tw-font-medium tw-text-indigo-500 hover:tw-text-indigo-600"
+                        className="font-medium text-indigo-500 hover:text-indigo-600"
                     >
                         Đăng nhập
                     </Link>

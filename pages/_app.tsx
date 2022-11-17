@@ -45,7 +45,7 @@ function BookFairApp({ Component, pageProps }: AppProps) {
     return (
         <QueryClientProvider client={queryClient}>
             <ToastContainer
-                className={'tw-opacity-90'}
+                className={'opacity-90'}
                 position={'bottom-right'}
                 theme={'dark'}
             />

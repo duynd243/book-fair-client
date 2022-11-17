@@ -47,15 +47,13 @@ const Header: React.FC<Props> = ({ maxWidth }) => {
     ];
 
     return (
-        <header className="tw-sticky tw-top-0 tw-left-0 tw-right-0 tw-z-30 tw-animate-fadeInDown tw-bg-white/70 tw-shadow-sm tw-backdrop-blur-lg tw-transition-transform">
+        <header className="sticky top-0 left-0 right-0 z-30 animate-fadeInDown bg-white/70 shadow-sm backdrop-blur-lg transition-transform">
             <div
-                className={`${maxWidth} tw-relative tw-mx-auto tw-flex tw-h-16 tw-items-center tw-justify-between tw-px-4`}
+                className={`${maxWidth} relative mx-auto flex h-16 items-center justify-between px-4`}
             >
                 {/*Profile dropdown*/}
-                <div
-                    className={'tw-flex tw-items-center tw-gap-4 lg:tw-order-3'}
-                >
-                    <div className={'lg:tw-order-2'}>
+                <div className={'flex items-center gap-4 lg:order-3'}>
+                    <div className={'lg:order-2'}>
                         <DropdownMenu
                             menuItems={
                                 loginUser ? userMenuItems : guestMenuItems
@@ -63,31 +61,31 @@ const Header: React.FC<Props> = ({ maxWidth }) => {
                         />
                     </div>
                     {loginUser && loginUser?.role === Roles.CUSTOMER.id && (
-                        <Link href={'/cart'} className={'tw-group tw-relative'}>
+                        <Link href={'/cart'} className={'group relative'}>
                             <HiOutlineShoppingBag
-                                className={'tw-text-slate-500'}
+                                className={'text-slate-500'}
                                 size={28}
                             />
-                            <div className="tw-absolute tw-top-0 -tw-right-2 tw-h-5 tw-w-5 tw-rounded-full tw-bg-indigo-500 tw-text-center tw-text-xs tw-leading-relaxed tw-text-white tw-transition tw-duration-300 group-hover:tw-bg-indigo-600">
+                            <div className="absolute top-0 -right-2 h-5 w-5 rounded-full bg-indigo-500 text-center text-xs leading-relaxed text-white transition duration-300 group-hover:bg-indigo-600">
                                 {cart?.length || 0}
                             </div>
                         </Link>
                     )}
                 </div>
                 {/*Logo*/}
-                <div className="tw-flex tw-items-center tw-gap-4">
+                <div className="flex items-center gap-4">
                     <Link href={'/'}>
-                        <FcAddressBook className={'tw-scale-[2.2]'} />
+                        <FcAddressBook className={'scale-[2.2]'} />
                     </Link>
-                    <form className="tw-mb-0 tw-hidden lg:tw-flex">
-                        <div className="tw-relative">
+                    <form className="mb-0 hidden lg:flex">
+                        <div className="relative">
                             <input
-                                className="tw-h-10 tw-rounded-lg tw-border-gray-200 tw-pr-10 tw-text-sm tw-placeholder-gray-300 focus:tw-z-10"
+                                className="h-10 rounded-lg border-gray-200 pr-10 text-sm placeholder-gray-300 focus:z-10"
                                 placeholder="Tìm kiếm ..."
                                 type="text"
                             />
                             <button
-                                className="tw-absolute tw-inset-y-0 tw-right-0 tw-mr-px tw-rounded-r-lg tw-p-2 tw-text-gray-600"
+                                className="absolute inset-y-0 right-0 mr-px rounded-r-lg p-2 text-gray-600"
                                 type="submit"
                             >
                                 <BiSearch />
@@ -95,18 +93,18 @@ const Header: React.FC<Props> = ({ maxWidth }) => {
                         </div>
                     </form>
                 </div>
-                <div className="tw-flex tw-justify-end lg:tw-hidden">
+                <div className="flex justify-end lg:hidden">
                     <button
-                        className="tw-scale-[1.2] tw-rounded-full tw-bg-gray-100 tw-p-2 tw-text-gray-500"
+                        className="scale-[1.2] rounded-full bg-gray-100 p-2 text-gray-500"
                         type="button"
                     >
                         <BiSearch />
                     </button>
                 </div>
-                <div className="tw-hidden tw-items-center tw-justify-center tw-gap-8 tw-text-sm tw-font-medium lg:tw-flex lg:tw-w-0 lg:tw-flex-1">
+                <div className="hidden items-center justify-center gap-8 text-sm font-medium lg:flex lg:w-0 lg:flex-1">
                     {NAV_ROUTES.map((route, index) => (
                         <Link
-                            className="tw-text-gray-900"
+                            className="text-gray-900"
                             href={route.path}
                             key={index}
                         >
@@ -116,11 +114,11 @@ const Header: React.FC<Props> = ({ maxWidth }) => {
                 </div>
             </div>
             {/*Mobile navbar routes*/}
-            <div className="tw-border-t tw-border-gray-100 lg:tw-hidden">
-                <nav className="tw-flex tw-items-center tw-justify-center tw-overflow-x-auto tw-p-4 tw-text-sm tw-font-medium">
+            <div className="border-t border-gray-100 lg:hidden">
+                <nav className="flex items-center justify-center overflow-x-auto p-4 text-sm font-medium">
                     {NAV_ROUTES.map((route, index) => (
                         <Link
-                            className="tw-flex-shrink-0 tw-px-4 tw-text-gray-900"
+                            className="flex-shrink-0 px-4 text-gray-900"
                             href={route.path}
                             key={index}
                         >

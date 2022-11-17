@@ -6,7 +6,7 @@ type Props = {
 
 const SidebarBlockWrapper: React.FC<Props> = ({ children }) => {
     return (
-        <div className="tw-rounded-md tw-border tw-border-slate-200 tw-bg-white tw-p-5 tw-shadow lg:tw-w-72 xl:tw-w-80">
+        <div className="rounded-md border border-slate-200 bg-white p-5 shadow lg:w-72 xl:w-80">
             {children}
         </div>
     );

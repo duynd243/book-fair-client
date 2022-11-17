@@ -21,65 +21,61 @@ const IssuersLabel = ({ issuers }: { issuers: IUser[] }) => {
         children = <span>Chưa có NPH tham gia</span>;
     } else if (issuers.length <= 2) {
         children = (
-            <span className="tw-font-semibold">
+            <span className="font-semibold">
                 {issuers.map((i) => i.name).join(', ')}
             </span>
         );
     } else {
         children = (
             <>
-                <span className="tw-font-semibold">{issuers[0].name}</span> và{' '}
-                <span className="tw-font-semibold">{issuers.length - 1}</span>{' '}
-                NPH khác
+                <span className="font-semibold">{issuers[0].name}</span> và{' '}
+                <span className="font-semibold">{issuers.length - 1}</span> NPH
+                khác
             </>
         );
     }
-    return (
-        <div className="tw-text-right tw-text-sm tw-text-slate-600">
-            {children}
-        </div>
-    );
+    return <div className="text-right text-sm text-slate-600">{children}</div>;
 };
 
 const StatusLabel = ({ statusId }: { statusId?: number }) => {
-    let primaryColor = 'tw-bg-green-500';
-    let secondaryColor = 'tw-bg-green-400';
-    let textColor = 'tw-text-green-800';
+    let primaryColor = 'bg-green-500';
+    let secondaryColor = 'bg-green-400';
+    let textColor = 'text-green-800';
     const status = getCampaignStatusById(statusId || 0);
 
     switch (status.id) {
         case CampaignStatuses.STARTING.id:
-            primaryColor = 'tw-bg-green-500';
-            secondaryColor = 'tw-bg-green-400';
-            textColor = 'tw-text-green-800';
+            primaryColor = 'bg-green-500';
+            secondaryColor = 'bg-green-400';
+            textColor = 'text-green-800';
             break;
         case CampaignStatuses.NOT_STARTED.id:
-            primaryColor = 'tw-bg-yellow-500';
-            secondaryColor = 'tw-bg-yellow-400';
-            textColor = 'tw-text-yellow-800';
+            primaryColor = 'bg-yellow-500';
+            secondaryColor = 'bg-yellow-400';
+            textColor = 'text-yellow-800';
             break;
         case CampaignStatuses.FINISHED.id:
-            primaryColor = 'tw-bg-red-500';
-            secondaryColor = 'tw-bg-red-400';
-            textColor = 'tw-text-red-800';
+            primaryColor = 'bg-red-500';
+            secondaryColor = 'bg-red-400';
+            textColor = 'text-red-800';
             break;
     }
 
     return (
-        <div className="tw-flex tw-items-center tw-gap-2">
-            <div className="tw-flex tw-items-center tw-text-sm tw-text-slate-600">
+        <div className="flex items-center gap-2">
+            <div className="flex items-center text-sm text-slate-600">
                 {/* Icon */}
-                <span className="tw-relative tw-mr-2 tw-flex tw-h-3 tw-w-3 tw-items-center tw-justify-center">
+                <span className="relative mr-2 flex h-3 w-3 items-center justify-center">
                     <span
-                        className={`tw-absolute tw-inline-flex tw-h-full tw-w-full tw-animate-ping tw-rounded-full ${secondaryColor} tw-opacity-75`}
+                        className={`absolute inline-flex h-full w-full animate-ping rounded-full ${secondaryColor} opacity-75`}
                     ></span>
                     <span
-                        className={`tw-relative tw-inline-flex tw-h-3 tw-w-3 tw-rounded-full ${primaryColor}`}
+                        className={`relative inline-flex h-3 w-3 rounded-full ${primaryColor}`}
                     ></span>
                 </span>
 
                 {/* Text */}
-                <span className={`tw-font-medium ${textColor}`}>
+                <span className={`font-medium ${textColor}`}>
                     {statusId !== undefined
                         ? getCampaignStatusById(statusId).displayName
                         : 'N/A'}
@@ -128,10 +124,10 @@ const CampaignCard: React.FC<Props> = ({ campaign }) => {
     };
 
     return (
-        <article className="tw-duration-400 tw-group tw-flex !tw-h-full tw-flex-col tw-overflow-hidden tw-rounded-lg tw-border tw-bg-white tw-transition-transform hover:tw-shadow-md">
+        <article className="duration-400 group flex !h-full flex-col overflow-hidden rounded-lg border bg-white transition-transform hover:shadow-md">
             {/* Cover Image */}
             <Link
-                className="tw-overflow-hidden"
+                className="overflow-hidden"
                 title="Click để xem chi tiết"
                 href={{
                     pathname: '/campaigns/[slug]/[id]',
@@ -139,7 +135,7 @@ const CampaignCard: React.FC<Props> = ({ campaign }) => {
                 }}
             >
                 <Image
-                    className="tw-h-[220px] tw-w-full tw-object-cover tw-object-center tw-transition-transform tw-duration-300 group-hover:tw-scale-105"
+                    className="h-[220px] w-full object-cover object-center transition-transform duration-300 group-hover:scale-105"
                     width={500}
                     height={500}
                     alt=""
@@ -150,8 +146,8 @@ const CampaignCard: React.FC<Props> = ({ campaign }) => {
                 />
             </Link>
             {/* Content */}
-            <div className="tw-flex tw-flex-1 tw-flex-col">
-                <div className="tw-flex tw-flex-1 tw-space-x-4 tw-rounded-lg tw-px-4 tw-py-4 md:tw-px-5">
+            <div className="flex flex-1 flex-col">
+                <div className="flex flex-1 space-x-4 rounded-lg px-4 py-4 md:px-5">
                     {/* Left - Date */}
                     <CalendarCard
                         dateStr={campaign?.startDate}
@@ -160,7 +156,7 @@ const CampaignCard: React.FC<Props> = ({ campaign }) => {
                         }`}
                     />
                     {/* Right - Information */}
-                    <div className="tw-min-w-0 tw-flex-1">
+                    <div className="min-w-0 flex-1">
                         {/* Title */}
                         <div>
                             <Link
@@ -172,7 +168,7 @@ const CampaignCard: React.FC<Props> = ({ campaign }) => {
                                         id: campaign.id,
                                     },
                                 }}
-                                className="tw-text-lg tw-font-semibold tw-leading-6 tw-text-slate-800 tw-line-clamp-2 hover:tw-text-indigo-600"
+                                className="text-lg font-semibold leading-6 text-slate-800 line-clamp-2 hover:text-indigo-600"
                             >
                                 {campaign?.name}
                             </Link>
@@ -189,15 +185,15 @@ const CampaignCard: React.FC<Props> = ({ campaign }) => {
                                         id: campaign.id,
                                     },
                                 }}
-                                className="tw-mt-2.5 tw-text-sm tw-text-slate-600 tw-line-clamp-3"
+                                className="mt-2.5 text-sm text-slate-600 line-clamp-3"
                             >
                                 {campaign?.description}
                             </Link>
                         </div>
                         {/* Metadata */}
-                        <div className="tw-mt-4 tw-space-y-3">
+                        <div className="mt-4 space-y-3">
                             {/* Location */}
-                            <div className="tw-flex tw-items-center tw-gap-1 tw-text-sm tw-text-slate-600">
+                            <div className="flex items-center gap-1 text-sm text-slate-600">
                                 <IoLocation />
                                 <span>{campaign?.address}</span>
                             </div>
@@ -208,7 +204,7 @@ const CampaignCard: React.FC<Props> = ({ campaign }) => {
                                         campaign?.organizationCampaigns
                                     ).title
                                 }
-                                className="tw-flex tw-items-center tw-gap-1 tw-text-sm tw-text-slate-600"
+                                className="flex items-center gap-1 text-sm text-slate-600"
                             >
                                 <IoBusiness />
                                 <span>
@@ -225,7 +221,7 @@ const CampaignCard: React.FC<Props> = ({ campaign }) => {
                                     new Date(campaign?.endDate || ''),
                                     new Date(campaign?.startDate || '')
                                 )} ngày`}
-                                className="tw-flex tw-items-center tw-gap-1 tw-text-sm tw-text-slate-600"
+                                className="flex items-center gap-1 text-sm text-slate-600"
                             >
                                 <IoCalendar />
                                 <span>
@@ -241,12 +237,12 @@ const CampaignCard: React.FC<Props> = ({ campaign }) => {
                 </div>
 
                 {/* Card Footer */}
-                <div className="tw-flex tw-items-start tw-justify-between tw-border-t tw-border-slate-100 tw-bg-zinc-50 tw-px-3.5 tw-py-3">
+                <div className="flex items-start justify-between border-t border-slate-100 bg-zinc-50 px-3.5 py-3">
                     {/* Status */}
                     <StatusLabel statusId={campaign.status!} />
 
                     {/* Issuers */}
-                    <div className="tw-flex tw-flex-col tw-items-end tw-gap-2.5">
+                    <div className="flex flex-col items-end gap-2.5">
                         {issuers && issuers.length > 0 && (
                             <AvatarGroup
                                 max={3}

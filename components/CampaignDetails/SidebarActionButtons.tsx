@@ -14,7 +14,7 @@ type Props = {
 
 const RequestToJoinButton: React.FC<Props> = ({ campaign, issuers }) => {
     return (
-        <button className="tw-flex tw-w-full tw-items-center tw-justify-center tw-gap-2 tw-rounded tw-bg-indigo-500 tw-py-2 tw-text-white hover:tw-bg-indigo-600">
+        <button className="flex w-full items-center justify-center gap-2 rounded bg-indigo-500 py-2 text-white hover:bg-indigo-600">
             <IoPersonAdd size={14} />
             <span>Yêu cầu tham gia</span>
         </button>
@@ -23,7 +23,7 @@ const RequestToJoinButton: React.FC<Props> = ({ campaign, issuers }) => {
 
 const AlreadyJoinedButton: React.FC<Props> = ({ campaign, issuers }) => {
     return (
-        <button className="tw-flex tw-w-full tw-items-center tw-justify-center tw-gap-2 tw-rounded tw-bg-green-500 tw-py-2 tw-text-white hover:tw-bg-green-600">
+        <button className="flex w-full items-center justify-center gap-2 rounded bg-green-500 py-2 text-white hover:bg-green-600">
             <IoCheckmarkDone size={14} />
             <span>Đã tham gia</span>
         </button>
@@ -50,14 +50,14 @@ const SidebarActionButtons: React.FC<Props> = ({ campaign, issuers }) => {
 
     return (
         <SidebarBlockWrapper>
-            <div className="tw-space-y-2">
-                <button className="tw-flex tw-w-full tw-items-center tw-justify-center tw-gap-2 tw-rounded tw-bg-indigo-500 tw-py-2 tw-text-white hover:tw-bg-indigo-600">
+            <div className="space-y-2">
+                <button className="flex w-full items-center justify-center gap-2 rounded bg-indigo-500 py-2 text-white hover:bg-indigo-600">
                     <IoPersonAdd size={14} />
                     <span>Yêu cầu tham gia</span>
                 </button>
-                {/*<button className="tw-flex tw-border tw-items-center tw-justify-center tw-rounded tw-py-2 tw-border-slate-200 hover:border-slate-300 text-slate-600 tw-w-full">*/}
+                {/*<button className="flex border items-center justify-center rounded py-2 border-slate-200 hover:border-slate-300 text-slate-600 w-full">*/}
                 {/*    <IoHeartCircleOutline size={14} />*/}
-                {/*    <span className="tw-ml-2">Favorite</span>*/}
+                {/*    <span className="ml-2">Favorite</span>*/}
                 {/*</button>*/}
             </div>
         </SidebarBlockWrapper>

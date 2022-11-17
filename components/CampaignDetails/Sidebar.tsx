@@ -12,10 +12,10 @@ type Props = {
 const Sidebar: React.FC<Props> = ({ campaign, issuers }) => {
     return (
         <div>
-            <div className="tw-space-y-4 lg:tw-sticky lg:tw-top-20">
-                {/* 1st tw-block */}
+            <div className="space-y-4 lg:sticky lg:top-20">
+                {/* 1st block */}
                 <SidebarActionButtons campaign={campaign} issuers={issuers} />
-                {/* 2nd tw-block */}
+                {/* 2nd block */}
                 <SidebarIssuersTable issuers={issuers} />
             </div>
         </div>

@@ -13,13 +13,11 @@ const DropdownMenu: React.FC<Props> = (props) => {
     const { user, loginUser, authLoading, logOut } = useAuth();
     return (
         <Menu as={'div'}>
-            <Menu.Button
-                className={'tw-flex tw-items-center tw-justify-center'}
-            >
+            <Menu.Button className={'flex items-center justify-center'}>
                 <Image
                     width={35}
                     height={35}
-                    className="tw-cursor-pointer tw-rounded-full"
+                    className="cursor-pointer rounded-full"
                     src={
                         loginUser?.imageUrl ||
                         user?.photoURL ||
@@ -30,17 +28,17 @@ const DropdownMenu: React.FC<Props> = (props) => {
             </Menu.Button>
             <Transition
                 as={Fragment}
-                enter="tw-transition tw-ease-out tw-duration-100"
-                enterFrom="tw-transform tw-opacity-0 tw-scale-95"
-                enterTo="tw-transform tw-opacity-100 tw-scale-100"
-                leave="tw-transition tw-ease-in tw-duration-75"
-                leaveFrom="tw-transform tw-opacity-100 tw-scale-100"
-                leaveTo="tw-transform tw-opacity-0 tw-scale-95"
+                enter="transition ease-out duration-100"
+                enterFrom="transform opacity-0 scale-95"
+                enterTo="transform opacity-100 scale-100"
+                leave="transition ease-in duration-75"
+                leaveFrom="transform opacity-100 scale-100"
+                leaveTo="transform opacity-0 scale-95"
             >
                 <Menu.Items
                     as={'div'}
                     className={
-                        'tw-absolute tw-top-full tw-left-2 -tw-mt-2 tw-w-52 tw-max-w-full tw-rounded-lg tw-border tw-border-gray-100 tw-bg-white tw-p-1.5 tw-shadow-lg tw-drop-shadow lg:tw-left-auto lg:tw-right-2'
+                        'absolute top-full left-2 -mt-2 w-52 max-w-full rounded-lg border border-gray-100 bg-white p-1.5 shadow-lg drop-shadow lg:left-auto lg:right-2'
                     }
                 >
                     {props.menuItems.map((item, index) => (
