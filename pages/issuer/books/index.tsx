@@ -18,6 +18,7 @@ const IssuerBooksPage: NextPage = () => {
         issuerBookService.getBooks$Issuer({
             page: page,
             size: pageSize,
+            sort: 'id desc',
         })
     );
     return (

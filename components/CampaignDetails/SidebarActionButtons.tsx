@@ -138,10 +138,13 @@ const IssuerActionButtons: React.FC<Props> = ({ campaign, issuers }) => {
         campaign?.status === CampaignStatuses.STARTING.id
     ) {
         return (
-            <button className="flex w-full items-center justify-center gap-2 rounded bg-slate-500 py-2 text-white hover:bg-slate-600">
-                <IoCheckmarkDone size={14} />
-                <span>Đã tham gia</span>
-            </button>
+            <Link
+                href={`/issuer/posts/create?campaignId=${campaign?.id}`}
+                className="flex w-full items-center justify-center gap-2 rounded bg-slate-500 py-2 text-white hover:bg-slate-600"
+            >
+                <IoAddCircle size={14} />
+                <span>Tạo bài đăng</span>
+            </Link>
         );
     }
 
