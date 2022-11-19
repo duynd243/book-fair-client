@@ -244,45 +244,55 @@ const IssuerCreatePostPage: NextPage = () => {
                         </div>
 
                         <div className="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
-                            {books?.data?.map((book) => (
-                                <div
-                                    key={book?.id}
-                                    className={'flex sm:col-span-3'}
-                                >
-                                    <Image
-                                        width={200}
-                                        height={300}
-                                        src={book?.imageUrl || ''}
-                                        alt={''}
-                                    />
-                                    <div>
-                                        <h1
-                                            className={
-                                                'text-lg font-medium text-gray-900'
-                                            }
-                                        >
-                                            {book?.name}
-                                        </h1>
-                                        <p className={'text-sm text-gray-500'}>
-                                            {book?.price &&
-                                                getFormattedPrice(book?.price)}
-                                        </p>
-                                        <input
-                                            onChange={(e) => {
-                                                // set state
-                                                setSelectedBookId(book?.id);
-                                            }}
-                                            checked={
-                                                selectedBookId === book?.id
-                                            }
-                                            className={'mt-2 rounded'}
-                                            type="checkbox"
-                                            name="books"
-                                            value={book?.id}
+                            {isLoading ? (
+                                <div>Đang tải...</div>
+                            ) : (
+                                books?.data?.map((book) => (
+                                    <div
+                                        key={book?.id}
+                                        className={'flex sm:col-span-3'}
+                                    >
+                                        <Image
+                                            width={200}
+                                            height={300}
+                                            src={book?.imageUrl || ''}
+                                            alt={''}
                                         />
+                                        <div>
+                                            <h1
+                                                className={
+                                                    'text-lg font-medium text-gray-900'
+                                                }
+                                            >
+                                                {book?.name}
+                                            </h1>
+                                            <p
+                                                className={
+                                                    'text-sm text-gray-500'
+                                                }
+                                            >
+                                                {book?.price &&
+                                                    getFormattedPrice(
+                                                        book?.price
+                                                    )}
+                                            </p>
+                                            <input
+                                                onChange={(e) => {
+                                                    // set state
+                                                    setSelectedBookId(book?.id);
+                                                }}
+                                                checked={
+                                                    selectedBookId === book?.id
+                                                }
+                                                className={'mt-2 rounded'}
+                                                type="checkbox"
+                                                name="books"
+                                                value={book?.id}
+                                            />
+                                        </div>
                                     </div>
-                                </div>
-                            ))}
+                                ))
+                            )}
                         </div>
                     </div>
                 </div>

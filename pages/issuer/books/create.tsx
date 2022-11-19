@@ -132,7 +132,9 @@ const IssuerCreateBookPage: NextPage = () => {
         },
         validationSchema: Yup.object().shape({
             code: Yup.string().required('Mã sách không được để trống'),
-            isbn10: Yup.string().required('ISBN10 không được để trống'),
+            isbn10: Yup.string()
+                .required('ISBN10 không được để trống')
+                .length(10, 'ISBN10 phải có 10 ký tự'),
             isbn13: Yup.string()
                 .required('ISBN13 không được để trống')
                 .length(13, 'ISBN13 phải có 13 ký tự'),
@@ -173,6 +175,15 @@ const IssuerCreateBookPage: NextPage = () => {
                 toast.error('Vui lòng chọn tác giả');
                 return;
             }
+            if (!selectedPublisherId) {
+                toast.error('Vui lòng chọn nhà xuất bản');
+                return;
+            }
+            if (!selectedCategoryId) {
+                toast.error('Vui lòng chọn thể loại');
+                return;
+            }
+
             let payload = {
                 ...values,
                 authors: [Number(selectedAuthorId)],
@@ -367,7 +378,7 @@ const IssuerCreateBookPage: NextPage = () => {
                                     <input
                                         value={form.values.isbn10}
                                         onChange={form.handleChange}
-                                        type="number"
+                                        type="text"
                                         name="isbn10"
                                         id="isbn10"
                                         className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
@@ -391,7 +402,7 @@ const IssuerCreateBookPage: NextPage = () => {
                                     <input
                                         value={form.values.isbn13}
                                         onChange={form.handleChange}
-                                        type="number"
+                                        type="text"
                                         name="isbn13"
                                         id="isbn13"
                                         className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"

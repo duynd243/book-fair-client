@@ -19,6 +19,8 @@ import { getFormattedPrice, getSlug } from '../../utils/helper';
 import { useAuth } from '../../context/AuthContext';
 import Swal from 'sweetalert2';
 import { ICartItem } from '../../types/cart/ICartItem';
+import { useRouter } from 'next/router';
+import { PROTECTED_ROUTES } from '../../constants/ProtectedRoutes';
 
 const FeaturedItem: React.FC<{ children: React.ReactNode }> = ({
     children,
@@ -36,6 +38,11 @@ type Props = {
 
 const PostCard: React.FC<Props> = ({ data }) => {
     const { handleAddToCart, checkValidCartAction } = useAuth();
+    const router = useRouter();
+
+    const isProtectedRoute = PROTECTED_ROUTES.find((route) =>
+        router.pathname.startsWith(route.path)
+    );
     const book = data?.campaignBooks[0]?.book;
     const postHref = {
         pathname: '/posts/[slug]/[id]',
@@ -248,13 +255,15 @@ const PostCard: React.FC<Props> = ({ data }) => {
                         </ul>
                     </div>
                     {/* Card footer */}
-                    <button
-                        onClick={addToCart}
-                        className="flex w-full items-center justify-center gap-1.5 rounded bg-indigo-500 py-1.5 text-white hover:bg-indigo-600"
-                    >
-                        <IoBagCheck size={15} />
-                        <span>Thêm vào giỏ hàng</span>
-                    </button>
+                    {!isProtectedRoute && (
+                        <button
+                            onClick={addToCart}
+                            className="flex w-full items-center justify-center gap-1.5 rounded bg-indigo-500 py-1.5 text-white hover:bg-indigo-600"
+                        >
+                            <IoBagCheck size={15} />
+                            <span>Thêm vào giỏ hàng</span>
+                        </button>
+                    )}
                 </div>
             </div>
         </article>
