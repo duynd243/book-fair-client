@@ -18,6 +18,7 @@ import Link from 'next/link';
 import { getFormattedPrice, getSlug } from '../../utils/helper';
 import { useAuth } from '../../context/AuthContext';
 import Swal from 'sweetalert2';
+import { ICartItem } from '../../types/cart/ICartItem';
 
 const FeaturedItem: React.FC<{ children: React.ReactNode }> = ({
     children,
@@ -34,7 +35,7 @@ type Props = {
 };
 
 const PostCard: React.FC<Props> = ({ data }) => {
-    const { handleAddToCart } = useAuth();
+    const { handleAddToCart, checkValidCartAction } = useAuth();
     const book = data?.campaignBooks[0]?.book;
     const postHref = {
         pathname: '/posts/[slug]/[id]',
@@ -45,29 +46,31 @@ const PostCard: React.FC<Props> = ({ data }) => {
     };
 
     const addToCart = () => {
+        if (!checkValidCartAction()) {
+            return;
+        }
         if (
             data?.id &&
             data?.campaignBooks[0].id &&
             data?.campaignBooks[0]?.bookId &&
             data?.campaignId
         ) {
-            const result = handleAddToCart({
+            const cartItem: ICartItem = {
                 campaignBookId: data?.campaignBooks[0].id,
                 postId: data?.id,
                 bookId: data?.campaignBooks[0]?.bookId,
                 quantity: 1,
                 campaignId: data?.campaignId,
+            };
+            handleAddToCart(cartItem);
+            Swal.fire({
+                title: 'Đã thêm vào giỏ hàng!',
+                text: 'Sản phẩm đã được thêm vào giỏ hàng.',
+                icon: 'success',
+                showConfirmButton: false,
+                showCancelButton: false,
+                timer: 1500,
             });
-            if (result) {
-                Swal.fire({
-                    title: 'Đã thêm vào giỏ hàng!',
-                    text: 'Sản phẩm đã được thêm vào giỏ hàng.',
-                    icon: 'success',
-                    showConfirmButton: false,
-                    showCancelButton: false,
-                    timer: 1500,
-                });
-            }
         }
     };
 
@@ -88,7 +91,7 @@ const PostCard: React.FC<Props> = ({ data }) => {
                     />
                 </Link>
                 {/* Card Content */}
-                <div className="grow flex flex-col py-5 px-6">
+                <div className="flex grow flex-col py-5 px-6">
                     {/* Card body */}
                     <div className="grow">
                         {/* Header */}

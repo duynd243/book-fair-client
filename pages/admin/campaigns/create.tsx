@@ -7,11 +7,14 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { SystemOrganizationService } from '../../../services/System/System_OrganizationService';
 import { useAuth } from '../../../context/AuthContext';
-import { useInfiniteQuery } from '@tanstack/react-query';
+import { useInfiniteQuery, useMutation } from '@tanstack/react-query';
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
 import { storage } from '../../../utils/firebase/initFirebase';
 import { SystemCampaignService } from '../../../services/System/System_CapaignService';
 import { useRouter } from 'next/router';
+import { addDays } from 'date-fns';
+import { ICampaign } from '../../../types/campaign/ICampaign';
+import Swal from 'sweetalert2';
 
 const AdminCreateCampaignPage: NextPage = () => {
     const { loginUser } = useAuth();
@@ -56,18 +59,28 @@ const AdminCreateCampaignPage: NextPage = () => {
         loginUser?.accessToken
     );
 
-    // const createCampaignMutation = useMutation(
-    //     (payload) => systemCampaignService.createCampaign$System(payload),
-    //     {
-    //         onSuccess: (data) => {
-    //             toast.success('Sự kiện đã được tạo thành công');
-    //             router.push('/admin/campaigns');
-    //         },
-    //         onError: (error) => {
-    //             toast.error('Có lỗi xảy ra khi tạo sự kiện. Vui lòng thử lại');
-    //         },
-    //     }
-    // );
+    const createCampaignMutation = useMutation(
+        (payload: ICampaign) =>
+            systemCampaignService.createCampaign$System(payload),
+        {
+            onSuccess: (data: ICampaign) => {
+                Swal.fire({
+                    title: 'Tạo sự kiện thành công',
+                    icon: 'success',
+                    showCancelButton: false,
+                    showConfirmButton: false,
+                    timer: 1500,
+                }).then((result) => {
+                    router.push(`/admin/campaigns/${data?.id}`);
+                });
+            },
+            onError: (error: any) => {
+                toast.error(
+                    'Có lỗi xảy ra khi tạo sự kiện.\n\n' + error?.message
+                );
+            },
+        }
+    );
 
     const [orgSize, setOrgSize] = useState(6);
     const [selectedOrgIds, setSelectedOrgIds] = useState<number[]>([]);
@@ -135,13 +148,21 @@ const AdminCreateCampaignPage: NextPage = () => {
             campaignDesc: Yup.string().required('Mô tả là bắt buộc'),
             startDate: Yup.date()
                 .required('Ngày bắt đầu là bắt buộc')
-                .min(new Date(), 'Ngày bắt đầu phải sau ngày hiện tại'),
+                .min(
+                    addDays(new Date(), 1),
+                    'Ngày bắt đầu phải sau ngày hiện tại ít nhất 2 ngày'
+                ),
             endDate: Yup.date()
                 .required('Ngày kết thúc là bắt buộc')
-                .min(
-                    Yup.ref('startDate'),
-                    'Ngày kết thúc không được trước ngày bắt đầu'
-                ),
+                .test({
+                    name: 'isAfterStartDate',
+                    params: {},
+                    message: 'Ngày kết thúc phải sau ngày bắt đầu',
+                    test: (value, context) => {
+                        if (!value) return false;
+                        return value > context.parent.startDate;
+                    },
+                }),
             address: Yup.string().required('Địa chỉ là bắt buộc'),
         }),
         onSubmit: async (values) => {
@@ -149,10 +170,9 @@ const AdminCreateCampaignPage: NextPage = () => {
                 toast.error('Vui lòng chọn ảnh bìa');
                 return;
             }
-            let payload = {
+            let payload: ICampaign = {
                 name: values.campaignName,
                 address: values.address,
-                preDate: new Date().toJSON(),
                 startDate: new Date(values.startDate).toJSON(),
                 endDate: new Date(values.endDate).toJSON(),
                 description: values.campaignDesc,
@@ -166,17 +186,7 @@ const AdminCreateCampaignPage: NextPage = () => {
             firebaseUploadPromise(coverPhoto)
                 .then(async (url) => {
                     payload.imageUrl = url as string;
-                    console.log(url);
-                    try {
-                        await systemCampaignService.createCampaign$System(
-                            payload
-                        );
-                        toast.success('Sự kiện đã được tạo thành công');
-                        router.push('/admin/campaigns');
-                    } catch (error) {
-                        toast.error('Có lỗi xảy ra khi tạo sự kiện');
-                        console.log(error);
-                    }
+                    createCampaignMutation.mutate(payload);
                 })
                 .catch((err) => {
                     toast.error(
@@ -193,17 +203,16 @@ const AdminCreateCampaignPage: NextPage = () => {
         <AdminLayout>
             <form
                 onSubmit={form.handleSubmit}
-                className="bg-white p-10 mx-auto max-w-6xl space-y-8 divide-y divide-gray-200"
+                className="mx-auto max-w-6xl space-y-8 divide-y divide-gray-200 bg-white p-10"
             >
                 <div className="space-y-8 divide-y divide-gray-200">
                     <div>
                         <div>
-                            <h3 className="text-lg leading-6 font-medium text-gray-900">
+                            <h3 className="text-lg font-medium leading-6 text-gray-900">
                                 Thông tin chung
                             </h3>
                             <p className="mt-1 text-sm text-gray-500">
-                                This information will be displayed publicly so
-                                be careful what you share.
+                                Thông tin cơ bản về sự kiện
                             </p>
                         </div>
 
@@ -222,7 +231,7 @@ const AdminCreateCampaignPage: NextPage = () => {
                                         type="text"
                                         name="campaignName"
                                         id="campaignName"
-                                        className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
+                                        className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                                     />
                                 </div>
                                 {form.errors.campaignName &&
@@ -247,7 +256,7 @@ const AdminCreateCampaignPage: NextPage = () => {
                                         id="campaignDesc"
                                         name="campaignDesc"
                                         rows={3}
-                                        className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border border-gray-300 rounded-md"
+                                        className="block w-full rounded-md border border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                                     />
                                 </div>
                                 {form.errors.campaignDesc &&
@@ -263,14 +272,14 @@ const AdminCreateCampaignPage: NextPage = () => {
                                     htmlFor="cover-photo"
                                     className="block text-sm font-medium text-gray-700"
                                 >
-                                    Cover photo
+                                    Ảnh bìa
                                 </label>
-                                <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
+                                <div className="mt-1 flex justify-center rounded-md border-2 border-dashed border-gray-300 px-6 pt-5 pb-6">
                                     <div className="space-y-1 text-center">
                                         {coverPhoto ? (
                                             <Image
                                                 className={
-                                                    'object-cover mb-4 object-center rounded-md'
+                                                    'mb-4 rounded-md object-cover object-center'
                                                 }
                                                 width={500}
                                                 height={500}
@@ -295,10 +304,10 @@ const AdminCreateCampaignPage: NextPage = () => {
                                                 />
                                             </svg>
                                         )}
-                                        <div className="flex text-sm justify-center text-gray-600">
+                                        <div className="flex justify-center text-sm text-gray-600">
                                             <label
                                                 htmlFor="file-upload"
-                                                className="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500"
+                                                className="relative cursor-pointer rounded-md bg-white font-medium text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:text-indigo-500"
                                             >
                                                 <span>
                                                     {coverPhoto
@@ -319,7 +328,7 @@ const AdminCreateCampaignPage: NextPage = () => {
                                             </label>
                                         </div>
                                         <p className="text-xs text-gray-500">
-                                            PNG, JPG, GIF up to 1MB
+                                            PNG, JPG, GIF tối đa 1MB
                                         </p>
                                     </div>
                                 </div>
@@ -329,12 +338,12 @@ const AdminCreateCampaignPage: NextPage = () => {
 
                     <div className="pt-8">
                         <div>
-                            <h3 className="text-lg leading-6 font-medium text-gray-900">
+                            <h3 className="text-lg font-medium leading-6 text-gray-900">
                                 Thời gian và địa điểm
                             </h3>
                             <p className="mt-1 text-sm text-gray-500">
-                                Use a permanent address where you can receive
-                                mail.
+                                Thông tin về thời gian và địa điểm tổ chức sự
+                                kiện
                             </p>
                         </div>
                         <div className="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
@@ -352,7 +361,7 @@ const AdminCreateCampaignPage: NextPage = () => {
                                         type="date"
                                         name="startDate"
                                         id="startDate"
-                                        className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
+                                        className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                                     />
                                 </div>
                                 {form.errors.startDate &&
@@ -377,7 +386,7 @@ const AdminCreateCampaignPage: NextPage = () => {
                                         type="date"
                                         name="endDate"
                                         id="endDate"
-                                        className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
+                                        className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                                     />
                                 </div>
                                 {form.errors.endDate &&
@@ -401,7 +410,7 @@ const AdminCreateCampaignPage: NextPage = () => {
                                         type="text"
                                         name="address"
                                         id="address"
-                                        className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
+                                        className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                                     />
                                 </div>
                                 {form.errors.address &&
@@ -416,7 +425,7 @@ const AdminCreateCampaignPage: NextPage = () => {
 
                     <div className="pt-8">
                         <div>
-                            <h3 className="text-lg leading-6 font-medium text-gray-900">
+                            <h3 className="text-lg font-medium leading-6 text-gray-900">
                                 Tổ chức
                             </h3>
                         </div>
@@ -431,7 +440,7 @@ const AdminCreateCampaignPage: NextPage = () => {
                                             Chọn các tổ chức mà sự kiện này
                                             thuộc về
                                         </legend>
-                                        <div className="mt-4 grid gap-x-4 gap-y-6 grid-cols-1 sm:grid-cols-12">
+                                        <div className="mt-4 grid grid-cols-1 gap-x-4 gap-y-6 sm:grid-cols-12">
                                             {organizations?.pages.map((value) =>
                                                 value.data.map(
                                                     (organization) => (
@@ -439,9 +448,9 @@ const AdminCreateCampaignPage: NextPage = () => {
                                                             key={
                                                                 organization?.id
                                                             }
-                                                            className="sm:col-span-6 relative flex items-start"
+                                                            className="relative flex items-start sm:col-span-6"
                                                         >
-                                                            <div className="flex items-center h-5">
+                                                            <div className="flex h-5 items-center">
                                                                 <input
                                                                     onChange={(
                                                                         e
@@ -454,7 +463,7 @@ const AdminCreateCampaignPage: NextPage = () => {
                                                                     id={`organization-${organization?.id}`}
                                                                     name="organizations"
                                                                     type="checkbox"
-                                                                    className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
+                                                                    className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
                                                                 />
                                                             </div>
                                                             <div className="ml-3 text-sm">
@@ -486,9 +495,10 @@ const AdminCreateCampaignPage: NextPage = () => {
                             )}
                             {hasNextPage && (
                                 <button
+                                    type={'button'}
                                     disabled={isFetchingNextPage}
                                     className={
-                                        'bg-slate-900 text-white py-1 px-2.5 rounded mt-4'
+                                        'mt-4 rounded bg-slate-900 py-1 px-2.5 text-white'
                                     }
                                     onClick={() => fetchNextPage()}
                                 >
@@ -504,7 +514,7 @@ const AdminCreateCampaignPage: NextPage = () => {
                         <button
                             disabled={isCreating}
                             type="submit"
-                            className="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                            className="ml-3 inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                         >
                             Tạo sự kiện
                         </button>

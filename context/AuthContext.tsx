@@ -24,6 +24,7 @@ import { ILoginUser } from 'types/user/ILoginUser';
 import LoadingProgress from '../components/Commons/LoadingProgress';
 import { ICartItem } from '../types/cart/ICartItem';
 import { Roles } from '../constants/Roles';
+import cart from '../pages/cart';
 
 export interface IAuthContext {
     cart: ICartItem[];
@@ -32,17 +33,18 @@ export interface IAuthContext {
     authLoading: boolean;
     handleGoogleSignIn: () => void;
     logOut: () => void;
+    checkValidCartAction: () => boolean;
     handleEmailPasswordSignIn: (email: string, password: string) => void;
     handleEmailPasswordSignUp: (
         email: string,
         password: string,
         fullName: string
     ) => void;
-    handleAddToCart: (item: ICartItem) => boolean;
+    handleAddToCart: (item: ICartItem) => void;
     handleRemoveFromCart: (campaignBookId: number) => void;
     handleClearCart: () => void;
+    handleClearCartByCampaignId: (campaignId: number) => void;
     handleUpdateCart: (id: number, quantity: number) => void;
-    getCartItemByCampaignBookId: (id: number) => ICartItem | undefined;
 }
 
 const AuthContext = createContext({} as IAuthContext);
@@ -174,31 +176,25 @@ export const AuthContextProvider: React.FC<Props> = ({ children }) => {
 
     const saveCart = (cart: ICartItem[]) => {
         setCart(cart);
-        localStorage.setItem('cart', JSON.stringify(cart));
+        localStorage.setItem(CART_KEY, JSON.stringify(cart));
     };
 
-    const getCartItemByCampaignBookId = (id: number): ICartItem | undefined => {
-        return cart.find((item) => item.campaignBookId === id);
-    };
-
-    const handleAddToCart = (item: ICartItem): boolean => {
-        if (!checkValidCartAction()) return false;
-        const newCart = [...cart];
-        const index = newCart.findIndex(
-            (x) => x.campaignBookId === item.campaignBookId
+    const handleAddToCart = (item: ICartItem): void => {
+        const newCarts = [...cart];
+        const index = cart.findIndex(
+            (cartItem) => cartItem.campaignBookId === item.campaignBookId
         );
+
         if (index === -1) {
-            newCart.push(item);
+            newCarts.push(item);
         } else {
-            newCart[index].quantity += item.quantity;
+            newCarts[index].quantity += item.quantity;
         }
-        saveCart(newCart);
-        return true;
+        saveCart(newCarts);
     };
 
     const handleRemoveFromCart = (campaignBookId: number) => {
-        if (!checkValidCartAction()) return;
-        const newCart = JSON.parse(localStorage.getItem('cart') || '[]');
+        const newCart = [...cart];
         const index = newCart.findIndex(
             (i: ICartItem) => i.campaignBookId === campaignBookId
         );
@@ -209,8 +205,7 @@ export const AuthContextProvider: React.FC<Props> = ({ children }) => {
     };
 
     const handleUpdateCart = (id: number, quantity: number) => {
-        if (!checkValidCartAction()) return;
-        const newCart = JSON.parse(localStorage.getItem('cart') || '[]');
+        const newCart = [...cart];
         const index = newCart.findIndex(
             (i: ICartItem) => i.campaignBookId === id
         );
@@ -222,6 +217,14 @@ export const AuthContextProvider: React.FC<Props> = ({ children }) => {
 
     const handleClearCart = () => {
         saveCart([]);
+    };
+
+    const handleClearCartByCampaignId = (campaignId: number) => {
+        const newCart = [...cart];
+        const filteredItems = newCart.filter(
+            (item) => item.campaignId !== campaignId
+        );
+        saveCart(filteredItems);
     };
 
     useEffect(() => {
@@ -258,7 +261,8 @@ export const AuthContextProvider: React.FC<Props> = ({ children }) => {
                 handleRemoveFromCart,
                 handleUpdateCart,
                 handleClearCart,
-                getCartItemByCampaignBookId,
+                handleClearCartByCampaignId,
+                checkValidCartAction,
             }}
         >
             {authLoading ? <LoadingProgress /> : children}

@@ -114,5 +114,5 @@
 }
 
 .input-error {
-    @apply text-red-500 mt-1 text-sm font-medium;
+    @apply mt-1 text-sm font-medium text-red-500;
 }

@@ -1,5 +1,6 @@
 import { IParticipation } from '../participation/IParticipation';
 import { IBookResponse } from '../response/IBookResponse';
+import { IPost } from '../post/IPost';
 
 export interface ICampaignBook {
     id?: number;
@@ -11,4 +12,5 @@ export interface ICampaignBook {
     coverPrice?: number;
     participation?: IParticipation;
     book?: IBookResponse;
+    post?: IPost;
 }

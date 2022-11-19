@@ -8,6 +8,7 @@ import { DropdownItemProps } from './DropdownItem';
 import DropdownMenu from './DropdownMenu';
 import { Roles } from '../../../constants/Roles';
 import { HiOutlineShoppingBag } from 'react-icons/hi';
+import { TbFileInvoice } from 'react-icons/tb';
 
 type Props = {
     maxWidth: string;
@@ -36,6 +37,7 @@ const Header: React.FC<Props> = ({ maxWidth }) => {
         },
         {
             href: '/orders',
+            icon: <TbFileInvoice />,
             text: 'Đơn hàng',
         },
         {

@@ -33,7 +33,6 @@ export function getFormattedDate(
         fullDate: date ? format(date, 'eeee, dd/MM/yyyy', localeFormat) : 'N/A',
     };
 }
-
 const slugifyOptions = {
     replacement: '-',
     remove: /[*+~.()'"!:@]/g,

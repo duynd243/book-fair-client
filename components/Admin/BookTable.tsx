@@ -2,14 +2,7 @@ import { IBaseListResponse } from '../../types/response/IBaseListResponse';
 import React from 'react';
 import { IBookResponse } from '../../types/response/IBookResponse';
 import BookRow from './BookRow';
-
-const TableHeader = ({ label }: { label: string }) => {
-    return (
-        <th className="w-px whitespace-nowrap px-2 py-3 first:pl-5 last:pr-5">
-            <span className="text-left font-semibold">{label}</span>
-        </th>
-    );
-};
+import TableHeader from './TableHeader';
 
 type Props = {
     data: IBaseListResponse<IBookResponse>;
@@ -35,22 +28,7 @@ const BookTable: React.FC<Props> = ({ data }) => {
                         {/* Table header */}
                         <thead className="border-t border-b border-slate-200 bg-slate-50 text-xs font-semibold uppercase text-slate-500">
                             <tr>
-                                <th className="w-px whitespace-nowrap px-2 py-3 first:pl-5 last:pr-5">
-                                    <div className="flex items-center">
-                                        <label className="inline-flex">
-                                            <span className="sr-only">
-                                                Select all
-                                            </span>
-                                            <input
-                                                className="form-checkbox"
-                                                type="checkbox"
-                                                checked={false}
-                                                onChange={() => {}}
-                                            />
-                                        </label>
-                                    </div>
-                                </th>
-                                <TableHeader label={'Code'} />
+                                <TableHeader label={'Mã sách'} />
                                 <TableHeader label={'Tên sách'} />
                                 <TableHeader label={'Giá'} />
                                 <TableHeader label={'Nhà phát hành'} />

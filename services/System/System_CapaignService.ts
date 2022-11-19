@@ -10,6 +10,13 @@ export class SystemCampaignService {
         this.axiosClient = getAxiosClient(accessToken);
     }
 
+    getCampaignById$System = async (id: any) => {
+        const response = await this.axiosClient.get<ICampaign>(
+            `/admin/campaigns/${id}`
+        );
+        return response.data;
+    };
+
     getCampaigns$System = async (params?: any) => {
         const response = await this.axiosClient.get<
             IBaseListResponse<ICampaign>

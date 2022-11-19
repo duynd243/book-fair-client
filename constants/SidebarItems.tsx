@@ -14,9 +14,9 @@ const SYSTEM_BASE_PATH = '/admin';
 const ISSUER_BASE_PATH = '/issuer';
 
 export const SYSTEM_SIDEBAR_ITEMS: (ISidebarItem | ISidebarGroup)[] = [
-    {
-        groupLabel: 'General',
-    },
+    // {
+    //     groupLabel: 'Chung',
+    // },
     {
         label: 'Dashboard',
         path: SYSTEM_BASE_PATH,
@@ -26,16 +26,16 @@ export const SYSTEM_SIDEBAR_ITEMS: (ISidebarItem | ISidebarGroup)[] = [
         label: 'Sự kiện',
         path: `${SYSTEM_BASE_PATH}/campaigns`,
         icon: <BsFillCalendarWeekFill />,
-        subItems: [
-            {
-                label: 'Danh sách',
-                path: `${SYSTEM_BASE_PATH}/campaigns`,
-            },
-            {
-                label: 'Tạo mới',
-                path: `${SYSTEM_BASE_PATH}/campaigns/create`,
-            },
-        ],
+        // subItems: [
+        //     {
+        //         label: 'Danh sách',
+        //         path: `${SYSTEM_BASE_PATH}/campaigns`,
+        //     },
+        //     {
+        //         label: 'Tạo mới',
+        //         path: `${SYSTEM_BASE_PATH}/campaigns/create`,
+        //     },
+        // ],
     },
     {
         label: 'Nhà phát hành',
@@ -57,40 +57,40 @@ export const SYSTEM_SIDEBAR_ITEMS: (ISidebarItem | ISidebarGroup)[] = [
         path: `${SYSTEM_BASE_PATH}/book-categories`,
         icon: <BsFillTagsFill />,
     },
-    {
-        label: 'Nested',
-        subItems: [
-            {
-                label: 'Nested 1',
-                path: `${SYSTEM_BASE_PATH}/nested/nested1`,
-            },
-            {
-                label: 'Nested 2',
-                path: `${SYSTEM_BASE_PATH}/nested/nested2`,
-            },
-        ],
-    },
-    {
-        groupLabel: 'Another Group',
-    },
-    {
-        label: 'Another Nested',
-        subItems: [
-            {
-                label: 'Nested 3',
-                path: `${SYSTEM_BASE_PATH}/nested/nested3`,
-            },
-            {
-                label: 'Nested 4',
-                path: `${SYSTEM_BASE_PATH}/nested/nested4`,
-            },
-        ],
-    },
+    // {
+    //     label: 'Nested',
+    //     subItems: [
+    //         {
+    //             label: 'Nested 1',
+    //             path: `${SYSTEM_BASE_PATH}/nested/nested1`,
+    //         },
+    //         {
+    //             label: 'Nested 2',
+    //             path: `${SYSTEM_BASE_PATH}/nested/nested2`,
+    //         },
+    //     ],
+    // },
+    // {
+    //     groupLabel: 'Another Group',
+    // },
+    // {
+    //     label: 'Another Nested',
+    //     subItems: [
+    //         {
+    //             label: 'Nested 3',
+    //             path: `${SYSTEM_BASE_PATH}/nested/nested3`,
+    //         },
+    //         {
+    //             label: 'Nested 4',
+    //             path: `${SYSTEM_BASE_PATH}/nested/nested4`,
+    //         },
+    //     ],
+    // },
 ];
 export const ISSUER_SIDEBAR_ITEMS: (ISidebarItem | ISidebarGroup)[] = [
-    {
-        groupLabel: 'General',
-    },
+    // {
+    //     groupLabel: 'General',
+    // },
     {
         label: 'Dashboard',
         path: ISSUER_BASE_PATH,
@@ -107,9 +107,9 @@ export const ISSUER_SIDEBAR_ITEMS: (ISidebarItem | ISidebarGroup)[] = [
         path: `${ISSUER_BASE_PATH}/books`,
         icon: <ImBook />,
     },
-    {
-        label: 'Đơn hàng',
-        path: `${ISSUER_BASE_PATH}/orders`,
-        icon: <BsFillFileEarmarkMedicalFill />,
-    },
+    // {
+    //     label: 'Đơn hàng',
+    //     path: `${ISSUER_BASE_PATH}/orders`,
+    //     icon: <BsFillFileEarmarkMedicalFill />,
+    // },
 ];

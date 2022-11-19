@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import {
+    IoAdd,
     IoArrowForward,
     IoChevronBack,
     IoLocationSharp,
 } from 'react-icons/io5';
 import { getFormattedDate } from '../../utils/helper';
 import Image from 'next/image';
-import DefaultAvatar from '../../assets/images/default_avatar.png';
 import ContentHeader from './ContentHeader';
 import Separator from './Seperator';
 import { ICampaign } from '../../types/campaign/ICampaign';
@@ -18,14 +18,10 @@ import { useAuth } from '../../context/AuthContext';
 import { PostService } from '../../services/PostService';
 import { IPostResponse } from '../../types/response/IPostResponse';
 import PostCard from './PostCard';
-
-const EmptySection: React.FC<{ text: string }> = ({ text }) => {
-    return (
-        <div className="py-6 text-center">
-            <p className="text-slate-600">{text}</p>
-        </div>
-    );
-};
+import { Roles } from '../../constants/Roles';
+import ParticipationTable from '../Admin/ParticipationTable';
+import EmptySection from './EmptySection';
+import ParticipationSection from '../Admin/ParticipationSection';
 
 type Props = {
     campaign: ICampaign | undefined;
@@ -81,7 +77,7 @@ const MainContent: React.FC<Props> = ({ campaign }) => {
             </div>
             <header className="mb-4">
                 {/* Title */}
-                <h1 className="text-slate-800 mb-2 text-2xl font-bold md:text-3xl">
+                <h1 className="mb-2 text-2xl font-bold text-slate-800 md:text-3xl">
                     {campaign?.name}
                 </h1>
             </header>
@@ -93,7 +89,7 @@ const MainContent: React.FC<Props> = ({ campaign }) => {
                     <IoLocationSharp size={20} className={'fill-red-700'} />
                     <div className="whitespace-nowrap text-sm">
                         Diễn ra tại{' '}
-                        <span className="text-slate-800 font-semibold">
+                        <span className="font-semibold text-slate-800">
                             {campaign?.address}
                         </span>
                     </div>
@@ -141,8 +137,13 @@ const MainContent: React.FC<Props> = ({ campaign }) => {
                 )}
             </div>
             <Separator />
-            {/* Posts */}
 
+            {/*ParticipationTable*/}
+            {loginUser?.role === Roles.SYSTEM.id && (
+                <ParticipationSection campaign={campaign} />
+            )}
+
+            {/* Posts */}
             <div>
                 <ContentHeader
                     text={`Bài đăng (${posts?.pages[0]?.metadata.total || 0})`}
@@ -177,89 +178,91 @@ const MainContent: React.FC<Props> = ({ campaign }) => {
 
             <Separator />
 
-            {/* Comments */}
-            <div>
-                <ContentHeader text={'Bình luận (3)'} />
+            {/*/!* Comments *!/*/}
+            {/*<div>*/}
+            {/*    <ContentHeader text={'Bình luận (3)'} />*/}
 
-                <ul className="my-6 space-y-5">
-                    {/* Comment */}
-                    <li className="flex items-start">
-                        <a className="shrink-0 mr-3 block" href="#0">
-                            <Image
-                                className="rounded-full"
-                                src={DefaultAvatar.src}
-                                width="32"
-                                height="32"
-                                alt="User 07"
-                            />
-                        </a>
-                        <div className="grow">
-                            <div className="text-slate-800 mb-2 text-sm font-semibold">
-                                Taylor Nieman
-                            </div>
-                            <div className="italic">
-                                “Lorem ipsum dolor sit amet, consectetur
-                                adipiscing elit, sed do eiusmod tempor
-                                incididunt ut labore et dolore magna aliqua. Ut
-                                enim ad minim veniam.”
-                            </div>
-                        </div>
-                    </li>
-                    {/* Comment */}
-                    <li className="flex items-start">
-                        <a className="shrink-0 mr-3 block" href="#0">
-                            <Image
-                                className="rounded-full"
-                                src={DefaultAvatar.src}
-                                width="32"
-                                height="32"
-                                alt="User 08"
-                            />
-                        </a>
-                        <div className="grow">
-                            <div className="text-slate-800 mb-2 text-sm font-semibold">
-                                Meagan Loyst
-                            </div>
-                            <div className="italic">
-                                “Lorem ipsum dolor sit amet, consectetur
-                                adipiscing elit, sed do eiusmod tempor
-                                incididunt ut labore et dolore magna aliqua. Ut
-                                enim ad minim veniam.”
-                            </div>
-                        </div>
-                    </li>
-                    {/* Comment */}
-                    <li className="flex items-start">
-                        <a className="shrink-0 mr-3 block" href="#0">
-                            <Image
-                                className="rounded-full"
-                                src={DefaultAvatar.src}
-                                width="32"
-                                height="32"
-                                alt="User 02"
-                            />
-                        </a>
-                        <div className="grow">
-                            <div className="text-slate-800 mb-2 text-sm font-semibold">
-                                Frank Malik
-                            </div>
-                            <div className="italic">
-                                “Lorem ipsum dolor sit amet, consectetur
-                                adipiscing elit, sed do eiusmod tempor
-                                incididunt ut labore et dolore magna aliqua. Ut
-                                enim ad minim veniam.”
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-            </div>
+            {/*    <ul className="my-6 space-y-5">*/}
+            {/*        /!* Comment *!/*/}
+            {/*        <li className="flex items-start">*/}
+            {/*            <a className="shrink-0 mr-3 block" href="#0">*/}
+            {/*                <Image*/}
+            {/*                    className="rounded-full"*/}
+            {/*                    src={DefaultAvatar.src}*/}
+            {/*                    width="32"*/}
+            {/*                    height="32"*/}
+            {/*                    alt="User 07"*/}
+            {/*                />*/}
+            {/*            </a>*/}
+            {/*            <div className="grow">*/}
+            {/*                <div className="text-slate-800 mb-2 text-sm font-semibold">*/}
+            {/*                    Taylor Nieman*/}
+            {/*                </div>*/}
+            {/*                <div className="italic">*/}
+            {/*                    “Lorem ipsum dolor sit amet, consectetur*/}
+            {/*                    adipiscing elit, sed do eiusmod tempor*/}
+            {/*                    incididunt ut labore et dolore magna aliqua. Ut*/}
+            {/*                    enim ad minim veniam.”*/}
+            {/*                </div>*/}
+            {/*            </div>*/}
+            {/*        </li>*/}
+            {/*        /!* Comment *!/*/}
+            {/*        <li className="flex items-start">*/}
+            {/*            <a className="shrink-0 mr-3 block" href="#0">*/}
+            {/*                <Image*/}
+            {/*                    className="rounded-full"*/}
+            {/*                    src={DefaultAvatar.src}*/}
+            {/*                    width="32"*/}
+            {/*                    height="32"*/}
+            {/*                    alt="User 08"*/}
+            {/*                />*/}
+            {/*            </a>*/}
+            {/*            <div className="grow">*/}
+            {/*                <div className="text-slate-800 mb-2 text-sm font-semibold">*/}
+            {/*                    Meagan Loyst*/}
+            {/*                </div>*/}
+            {/*                <div className="italic">*/}
+            {/*                    “Lorem ipsum dolor sit amet, consectetur*/}
+            {/*                    adipiscing elit, sed do eiusmod tempor*/}
+            {/*                    incididunt ut labore et dolore magna aliqua. Ut*/}
+            {/*                    enim ad minim veniam.”*/}
+            {/*                </div>*/}
+            {/*            </div>*/}
+            {/*        </li>*/}
+            {/*        /!* Comment *!/*/}
+            {/*        <li className="flex items-start">*/}
+            {/*            <a className="shrink-0 mr-3 block" href="#0">*/}
+            {/*                <Image*/}
+            {/*                    className="rounded-full"*/}
+            {/*                    src={DefaultAvatar.src}*/}
+            {/*                    width="32"*/}
+            {/*                    height="32"*/}
+            {/*                    alt="User 02"*/}
+            {/*                />*/}
+            {/*            </a>*/}
+            {/*            <div className="grow">*/}
+            {/*                <div className="text-slate-800 mb-2 text-sm font-semibold">*/}
+            {/*                    Frank Malik*/}
+            {/*                </div>*/}
+            {/*                <div className="italic">*/}
+            {/*                    “Lorem ipsum dolor sit amet, consectetur*/}
+            {/*                    adipiscing elit, sed do eiusmod tempor*/}
+            {/*                    incididunt ut labore et dolore magna aliqua. Ut*/}
+            {/*                    enim ad minim veniam.”*/}
+            {/*                </div>*/}
+            {/*            </div>*/}
+            {/*        </li>*/}
+            {/*    </ul>*/}
+            {/*</div>*/}
 
-            <Separator />
+            {/*<Separator />*/}
 
-            {/* Similar Meetups */}
-            <div>
-                <ContentHeader text={'Các sự kiện liên quan'} />
-            </div>
+            {/*/!* Similar Meetups *!/*/}
+            {/*{loginUser?.role === Roles.CUSTOMER.id && (*/}
+            {/*    <div>*/}
+            {/*        <ContentHeader text={'Các sự kiện liên quan'} />*/}
+            {/*    </div>*/}
+            {/*)}*/}
         </div>
     );
 };

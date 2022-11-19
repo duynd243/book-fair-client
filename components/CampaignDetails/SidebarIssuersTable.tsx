@@ -13,7 +13,7 @@ const SidebarIssuersTable: React.FC<Props> = ({ issuers, maxRows = 10 }) => {
     return (
         <SidebarBlockWrapper>
             <div className="mb-5 flex flex-wrap items-center justify-between gap-1">
-                <div className="text-slate-800 text-base font-semibold">
+                <div className="text-base font-semibold text-slate-800">
                     Nhà phát hành tham gia ({issuers?.length})
                 </div>
                 {issuers?.length > 0 && issuers?.length > maxRows && (
@@ -31,7 +31,7 @@ const SidebarIssuersTable: React.FC<Props> = ({ issuers, maxRows = 10 }) => {
                     {issuers?.slice(0, maxRows).map((issuer) => (
                         <li key={issuer.id}>
                             <div className="flex justify-between">
-                                <div className="grow flex items-center">
+                                <div className="flex grow items-center">
                                     <div className="relative mr-3">
                                         <Image
                                             className="h-8 w-8 rounded-full"
@@ -45,12 +45,12 @@ const SidebarIssuersTable: React.FC<Props> = ({ issuers, maxRows = 10 }) => {
                                         />
                                     </div>
                                     <div className="truncate">
-                                        <span className="text-slate-800 text-sm font-medium">
+                                        <span className="text-sm font-medium text-slate-800">
                                             {issuer?.name}
                                         </span>
                                     </div>
                                 </div>
-                                <button className="text-slate-400 hover:text-slate-500 rounded-full">
+                                <button className="rounded-full text-slate-400 hover:text-slate-500">
                                     <span className="sr-only">Menu</span>
                                     <svg
                                         className="h-8 w-8 fill-current"

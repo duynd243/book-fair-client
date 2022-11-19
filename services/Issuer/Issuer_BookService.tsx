@@ -19,4 +19,12 @@ export class IssuerBookService {
         });
         return response.data;
     };
+
+    createBook$Issuer = async (data: IBookResponse) => {
+        const response = await this.axiosClient.post<IBookResponse>(
+            '/issuer/books',
+            data
+        );
+        return response.data;
+    };
 }

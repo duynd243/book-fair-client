@@ -10,10 +10,26 @@ export class IssuerCampaignService {
         this.axiosClient = getAxiosClient(accessToken);
     }
 
+    getCampaignById$Issuer = async (id: any) => {
+        const response = await this.axiosClient.get<ICampaign>(
+            `/issuer/campaigns/${id}`
+        );
+        return response.data;
+    };
+
     getCampaigns$Issuer = async (params?: any) => {
         const response = await this.axiosClient.get<
             IBaseListResponse<ICampaign>
-        >('/campaigns', {
+        >('/issuer/campaigns/', {
+            params,
+        });
+        return response.data;
+    };
+
+    getOtherCampaigns$Issuer = async (params?: any) => {
+        const response = await this.axiosClient.get<
+            IBaseListResponse<ICampaign>
+        >('/issuer/campaigns/other', {
             params,
         });
         return response.data;

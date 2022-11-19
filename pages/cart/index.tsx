@@ -1,4 +1,4 @@
-import React, { FormEvent, useState } from 'react';
+import React, { FormEvent, useEffect, useState } from 'react';
 import { NextPage } from 'next';
 import MainLayout from '../../components/Layouts/MainLayout';
 import { useAuth } from '../../context/AuthContext';
@@ -18,7 +18,11 @@ import { OrderService } from '../../services/OrderService';
 import { useRouter } from 'next/router';
 
 const CartPage: NextPage = () => {
-    const { loginUser, cart, handleClearCart } = useAuth();
+    const { loginUser, cart, handleClearCartByCampaignId, handleClearCart } =
+        useAuth();
+
+    const [campaignIds, setCampaignIds] = useState<number[]>([]);
+    const [checkedCampaignId, setCheckedCampaignId] = useState<number>();
     const router = useRouter();
     const queryClient = useQueryClient();
     const postService = new PostService(loginUser?.accessToken);
@@ -26,7 +30,6 @@ const CartPage: NextPage = () => {
     const [deliveryMethod, setDeliveryMethod] = useState<'pickup' | 'ship'>(
         'pickup'
     );
-
     const [address, setAddress] = useState<string>('');
     const [phone, setPhone] = useState<string>('');
 
@@ -37,7 +40,19 @@ const CartPage: NextPage = () => {
         })),
     });
 
-    const getPost = (campaignBookId: number) => {
+    useEffect(() => {
+        setCampaignIds(
+            Array.from(new Set(cart.map((item) => item.campaignId)))
+        );
+    }, [cart]);
+
+    useEffect(() => {
+        if (campaignIds.length === 1) {
+            setCheckedCampaignId(campaignIds[0]);
+        }
+    }, [campaignIds]);
+
+    const getPost = (campaignBookId: number | undefined) => {
         return queryClient.getQueryData<IPostResponse>([
             'cart_item',
             campaignBookId,
@@ -46,6 +61,11 @@ const CartPage: NextPage = () => {
 
     const handlePlaceOrder = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+
+        if (!checkedCampaignId) {
+            toast.error('Vui lòng chọn giỏ hàng từ một sự kiện để đặt hàng');
+            return;
+        }
 
         if (deliveryMethod === 'ship' && !address.trim()) {
             toast.error('Vui lòng nhập địa chỉ giao hàng');
@@ -62,7 +82,7 @@ const CartPage: NextPage = () => {
         }
 
         const payload: IOrder = {
-            campaignId: cart[0].campaignId,
+            campaignId: checkedCampaignId,
             customerId: loginUser?.userId,
             address,
             total: getTotalPrice(),
@@ -71,19 +91,21 @@ const CartPage: NextPage = () => {
             orderDate: new Date().toJSON(),
             requiredDate: addDays(new Date(), 7).toJSON(),
             shippedDate: addDays(new Date(), 7).toJSON(),
-            orderDetails: cart.map((item) => {
-                const post = getPost(item.campaignBookId);
-                const campaignBook = post?.campaignBooks[0];
-                const book = campaignBook?.book;
-                return {
-                    campaignBookId: item.campaignBookId,
-                    quantity: item.quantity,
-                    price:
-                        campaignBook?.coverPrice && book?.price
-                            ? campaignBook?.coverPrice + book?.price
-                            : 0,
-                };
-            }),
+            orderDetails: cart
+                .filter((i) => i.campaignId === checkedCampaignId)
+                .map((item) => {
+                    const post = getPost(item.campaignBookId);
+                    const campaignBook = post?.campaignBooks[0];
+                    const book = campaignBook?.book;
+                    return {
+                        campaignBookId: item.campaignBookId,
+                        quantity: item.quantity,
+                        price:
+                            campaignBook?.coverPrice && book?.price
+                                ? campaignBook?.coverPrice + book?.price
+                                : 0,
+                    };
+                }),
         };
 
         switch (deliveryMethod) {
@@ -95,7 +117,7 @@ const CartPage: NextPage = () => {
                             icon: 'success',
                             confirmButtonText: 'OK',
                         }).then(() => {
-                            handleClearCart();
+                            handleClearCartByCampaignId(checkedCampaignId);
                             router.push('/orders');
                         });
                     }
@@ -109,7 +131,7 @@ const CartPage: NextPage = () => {
                             icon: 'success',
                             confirmButtonText: 'OK',
                         }).then(() => {
-                            handleClearCart();
+                            handleClearCartByCampaignId(checkedCampaignId);
                             router.push('/orders');
                         });
                     }
@@ -119,20 +141,24 @@ const CartPage: NextPage = () => {
     };
 
     const getTotalPrice = () => {
+        if (!checkedCampaignId) return 0;
         let total = 0;
-        cart.forEach((item) => {
-            const post = getPost(item.campaignBookId);
-            const campaignBook = post?.campaignBooks[0];
-            const book = campaignBook?.book;
-            if (campaignBook?.coverPrice && book?.price) {
-                total +=
-                    item.quantity * (campaignBook?.coverPrice + book?.price);
+        cart.filter((i) => i.campaignId === checkedCampaignId).forEach(
+            (item) => {
+                const post = getPost(item.campaignBookId);
+                const campaignBook = post?.campaignBooks[0];
+                const book = campaignBook?.book;
+                if (campaignBook?.coverPrice && book?.price) {
+                    total +=
+                        item.quantity *
+                        (campaignBook?.coverPrice + book?.price);
+                }
             }
-        });
+        );
         return total;
     };
 
-    const clearCart = () => {
+    const clearCart = (campaignId: number) => {
         Swal.fire({
             title: 'Bạn có chắc chắn?',
             text: 'Tất cả các sản phẩm trong giỏ hàng sẽ bị xóa!',
@@ -142,7 +168,7 @@ const CartPage: NextPage = () => {
             cancelButtonText: 'Hủy',
         }).then((result) => {
             if (result.isConfirmed) {
-                handleClearCart();
+                handleClearCartByCampaignId(campaignId);
                 Swal.fire({
                     title: 'Đã xoá!',
                     text: 'Giỏ hàng của bạn đã được xoá.',
@@ -171,43 +197,79 @@ const CartPage: NextPage = () => {
                     >
                         <section
                             aria-labelledby="cart-heading"
-                            className="lg:col-span-7"
+                            className="space-y-6 lg:col-span-7"
                         >
-                            <button
-                                onClick={clearCart}
-                                type="button"
-                                className="ml-auto flex items-center gap-1.5 rounded-tl-md bg-gray-50 px-2.5 py-1 font-medium text-slate-700"
-                            >
-                                <IoTrash />
-                                <span>Xoá giỏ hàng</span>
-                            </button>
-                            <h2 id="cart-heading" className="sr-only">
-                                Items in your shopping cart
-                            </h2>
-                            {getAllQueries.some((q) => q.isLoading) ? (
-                                <div>Đang tải...</div>
-                            ) : (
-                                <ul
-                                    role="list"
-                                    className="divide-y divide-gray-200 border-t border-b border-gray-200"
-                                >
-                                    {cart.map((cartItem) => (
-                                        <CartRow
-                                            key={cartItem.campaignBookId}
-                                            cartItem={cartItem}
-                                            data={getPost(
-                                                cartItem.campaignBookId
-                                            )}
+                            {campaignIds?.map((campaignId) => (
+                                <div key={campaignId}>
+                                    <div className="mb-2 flex items-center gap-2">
+                                        <input
+                                            id={`cart-${campaignId}`}
+                                            checked={
+                                                checkedCampaignId === campaignId
+                                            }
+                                            onChange={() =>
+                                                setCheckedCampaignId(campaignId)
+                                            }
+                                            className="h-5 w-5 rounded-full border-gray-300 text-blue-600"
+                                            type="checkbox"
                                         />
-                                    ))}
-                                </ul>
-                            )}
+                                        <label
+                                            className="text-lg font-medium text-blue-800"
+                                            htmlFor={`cart-${campaignId}`}
+                                        >
+                                            {
+                                                getPost(
+                                                    cart.find(
+                                                        (c) =>
+                                                            c.campaignId ===
+                                                            campaignId
+                                                    )?.campaignBookId
+                                                )?.campaign?.name
+                                            }
+                                        </label>
+                                    </div>
+                                    <button
+                                        onClick={() => clearCart(campaignId)}
+                                        type="button"
+                                        className="ml-auto flex items-center gap-1.5 rounded-tl-md bg-gray-50 px-2.5 py-1 font-medium text-slate-700"
+                                    >
+                                        <IoTrash />
+                                        <span>Xoá giỏ hàng</span>
+                                    </button>
+                                    {getAllQueries.some((q) => q.isLoading) ? (
+                                        <div>Đang tải...</div>
+                                    ) : (
+                                        <ul
+                                            role="list"
+                                            className="divide-y divide-gray-200 border-t border-b border-gray-200"
+                                        >
+                                            {cart
+                                                .filter(
+                                                    (item) =>
+                                                        item.campaignId ===
+                                                        campaignId
+                                                )
+                                                ?.map((cartItem) => (
+                                                    <CartRow
+                                                        key={
+                                                            cartItem.campaignBookId
+                                                        }
+                                                        cartItem={cartItem}
+                                                        data={getPost(
+                                                            cartItem.campaignBookId
+                                                        )}
+                                                    />
+                                                ))}
+                                        </ul>
+                                    )}
+                                </div>
+                            ))}
                         </section>
 
                         {/* Order summary */}
                         <section
                             aria-labelledby="summary-heading"
-                            className="border mt-16 rounded-lg bg-gray-50 px-4 py-6 sm:p-6 lg:sticky lg:top-20 lg:col-span-5 lg:mt-0 lg:p-8"
+                            className="mt-16 rounded-lg border bg-gray-50 px-4 py-6 sm:p-6 lg:sticky lg:top-20 lg:col-span-5 lg:mt-0 lg:p-8"
                         >
                             <h2
                                 id="summary-heading"
@@ -255,7 +317,7 @@ const CartPage: NextPage = () => {
                                                 checked={
                                                     deliveryMethod === 'pickup'
                                                 }
-                                                className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 focus:ring-2"
+                                                className="h-4 w-4 border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500"
                                                 type="radio"
                                                 id={'pickup-order'}
                                             />
@@ -266,7 +328,7 @@ const CartPage: NextPage = () => {
                                                 Nhận tại sự kiện
                                             </label>
                                         </div>
-                                        <div className="flex items-center gap-2 mt-2">
+                                        <div className="mt-2 flex items-center gap-2">
                                             <input
                                                 onChange={() =>
                                                     setDeliveryMethod('ship')
@@ -274,7 +336,7 @@ const CartPage: NextPage = () => {
                                                 checked={
                                                     deliveryMethod === 'ship'
                                                 }
-                                                className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 focus:ring-2"
+                                                className="h-4 w-4 border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500"
                                                 type="radio"
                                                 id={'ship-order'}
                                             />
@@ -306,7 +368,7 @@ const CartPage: NextPage = () => {
                                                                 e.target.value
                                                             )
                                                         }
-                                                        className="disabled:bg-gray-100 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                                                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 disabled:bg-gray-100 sm:text-sm"
                                                         type="text"
                                                     />
                                                 </div>
@@ -328,7 +390,7 @@ const CartPage: NextPage = () => {
                                                                 e.target.value
                                                             )
                                                         }
-                                                        className="disabled:bg-gray-100 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                                                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 disabled:bg-gray-100 sm:text-sm"
                                                         type="text"
                                                     />
                                                 </div>
@@ -348,8 +410,9 @@ const CartPage: NextPage = () => {
 
                             <div className="mt-6">
                                 <button
+                                    disabled={!checkedCampaignId}
                                     type="submit"
-                                    className="w-full rounded-md border border-transparent bg-indigo-600 py-3 px-4 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50"
+                                    className="w-full rounded-md border border-transparent bg-indigo-600 py-3 px-4 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50 disabled:cursor-not-allowed disabled:opacity-50"
                                 >
                                     Đặt hàng
                                 </button>

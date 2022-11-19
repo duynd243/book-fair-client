@@ -1,17 +1,37 @@
 import React from 'react';
+import { useRouter } from 'next/router';
 
 type Props = {
     placeholder?: string;
+    value?: string;
 };
 
-const SearchForm: React.FC<Props> = ({ placeholder = 'Tìm kiếm...' }) => {
+const SearchForm: React.FC<Props> = ({
+    value,
+    placeholder = 'Tìm kiếm...',
+}) => {
+    const router = useRouter();
+    const [searchValue, setSearchValue] = React.useState(value);
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        router.push({
+            pathname: router.pathname,
+            query: {
+                search: searchValue,
+            },
+        });
+    };
+
     return (
-        <form className="relative">
+        <form onSubmit={handleSubmit} className="relative">
             <label htmlFor="action-search" className="sr-only">
                 Search
             </label>
             <input
+                onChange={(e) => setSearchValue(e.target.value)}
+                value={searchValue}
                 id="action-search"
+                name="search"
                 className="form-input rounded border border-slate-200 bg-white py-2 px-3 pl-9 text-sm leading-5 text-slate-800 placeholder-slate-400 shadow-sm hover:border-slate-300 focus:border-slate-500 focus:border-slate-300 focus:ring-0"
                 type="search"
                 placeholder={placeholder}

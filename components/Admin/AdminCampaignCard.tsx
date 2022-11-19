@@ -21,6 +21,8 @@ import {
 import { useAuth } from '../../context/AuthContext';
 import { Roles } from '../../constants/Roles';
 import { IParticipation } from '../../types/participation/IParticipation';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 const FeaturedItem: React.FC<{ children: React.ReactNode }> = ({
     children,
@@ -127,6 +129,7 @@ type Props = {
 };
 const AdminCampaignCard: React.FC<Props> = ({ campaign }) => {
     const { loginUser } = useAuth();
+    const router = useRouter();
     const issuers = campaign.participations
         ?.filter((p) => p.issuer)
         .map((p) => p.issuer) as IUser[];
@@ -136,7 +139,6 @@ const AdminCampaignCard: React.FC<Props> = ({ campaign }) => {
                   (p) => p.issuerId === loginUser?.userId
               )
             : undefined;
-    console.log('participationOfIssuer', participationOfIssuer);
     return (
         <div className="flex h-full flex-col  rounded border bg-white p-5 shadow-sm">
             {/*Header*/}
@@ -157,11 +159,17 @@ const AdminCampaignCard: React.FC<Props> = ({ campaign }) => {
                 )}
             </header>
             <div className="mt-3.5 grow">
-                <div className="mb-1 inline-flex text-slate-800 hover:text-slate-900">
+                <Link
+                    href={{
+                        pathname: `${router.pathname}/[campaignId]`,
+                        query: { campaignId: campaign.id },
+                    }}
+                    className="mb-1 inline-flex text-slate-800 hover:text-slate-900"
+                >
                     <h2 className="text-xl font-semibold leading-snug">
                         {campaign?.name}
                     </h2>
-                </div>
+                </Link>
                 <div className="text-sm line-clamp-4">
                     {campaign?.description}
                 </div>
@@ -207,15 +215,15 @@ const AdminCampaignCard: React.FC<Props> = ({ campaign }) => {
                         <span>{campaign?.address}</span>
                     </FeaturedItem>
                 </ul>
-                {loginUser?.role === Roles.SYSTEM.id && (
-                    <SystemActions campaign={campaign} />
-                )}
-                {loginUser?.role === Roles.ISSUER.id && (
-                    <IssuerActions
-                        participationOfIssuer={participationOfIssuer}
-                        campaign={campaign}
-                    />
-                )}
+                {/*{loginUser?.role === Roles.SYSTEM.id && (*/}
+                {/*    <SystemActions campaign={campaign} />*/}
+                {/*)}*/}
+                {/*{loginUser?.role === Roles.ISSUER.id && (*/}
+                {/*    <IssuerActions*/}
+                {/*        participationOfIssuer={participationOfIssuer}*/}
+                {/*        campaign={campaign}*/}
+                {/*    />*/}
+                {/*)}*/}
             </footer>
         </div>
     );

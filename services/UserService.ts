@@ -10,12 +10,9 @@ export class UserService {
     }
 
     loginWithFirebaseIdToken = async (idToken: string) => {
-        const response = await this.axiosClient.post<ILoginResponse>(
-            '/authenticate/login',
-            {
-                idToken,
-            }
-        );
+        const response = await this.axiosClient.post<ILoginResponse>('/login', {
+            idToken,
+        });
         return response.data;
     };
 }

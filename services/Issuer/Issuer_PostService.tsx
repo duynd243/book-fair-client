@@ -1,20 +1,18 @@
+import React from 'react';
 import { AxiosInstance } from 'axios';
 import getAxiosClient from '../axiosClient';
 import { IBaseListResponse } from '../../types/response/IBaseListResponse';
-import { IParticipation } from '../../types/participation/IParticipation';
+import { IBookResponse } from '../../types/response/IBookResponse';
 
-export class ParticipationService {
+export class IssuerPostService {
     private readonly axiosClient: AxiosInstance;
 
     constructor(accessToken?: string) {
         this.axiosClient = getAxiosClient(accessToken);
     }
 
-    // Get all participations of issuer
-    getParticipations = async (params?: any) => {
-        const response = await this.axiosClient.get<
-            IBaseListResponse<IParticipation>
-        >('/issuer/participations', { params });
+    createPost$Issuer = async (data: any) => {
+        const response = await this.axiosClient.post('/issuer/posts', data);
         return response.data;
     };
 }

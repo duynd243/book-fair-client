@@ -24,9 +24,10 @@ export class OrderService {
         return response.data;
     };
 
-    getOrders = async () => {
+    getOrders = async (params?: any) => {
         const response = await this.axiosClient.get<IBaseListResponse<IOrder>>(
-            '/orders'
+            '/orders',
+            { params }
         );
         return response.data;
     };

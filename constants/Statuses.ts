@@ -39,7 +39,7 @@ export class ParticipationStatuses {
     };
     static readonly SYSTEM_REJECTED = {
         id: 3,
-        displayName: 'Yêu tham gia bị từ chối',
+        displayName: 'Yêu cầu tham gia bị từ chối',
     };
 
     static readonly ISSUER_ACCEPTED = {
@@ -51,6 +51,25 @@ export class ParticipationStatuses {
         id: 5,
         displayName: 'Nhà phát hành từ chối',
     };
+    static readonly REJECTED_EMPTY_POST = {
+        id: 6,
+        displayName: 'Không có bài đăng',
+    };
+    static readonly INVITATION_CANCELLED = {
+        id: 7,
+        displayName: 'Lời mời đã bị hủy',
+    };
+    static readonly TIMEOUT_INVITATION = {
+        id: 8,
+        displayName: 'Lời mời đã hết hạn',
+    };
+}
+
+export function getParticipationStatusById(id: number) {
+    const status = Object.values(ParticipationStatuses).find(
+        (status) => status.id === id
+    );
+    return status;
 }
 
 export function getCampaignStatusById(id: number): IBaseStatus {
@@ -58,4 +77,34 @@ export function getCampaignStatusById(id: number): IBaseStatus {
         (status) => status.id === id
     );
     return status;
+}
+
+export class OrderStatuses {
+    static readonly PROCESSING = {
+        id: 0,
+        displayName: 'Đang xử lý',
+    };
+
+    // Chờ nhận hàng tại campaign (đơn dạng pickup)
+    static readonly WAITING_RECEIVE = {
+        id: 1,
+        displayName: 'Đợi nhận hàng',
+    };
+    static readonly SHIPPING = {
+        id: 2,
+        displayName: 'Đang vận chuyển',
+    };
+    static readonly SHIPPED = {
+        id: 3,
+        displayName: 'Đã giao',
+    };
+    // Đã nhận hàng tại campaign (đơn dạng pickup)
+    static readonly RECEIVED = {
+        id: 4,
+        displayName: 'Đã nhận hàng',
+    };
+    static readonly CANCELLED = {
+        id: 5,
+        displayName: 'Đã bị hủy',
+    };
 }

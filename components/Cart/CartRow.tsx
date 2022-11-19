@@ -4,9 +4,10 @@ import Link from 'next/link';
 import { IPostResponse } from '../../types/response/IPostResponse';
 import { getFormattedPrice, getSlug } from '../../utils/helper';
 import { ICartItem } from '../../types/cart/ICartItem';
-import { IoClose, IoFileTray, IoPricetag } from 'react-icons/io5';
+import { IoClose, IoFileTray, IoLibrary, IoPricetag } from 'react-icons/io5';
 import { useAuth } from '../../context/AuthContext';
 import Swal from 'sweetalert2';
+import DefaultAvatar from '../../assets/images/default_avatar.png';
 
 type Props = {
     data: IPostResponse | undefined;
@@ -83,32 +84,49 @@ const CartRow: React.FC<Props> = ({ data, cartItem }) => {
                                 : 'N/A'}
                         </p>
                     </div>
-                    <p className="mt-2 flex items-center gap-1 text-sm text-gray-500">
-                        <IoPricetag />
-                        Đơn giá:{' '}
-                        <span className={'font-medium text-slate-600'}>
-                            {data?.campaignBooks[0]?.coverPrice && book?.price
-                                ? getFormattedPrice(
-                                      data?.campaignBooks[0]?.coverPrice +
-                                          book?.price
-                                  )
-                                : 'N/A'}
-                        </span>
-                    </p>
-                    <p className="mt-1 flex items-center gap-1 text-sm text-gray-500">
-                        <IoFileTray />
-                        Số lượng:{' '}
-                        <span className={'font-medium text-slate-600'}>
-                            {cartItem.quantity}
-                        </span>
-                    </p>
+                    <div className="mt-2 space-y-1.5">
+                        <p className="flex items-center gap-1 text-sm text-gray-500">
+                            <IoPricetag />
+                            Đơn giá:{' '}
+                            <span className={'font-medium text-slate-600'}>
+                                {data?.campaignBooks[0]?.coverPrice &&
+                                book?.price
+                                    ? getFormattedPrice(
+                                          data?.campaignBooks[0]?.coverPrice +
+                                              book?.price
+                                      )
+                                    : 'N/A'}
+                            </span>
+                        </p>
+                        <p className="flex items-center gap-1 text-sm text-gray-500">
+                            <IoFileTray />
+                            Số lượng:{' '}
+                            <span className={'font-medium text-slate-600'}>
+                                {cartItem.quantity}
+                            </span>
+                        </p>
+                    </div>
                 </div>
 
-                <div className="mt-4 flex flex-1 items-end justify-between">
-                    <p className="flex items-center rounded-md bg-slate-50 px-2.5 py-1 text-sm font-medium text-slate-600">
-                        <span>Từ sự kiện: {data?.campaign?.name}</span>
-                    </p>
-                    <div className="ml-4">
+                <div className="mt-4 flex flex-wrap justify-between gap-y-3">
+                    <div className="flex items-center gap-1 text-sm font-medium text-slate-600">
+                        <Image
+                            width={22}
+                            height={22}
+                            className="rounded-full"
+                            src={
+                                data?.campaignBooks[0]?.participation?.issuer
+                                    ?.imageUrl || DefaultAvatar.src
+                            }
+                            alt={
+                                data?.campaignBooks[0]?.participation?.issuer
+                                    ?.name || ''
+                            }
+                        />
+                        {data?.campaignBooks[0]?.participation?.issuer?.name ||
+                            'N/A'}
+                    </div>
+                    <div>
                         <button
                             onClick={clearItem}
                             type="button"
